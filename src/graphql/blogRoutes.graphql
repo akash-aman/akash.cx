@@ -1,0 +1,8 @@
+query blogRoutes($first: Int!, $after: String) {
+	routes: posts(first: $first, after: $after) {
+		nodes {
+			slug
+			modified
+		}
+	}
+}

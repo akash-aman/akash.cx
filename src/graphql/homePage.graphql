@@ -1,0 +1,39 @@
+query HomePage($first: Int!, $after: String) {
+	blogs: posts(
+		where: { orderby: { field: MODIFIED, order: DESC } }
+		first: $first
+		after: $after
+	) {
+		nodes {
+			title
+			slug
+			modified
+			excerpt
+			contentFiltered
+			tags {
+				nodes {
+					name
+					slug
+					featuredImage {
+						featuredImage {
+							mediaItemUrl
+							sizes
+							caption
+						}
+					}
+				}
+			}
+			featuredImage {
+				node {
+					mediaItemUrl
+				}
+			}
+			author {
+				node {
+					firstName
+					lastName
+				}
+			}
+		}
+	}
+}

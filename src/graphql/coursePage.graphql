@@ -1,0 +1,105 @@
+query coursePage($slug: ID!) {
+	course: course(id: $slug, idType: SLUG) {
+		title
+		slug
+		modified
+		excerpt
+		date
+		contentFiltered
+		tags {
+			nodes {
+				name
+				slug
+				featuredImage {
+					featuredImage {
+						mediaItemUrl
+						sizes
+						caption
+						mediaDetails {
+							height
+							width
+						}
+					}
+				}
+			}
+		}
+		featuredImage {
+			node {
+				sizes
+				caption
+				mediaItemUrl
+				mediaDetails {
+					height
+					width
+				}
+			}
+		}
+		author {
+			node {
+				user {
+					profilePic {
+						mediaItemUrl
+						sizes
+						mediaDetails {
+							height
+							width
+						}
+					}
+				}
+				firstName
+				lastName
+			}
+		}
+		chapters {
+			chapters {
+				... on Chapter {
+					title
+					slug
+					modified
+					excerpt
+					contentFiltered
+					tags {
+						nodes {
+							name
+							slug
+							featuredImage {
+								featuredImage {
+									mediaItemUrl
+									sizes
+									caption
+									mediaDetails {
+										height
+										width
+									}
+								}
+							}
+						}
+					}
+					featuredImage {
+						node {
+							caption
+							mediaItemUrl
+							mediaDetails {
+								height
+								width
+							}
+						}
+					}
+					author {
+						node {
+							firstName
+							lastName
+						}
+					}
+				}
+			}
+		}
+
+		author {
+			node {
+				firstName
+				lastName
+			}
+		}
+	}
+}

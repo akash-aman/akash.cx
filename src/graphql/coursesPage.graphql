@@ -1,0 +1,49 @@
+query coursesPage($first: Int!, $after: String) {
+	courses: courses(
+		where: { orderby: { field: MODIFIED, order: DESC } }
+		first: $first
+		after: $after
+	) {
+		nodes {
+			title
+			slug
+			date
+			modified
+			excerpt
+			contentFiltered
+			tags {
+				nodes {
+					name
+					slug
+					featuredImage {
+						featuredImage {
+							mediaItemUrl
+							sizes
+							caption
+							mediaDetails {
+								height
+								width
+							}
+						}
+					}
+				}
+			}
+			featuredImage {
+				node {
+					caption
+					mediaItemUrl
+					mediaDetails {
+						height
+						width
+					}
+				}
+			}
+			author {
+				node {
+					firstName
+					lastName
+				}
+			}
+		}
+	}
+}

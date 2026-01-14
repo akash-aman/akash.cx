@@ -1,0 +1,63 @@
+query blogPage($slug: ID!) {
+	blog: post(id: $slug, idType: SLUG) {
+		title
+		slug
+		modified
+		date
+		excerpt
+		contentFiltered
+		tags {
+			nodes {
+				name
+				slug
+				featuredImage {
+					featuredImage {
+						mediaItemUrl
+						sizes
+						caption
+						mediaDetails {
+							height
+							width
+						}
+					}
+				}
+			}
+		}
+		featuredImage {
+			node {
+				caption
+				mediaItemUrl
+				sizes
+				mediaDetails {
+					height
+					width
+				}
+			}
+		}
+		author {
+			node {
+				firstName
+				lastName
+				user {
+					profilePic {
+						mediaItemUrl
+						sizes
+						mediaDetails {
+							height
+							width
+						}
+					}
+				}
+				mediaItems {
+					edges {
+						node {
+							id
+						}
+					}
+				}
+				firstName
+				lastName
+			}
+		}
+	}
+}

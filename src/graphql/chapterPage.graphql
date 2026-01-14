@@ -1,0 +1,54 @@
+query chapterPage($slug: ID!) {
+	chapter: chapter(id: $slug, idType: SLUG) {
+		title
+		slug
+		modified
+		date
+		excerpt
+		contentFiltered
+		tags {
+			nodes {
+				name
+				slug
+				featuredImage {
+					featuredImage {
+						mediaItemUrl
+						sizes
+						caption
+						mediaDetails {
+							height
+							width
+						}
+					}
+				}
+			}
+		}
+		featuredImage {
+			node {
+				caption
+				sizes
+				mediaItemUrl
+				mediaDetails {
+					height
+					width
+				}
+			}
+		}
+		author {
+			node {
+				user {
+					profilePic {
+						mediaItemUrl
+						sizes
+						mediaDetails {
+							height
+							width
+						}
+					}
+				}
+				firstName
+				lastName
+			}
+		}
+	}
+}

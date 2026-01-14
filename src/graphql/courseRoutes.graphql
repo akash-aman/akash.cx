@@ -1,0 +1,20 @@
+query courseRoutes($first: Int!, $after: String) {
+	courses: courses(
+		where: { orderby: { field: MODIFIED, order: DESC } }
+		first: $first
+		after: $after
+	) {
+		nodes {
+			slug
+			modified
+			chapters {
+				chapters {
+					... on Chapter {
+						slug
+						modified
+					}
+				}
+			}
+		}
+	}
+}

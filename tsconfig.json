@@ -19,7 +19,20 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "app/*": ["./src/app/*"],
+      "components/*": ["./src/components/*"],
+      "context/*": ["./src/context/*"],
+      "contexts/*": ["./src/contexts/*"],
+      "generated/*": ["./src/generated/*"],
+      "graphql/*": ["./src/graphql/*"],
+      "hooks/*": ["./src/hooks/*"],
+      "rehype/*": ["./src/rehype/*"],
+      "remark/*": ["./src/remark/*"],
+      "styles/*": ["./src/styles/*"],
+      "utils/*": ["./src/utils/*"],
+      "assets/*": ["./src/assets/*"],
+      "config/*": ["./src/config/*"]
     }
   },
   "include": [

@@ -1,0 +1,29 @@
+/* -------------------------------------------------------------------
+
+					FONT FACE DECLARATIONS
+
+  ------------------------------------------------------------------- */
+:root {
+	--font-swing: "swing-king", sans-serif;
+	--font-attribute-mono: "attribute-mono", sans-serif;
+	--font-sofia-pro: "sofia-pro", sans-serif;
+	--font-greycliff-cf: "greycliff-cf", sans-serif;
+
+	body {
+		.attribute-mono {
+			font-family: var(--font-attribute-mono);
+		}
+
+		.sofia-pro {
+			font-family: var(--font-sofia-pro);
+		}
+
+		.greycliff-cf {
+			font-family: var(--font-greycliff-cf);
+		}
+
+		.swing-king {
+			font-family: var(--font-swing);
+		}
+	}
+}

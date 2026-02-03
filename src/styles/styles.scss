@@ -1,0 +1,43 @@
+/* Styles */
+@keyframes slide {
+	0% {
+		transform: translateY(20px);
+		opacity: 0;
+	}
+
+	100% {
+		transform: translateY(0px);
+		opacity: 1;
+	}
+}
+
+.slide {
+	animation: slide 0.3s cubic-bezier(0, 0, 0.58, 1);
+}
+
+@keyframes slide-down {
+	100% {
+		transform: translateY(20px);
+		opacity: 0;
+	}
+
+	0% {
+		transform: translateY(0px);
+		opacity: 1;
+	}
+}
+
+.slide-down {
+	animation: slide-down 0.3s cubic-bezier(0, 0, 0.58, 1);
+}
+
+* {
+	transition:
+		var(--theme-transition);
+}
+
+body {
+	margin: 0;
+	padding: 0;
+}
+

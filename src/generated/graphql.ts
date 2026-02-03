@@ -1,7 +1,5 @@
-import { gql } from '@apollo/client';
-import * as Apollo from '@apollo/client';
-import { GraphQLClient, RequestOptions } from 'graphql-request';
 import gql from 'graphql-tag';
+
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
@@ -10,7 +8,6 @@ export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Mayb
 export type MakeEmpty<T extends { [key: string]: unknown }, K extends keyof T> = { [_ in K]?: never };
 export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
 const defaultOptions = {} as const;
-type GraphQLClientRequestHeaders = RequestOptions['requestHeaders'];
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: { input: string; output: string; }
@@ -11402,25 +11399,6 @@ export const BlogPageDocument = gql`
  *   },
  * });
  */
-export function useBlogPageQuery(baseOptions: Apollo.QueryHookOptions<BlogPageQuery, BlogPageQueryVariables> & ({ variables: BlogPageQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<BlogPageQuery, BlogPageQueryVariables>(BlogPageDocument, options);
-      }
-export function useBlogPageLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<BlogPageQuery, BlogPageQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<BlogPageQuery, BlogPageQueryVariables>(BlogPageDocument, options);
-        }
-// @ts-ignore
-export function useBlogPageSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<BlogPageQuery, BlogPageQueryVariables>): Apollo.UseSuspenseQueryResult<BlogPageQuery, BlogPageQueryVariables>;
-export function useBlogPageSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<BlogPageQuery, BlogPageQueryVariables>): Apollo.UseSuspenseQueryResult<BlogPageQuery | undefined, BlogPageQueryVariables>;
-export function useBlogPageSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<BlogPageQuery, BlogPageQueryVariables>) {
-          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
-          return Apollo.useSuspenseQuery<BlogPageQuery, BlogPageQueryVariables>(BlogPageDocument, options);
-        }
-export type BlogPageQueryHookResult = ReturnType<typeof useBlogPageQuery>;
-export type BlogPageLazyQueryHookResult = ReturnType<typeof useBlogPageLazyQuery>;
-export type BlogPageSuspenseQueryHookResult = ReturnType<typeof useBlogPageSuspenseQuery>;
-export type BlogPageQueryResult = Apollo.QueryResult<BlogPageQuery, BlogPageQueryVariables>;
 export const BlogRoutesDocument = gql`
     query blogRoutes($first: Int!, $after: String) {
   routes: posts(first: $first, after: $after) {
@@ -11449,25 +11427,6 @@ export const BlogRoutesDocument = gql`
  *   },
  * });
  */
-export function useBlogRoutesQuery(baseOptions: Apollo.QueryHookOptions<BlogRoutesQuery, BlogRoutesQueryVariables> & ({ variables: BlogRoutesQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<BlogRoutesQuery, BlogRoutesQueryVariables>(BlogRoutesDocument, options);
-      }
-export function useBlogRoutesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<BlogRoutesQuery, BlogRoutesQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<BlogRoutesQuery, BlogRoutesQueryVariables>(BlogRoutesDocument, options);
-        }
-// @ts-ignore
-export function useBlogRoutesSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<BlogRoutesQuery, BlogRoutesQueryVariables>): Apollo.UseSuspenseQueryResult<BlogRoutesQuery, BlogRoutesQueryVariables>;
-export function useBlogRoutesSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<BlogRoutesQuery, BlogRoutesQueryVariables>): Apollo.UseSuspenseQueryResult<BlogRoutesQuery | undefined, BlogRoutesQueryVariables>;
-export function useBlogRoutesSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<BlogRoutesQuery, BlogRoutesQueryVariables>) {
-          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
-          return Apollo.useSuspenseQuery<BlogRoutesQuery, BlogRoutesQueryVariables>(BlogRoutesDocument, options);
-        }
-export type BlogRoutesQueryHookResult = ReturnType<typeof useBlogRoutesQuery>;
-export type BlogRoutesLazyQueryHookResult = ReturnType<typeof useBlogRoutesLazyQuery>;
-export type BlogRoutesSuspenseQueryHookResult = ReturnType<typeof useBlogRoutesSuspenseQuery>;
-export type BlogRoutesQueryResult = Apollo.QueryResult<BlogRoutesQuery, BlogRoutesQueryVariables>;
 export const BlogsPageDocument = gql`
     query blogsPage($first: Int!, $after: String) {
   blogs: posts(
@@ -11527,25 +11486,6 @@ export const BlogsPageDocument = gql`
  *   },
  * });
  */
-export function useBlogsPageQuery(baseOptions: Apollo.QueryHookOptions<BlogsPageQuery, BlogsPageQueryVariables> & ({ variables: BlogsPageQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<BlogsPageQuery, BlogsPageQueryVariables>(BlogsPageDocument, options);
-      }
-export function useBlogsPageLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<BlogsPageQuery, BlogsPageQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<BlogsPageQuery, BlogsPageQueryVariables>(BlogsPageDocument, options);
-        }
-// @ts-ignore
-export function useBlogsPageSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<BlogsPageQuery, BlogsPageQueryVariables>): Apollo.UseSuspenseQueryResult<BlogsPageQuery, BlogsPageQueryVariables>;
-export function useBlogsPageSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<BlogsPageQuery, BlogsPageQueryVariables>): Apollo.UseSuspenseQueryResult<BlogsPageQuery | undefined, BlogsPageQueryVariables>;
-export function useBlogsPageSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<BlogsPageQuery, BlogsPageQueryVariables>) {
-          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
-          return Apollo.useSuspenseQuery<BlogsPageQuery, BlogsPageQueryVariables>(BlogsPageDocument, options);
-        }
-export type BlogsPageQueryHookResult = ReturnType<typeof useBlogsPageQuery>;
-export type BlogsPageLazyQueryHookResult = ReturnType<typeof useBlogsPageLazyQuery>;
-export type BlogsPageSuspenseQueryHookResult = ReturnType<typeof useBlogsPageSuspenseQuery>;
-export type BlogsPageQueryResult = Apollo.QueryResult<BlogsPageQuery, BlogsPageQueryVariables>;
 export const ChapterPageDocument = gql`
     query chapterPage($slug: ID!) {
   chapter: chapter(id: $slug, idType: SLUG) {
@@ -11619,25 +11559,6 @@ export const ChapterPageDocument = gql`
  *   },
  * });
  */
-export function useChapterPageQuery(baseOptions: Apollo.QueryHookOptions<ChapterPageQuery, ChapterPageQueryVariables> & ({ variables: ChapterPageQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<ChapterPageQuery, ChapterPageQueryVariables>(ChapterPageDocument, options);
-      }
-export function useChapterPageLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<ChapterPageQuery, ChapterPageQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<ChapterPageQuery, ChapterPageQueryVariables>(ChapterPageDocument, options);
-        }
-// @ts-ignore
-export function useChapterPageSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<ChapterPageQuery, ChapterPageQueryVariables>): Apollo.UseSuspenseQueryResult<ChapterPageQuery, ChapterPageQueryVariables>;
-export function useChapterPageSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<ChapterPageQuery, ChapterPageQueryVariables>): Apollo.UseSuspenseQueryResult<ChapterPageQuery | undefined, ChapterPageQueryVariables>;
-export function useChapterPageSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<ChapterPageQuery, ChapterPageQueryVariables>) {
-          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
-          return Apollo.useSuspenseQuery<ChapterPageQuery, ChapterPageQueryVariables>(ChapterPageDocument, options);
-        }
-export type ChapterPageQueryHookResult = ReturnType<typeof useChapterPageQuery>;
-export type ChapterPageLazyQueryHookResult = ReturnType<typeof useChapterPageLazyQuery>;
-export type ChapterPageSuspenseQueryHookResult = ReturnType<typeof useChapterPageSuspenseQuery>;
-export type ChapterPageQueryResult = Apollo.QueryResult<ChapterPageQuery, ChapterPageQueryVariables>;
 export const CoursePageDocument = gql`
     query coursePage($slug: ID!) {
   course: course(id: $slug, idType: SLUG) {
@@ -11761,25 +11682,6 @@ export const CoursePageDocument = gql`
  *   },
  * });
  */
-export function useCoursePageQuery(baseOptions: Apollo.QueryHookOptions<CoursePageQuery, CoursePageQueryVariables> & ({ variables: CoursePageQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<CoursePageQuery, CoursePageQueryVariables>(CoursePageDocument, options);
-      }
-export function useCoursePageLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<CoursePageQuery, CoursePageQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<CoursePageQuery, CoursePageQueryVariables>(CoursePageDocument, options);
-        }
-// @ts-ignore
-export function useCoursePageSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<CoursePageQuery, CoursePageQueryVariables>): Apollo.UseSuspenseQueryResult<CoursePageQuery, CoursePageQueryVariables>;
-export function useCoursePageSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<CoursePageQuery, CoursePageQueryVariables>): Apollo.UseSuspenseQueryResult<CoursePageQuery | undefined, CoursePageQueryVariables>;
-export function useCoursePageSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<CoursePageQuery, CoursePageQueryVariables>) {
-          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
-          return Apollo.useSuspenseQuery<CoursePageQuery, CoursePageQueryVariables>(CoursePageDocument, options);
-        }
-export type CoursePageQueryHookResult = ReturnType<typeof useCoursePageQuery>;
-export type CoursePageLazyQueryHookResult = ReturnType<typeof useCoursePageLazyQuery>;
-export type CoursePageSuspenseQueryHookResult = ReturnType<typeof useCoursePageSuspenseQuery>;
-export type CoursePageQueryResult = Apollo.QueryResult<CoursePageQuery, CoursePageQueryVariables>;
 export const CourseRoutesDocument = gql`
     query courseRoutes($first: Int!, $after: String) {
   courses: courses(
@@ -11820,25 +11722,6 @@ export const CourseRoutesDocument = gql`
  *   },
  * });
  */
-export function useCourseRoutesQuery(baseOptions: Apollo.QueryHookOptions<CourseRoutesQuery, CourseRoutesQueryVariables> & ({ variables: CourseRoutesQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<CourseRoutesQuery, CourseRoutesQueryVariables>(CourseRoutesDocument, options);
-      }
-export function useCourseRoutesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<CourseRoutesQuery, CourseRoutesQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<CourseRoutesQuery, CourseRoutesQueryVariables>(CourseRoutesDocument, options);
-        }
-// @ts-ignore
-export function useCourseRoutesSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<CourseRoutesQuery, CourseRoutesQueryVariables>): Apollo.UseSuspenseQueryResult<CourseRoutesQuery, CourseRoutesQueryVariables>;
-export function useCourseRoutesSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<CourseRoutesQuery, CourseRoutesQueryVariables>): Apollo.UseSuspenseQueryResult<CourseRoutesQuery | undefined, CourseRoutesQueryVariables>;
-export function useCourseRoutesSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<CourseRoutesQuery, CourseRoutesQueryVariables>) {
-          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
-          return Apollo.useSuspenseQuery<CourseRoutesQuery, CourseRoutesQueryVariables>(CourseRoutesDocument, options);
-        }
-export type CourseRoutesQueryHookResult = ReturnType<typeof useCourseRoutesQuery>;
-export type CourseRoutesLazyQueryHookResult = ReturnType<typeof useCourseRoutesLazyQuery>;
-export type CourseRoutesSuspenseQueryHookResult = ReturnType<typeof useCourseRoutesSuspenseQuery>;
-export type CourseRoutesQueryResult = Apollo.QueryResult<CourseRoutesQuery, CourseRoutesQueryVariables>;
 export const CourseSidebarDocument = gql`
     query courseSidebar($slug: ID!) {
   course: course(id: $slug, idType: SLUG) {
@@ -11882,25 +11765,6 @@ export const CourseSidebarDocument = gql`
  *   },
  * });
  */
-export function useCourseSidebarQuery(baseOptions: Apollo.QueryHookOptions<CourseSidebarQuery, CourseSidebarQueryVariables> & ({ variables: CourseSidebarQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<CourseSidebarQuery, CourseSidebarQueryVariables>(CourseSidebarDocument, options);
-      }
-export function useCourseSidebarLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<CourseSidebarQuery, CourseSidebarQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<CourseSidebarQuery, CourseSidebarQueryVariables>(CourseSidebarDocument, options);
-        }
-// @ts-ignore
-export function useCourseSidebarSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<CourseSidebarQuery, CourseSidebarQueryVariables>): Apollo.UseSuspenseQueryResult<CourseSidebarQuery, CourseSidebarQueryVariables>;
-export function useCourseSidebarSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<CourseSidebarQuery, CourseSidebarQueryVariables>): Apollo.UseSuspenseQueryResult<CourseSidebarQuery | undefined, CourseSidebarQueryVariables>;
-export function useCourseSidebarSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<CourseSidebarQuery, CourseSidebarQueryVariables>) {
-          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
-          return Apollo.useSuspenseQuery<CourseSidebarQuery, CourseSidebarQueryVariables>(CourseSidebarDocument, options);
-        }
-export type CourseSidebarQueryHookResult = ReturnType<typeof useCourseSidebarQuery>;
-export type CourseSidebarLazyQueryHookResult = ReturnType<typeof useCourseSidebarLazyQuery>;
-export type CourseSidebarSuspenseQueryHookResult = ReturnType<typeof useCourseSidebarSuspenseQuery>;
-export type CourseSidebarQueryResult = Apollo.QueryResult<CourseSidebarQuery, CourseSidebarQueryVariables>;
 export const CoursesPageDocument = gql`
     query coursesPage($first: Int!, $after: String) {
   courses: courses(
@@ -11970,25 +11834,6 @@ export const CoursesPageDocument = gql`
  *   },
  * });
  */
-export function useCoursesPageQuery(baseOptions: Apollo.QueryHookOptions<CoursesPageQuery, CoursesPageQueryVariables> & ({ variables: CoursesPageQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<CoursesPageQuery, CoursesPageQueryVariables>(CoursesPageDocument, options);
-      }
-export function useCoursesPageLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<CoursesPageQuery, CoursesPageQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<CoursesPageQuery, CoursesPageQueryVariables>(CoursesPageDocument, options);
-        }
-// @ts-ignore
-export function useCoursesPageSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<CoursesPageQuery, CoursesPageQueryVariables>): Apollo.UseSuspenseQueryResult<CoursesPageQuery, CoursesPageQueryVariables>;
-export function useCoursesPageSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<CoursesPageQuery, CoursesPageQueryVariables>): Apollo.UseSuspenseQueryResult<CoursesPageQuery | undefined, CoursesPageQueryVariables>;
-export function useCoursesPageSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<CoursesPageQuery, CoursesPageQueryVariables>) {
-          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
-          return Apollo.useSuspenseQuery<CoursesPageQuery, CoursesPageQueryVariables>(CoursesPageDocument, options);
-        }
-export type CoursesPageQueryHookResult = ReturnType<typeof useCoursesPageQuery>;
-export type CoursesPageLazyQueryHookResult = ReturnType<typeof useCoursesPageLazyQuery>;
-export type CoursesPageSuspenseQueryHookResult = ReturnType<typeof useCoursesPageSuspenseQuery>;
-export type CoursesPageQueryResult = Apollo.QueryResult<CoursesPageQuery, CoursesPageQueryVariables>;
 export const HomePageDocument = gql`
     query HomePage($first: Int!, $after: String) {
   blogs: posts(
@@ -12048,479 +11893,3 @@ export const HomePageDocument = gql`
  *   },
  * });
  */
-export function useHomePageQuery(baseOptions: Apollo.QueryHookOptions<HomePageQuery, HomePageQueryVariables> & ({ variables: HomePageQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<HomePageQuery, HomePageQueryVariables>(HomePageDocument, options);
-      }
-export function useHomePageLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<HomePageQuery, HomePageQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<HomePageQuery, HomePageQueryVariables>(HomePageDocument, options);
-        }
-// @ts-ignore
-export function useHomePageSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<HomePageQuery, HomePageQueryVariables>): Apollo.UseSuspenseQueryResult<HomePageQuery, HomePageQueryVariables>;
-export function useHomePageSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<HomePageQuery, HomePageQueryVariables>): Apollo.UseSuspenseQueryResult<HomePageQuery | undefined, HomePageQueryVariables>;
-export function useHomePageSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<HomePageQuery, HomePageQueryVariables>) {
-          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
-          return Apollo.useSuspenseQuery<HomePageQuery, HomePageQueryVariables>(HomePageDocument, options);
-        }
-export type HomePageQueryHookResult = ReturnType<typeof useHomePageQuery>;
-export type HomePageLazyQueryHookResult = ReturnType<typeof useHomePageLazyQuery>;
-export type HomePageSuspenseQueryHookResult = ReturnType<typeof useHomePageSuspenseQuery>;
-export type HomePageQueryResult = Apollo.QueryResult<HomePageQuery, HomePageQueryVariables>;
-
-export const BlogPageDocument = gql`
-    query blogPage($slug: ID!) {
-  blog: post(id: $slug, idType: SLUG) {
-    title
-    slug
-    modified
-    date
-    excerpt
-    contentFiltered
-    tags {
-      nodes {
-        name
-        slug
-        featuredImage {
-          featuredImage {
-            mediaItemUrl
-            sizes
-            caption
-            mediaDetails {
-              height
-              width
-            }
-          }
-        }
-      }
-    }
-    featuredImage {
-      node {
-        caption
-        mediaItemUrl
-        sizes
-        mediaDetails {
-          height
-          width
-        }
-      }
-    }
-    author {
-      node {
-        firstName
-        lastName
-        user {
-          profilePic {
-            mediaItemUrl
-            sizes
-            mediaDetails {
-              height
-              width
-            }
-          }
-        }
-        mediaItems {
-          edges {
-            node {
-              id
-            }
-          }
-        }
-        firstName
-        lastName
-      }
-    }
-  }
-}
-    `;
-export const BlogRoutesDocument = gql`
-    query blogRoutes($first: Int!, $after: String) {
-  routes: posts(first: $first, after: $after) {
-    nodes {
-      slug
-      modified
-    }
-  }
-}
-    `;
-export const BlogsPageDocument = gql`
-    query blogsPage($first: Int!, $after: String) {
-  blogs: posts(
-    where: {orderby: {field: MODIFIED, order: DESC}}
-    first: $first
-    after: $after
-  ) {
-    nodes {
-      title
-      slug
-      modified
-      excerpt
-      contentFiltered
-      tags {
-        nodes {
-          name
-          slug
-          featuredImage {
-            featuredImage {
-              mediaItemUrl
-              sizes
-              caption
-            }
-          }
-        }
-      }
-      featuredImage {
-        node {
-          mediaItemUrl
-        }
-      }
-      author {
-        node {
-          firstName
-          lastName
-        }
-      }
-    }
-  }
-}
-    `;
-export const ChapterPageDocument = gql`
-    query chapterPage($slug: ID!) {
-  chapter: chapter(id: $slug, idType: SLUG) {
-    title
-    slug
-    modified
-    date
-    excerpt
-    contentFiltered
-    tags {
-      nodes {
-        name
-        slug
-        featuredImage {
-          featuredImage {
-            mediaItemUrl
-            sizes
-            caption
-            mediaDetails {
-              height
-              width
-            }
-          }
-        }
-      }
-    }
-    featuredImage {
-      node {
-        caption
-        sizes
-        mediaItemUrl
-        mediaDetails {
-          height
-          width
-        }
-      }
-    }
-    author {
-      node {
-        user {
-          profilePic {
-            mediaItemUrl
-            sizes
-            mediaDetails {
-              height
-              width
-            }
-          }
-        }
-        firstName
-        lastName
-      }
-    }
-  }
-}
-    `;
-export const CoursePageDocument = gql`
-    query coursePage($slug: ID!) {
-  course: course(id: $slug, idType: SLUG) {
-    title
-    slug
-    modified
-    excerpt
-    date
-    contentFiltered
-    tags {
-      nodes {
-        name
-        slug
-        featuredImage {
-          featuredImage {
-            mediaItemUrl
-            sizes
-            caption
-            mediaDetails {
-              height
-              width
-            }
-          }
-        }
-      }
-    }
-    featuredImage {
-      node {
-        sizes
-        caption
-        mediaItemUrl
-        mediaDetails {
-          height
-          width
-        }
-      }
-    }
-    author {
-      node {
-        user {
-          profilePic {
-            mediaItemUrl
-            sizes
-            mediaDetails {
-              height
-              width
-            }
-          }
-        }
-        firstName
-        lastName
-      }
-    }
-    chapters {
-      chapters {
-        ... on Chapter {
-          title
-          slug
-          modified
-          excerpt
-          contentFiltered
-          tags {
-            nodes {
-              name
-              slug
-              featuredImage {
-                featuredImage {
-                  mediaItemUrl
-                  sizes
-                  caption
-                  mediaDetails {
-                    height
-                    width
-                  }
-                }
-              }
-            }
-          }
-          featuredImage {
-            node {
-              caption
-              mediaItemUrl
-              mediaDetails {
-                height
-                width
-              }
-            }
-          }
-          author {
-            node {
-              firstName
-              lastName
-            }
-          }
-        }
-      }
-    }
-    author {
-      node {
-        firstName
-        lastName
-      }
-    }
-  }
-}
-    `;
-export const CourseRoutesDocument = gql`
-    query courseRoutes($first: Int!, $after: String) {
-  courses: courses(
-    where: {orderby: {field: MODIFIED, order: DESC}}
-    first: $first
-    after: $after
-  ) {
-    nodes {
-      slug
-      modified
-      chapters {
-        chapters {
-          ... on Chapter {
-            slug
-            modified
-          }
-        }
-      }
-    }
-  }
-}
-    `;
-export const CourseSidebarDocument = gql`
-    query courseSidebar($slug: ID!) {
-  course: course(id: $slug, idType: SLUG) {
-    title
-    slug
-    emogi {
-      emogi
-    }
-    chapters {
-      chapters {
-        ... on Chapter {
-          title
-          slug
-          readTime
-          section {
-            section
-          }
-          emogi {
-            emogi
-          }
-        }
-      }
-    }
-  }
-}
-    `;
-export const CoursesPageDocument = gql`
-    query coursesPage($first: Int!, $after: String) {
-  courses: courses(
-    where: {orderby: {field: MODIFIED, order: DESC}}
-    first: $first
-    after: $after
-  ) {
-    nodes {
-      title
-      slug
-      date
-      modified
-      excerpt
-      contentFiltered
-      tags {
-        nodes {
-          name
-          slug
-          featuredImage {
-            featuredImage {
-              mediaItemUrl
-              sizes
-              caption
-              mediaDetails {
-                height
-                width
-              }
-            }
-          }
-        }
-      }
-      featuredImage {
-        node {
-          caption
-          mediaItemUrl
-          mediaDetails {
-            height
-            width
-          }
-        }
-      }
-      author {
-        node {
-          firstName
-          lastName
-        }
-      }
-    }
-  }
-}
-    `;
-export const HomePageDocument = gql`
-    query HomePage($first: Int!, $after: String) {
-  blogs: posts(
-    where: {orderby: {field: MODIFIED, order: DESC}}
-    first: $first
-    after: $after
-  ) {
-    nodes {
-      title
-      slug
-      modified
-      excerpt
-      contentFiltered
-      tags {
-        nodes {
-          name
-          slug
-          featuredImage {
-            featuredImage {
-              mediaItemUrl
-              sizes
-              caption
-            }
-          }
-        }
-      }
-      featuredImage {
-        node {
-          mediaItemUrl
-        }
-      }
-      author {
-        node {
-          firstName
-          lastName
-        }
-      }
-    }
-  }
-}
-    `;
-
-export type SdkFunctionWrapper = <T>(action: (requestHeaders?:Record<string, string>) => Promise<T>, operationName: string, operationType?: string, variables?: any) => Promise<T>;
-
-
-const defaultWrapper: SdkFunctionWrapper = (action, _operationName, _operationType, _variables) => action();
-
-export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = defaultWrapper) {
-  return {
-    blogPage(variables: BlogPageQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<BlogPageQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<BlogPageQuery>({ document: BlogPageDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'blogPage', 'query', variables);
-    },
-    blogRoutes(variables: BlogRoutesQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<BlogRoutesQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<BlogRoutesQuery>({ document: BlogRoutesDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'blogRoutes', 'query', variables);
-    },
-    blogsPage(variables: BlogsPageQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<BlogsPageQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<BlogsPageQuery>({ document: BlogsPageDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'blogsPage', 'query', variables);
-    },
-    chapterPage(variables: ChapterPageQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<ChapterPageQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<ChapterPageQuery>({ document: ChapterPageDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'chapterPage', 'query', variables);
-    },
-    coursePage(variables: CoursePageQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<CoursePageQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<CoursePageQuery>({ document: CoursePageDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'coursePage', 'query', variables);
-    },
-    courseRoutes(variables: CourseRoutesQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<CourseRoutesQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<CourseRoutesQuery>({ document: CourseRoutesDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'courseRoutes', 'query', variables);
-    },
-    courseSidebar(variables: CourseSidebarQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<CourseSidebarQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<CourseSidebarQuery>({ document: CourseSidebarDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'courseSidebar', 'query', variables);
-    },
-    coursesPage(variables: CoursesPageQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<CoursesPageQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<CoursesPageQuery>({ document: CoursesPageDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'coursesPage', 'query', variables);
-    },
-    HomePage(variables: HomePageQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<HomePageQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<HomePageQuery>({ document: HomePageDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'HomePage', 'query', variables);
-    }
-  };
-}
-export type Sdk = ReturnType<typeof getSdk>;

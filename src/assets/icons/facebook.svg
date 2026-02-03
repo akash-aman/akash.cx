@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" x="0" y="0" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512" xml:space="preserve"
+    class="">
+    <g>
+        <path fill="#4a7aff"
+            d="M512 256c0 141.387-114.613 256-256 256S0 397.387 0 256 114.613 0 256 0s256 114.613 256 256zm0 0"
+            opacity="1" data-original="#4a7aff" class=""></path>
+        <path fill="#0053bf"
+            d="M267.234 511.738C403.406 505.86 512 393.618 512 256c0-.996-.027-1.988-.04-2.984L334.263 75.312l-190 198.594 105.566 105.567-48.676 66.183zm0 0"
+            opacity="1" data-original="#0053bf"></path>
+        <path fill="#ffffff"
+            d="M334.262 75.313v57.968s-66.555-9.66-66.555 33.278v42.937h60.113l-7.511 65.48h-52.602v170.68h-66.555v-170.68l-56.894-1.074v-64.406h55.82v-49.379s-3.683-73.457 68.703-86.949c30.059-5.605 65.48 2.145 65.48 2.145zm0 0"
+            opacity="1" data-original="#ffffff"></path>
+        <path fill="#dce1eb"
+            d="M334.262 133.281V75.312s-35.422-7.75-65.48-2.144a101.494 101.494 0 0 0-13.137 3.348v369.14h12.062v-170.68h52.598l7.515-65.48h-60.113V166.56c0-42.937 66.555-33.278 66.555-33.278zm0 0"
+            opacity="1" data-original="#dce1eb"></path>
+    </g>
+</svg>

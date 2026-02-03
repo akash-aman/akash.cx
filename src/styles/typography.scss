@@ -1,0 +1,86 @@
+.heading-1 {
+  font-size: var(--font-h1);
+  line-height: calc(var(--font-h1) * 1.2);
+}
+
+.heading-2 {
+  font-size: var(--font-h2);
+  line-height: calc(var(--font-h2) * 1.2);
+}
+
+.heading-3 {
+  font-size: var(--font-h3);
+  line-height: calc(var(--font-h3) * 1.2);
+}
+
+.heading-4 {
+  font-size: var(--font-h4);
+  line-height: calc(var(--font-h4) * 1.2);
+}
+
+.heading-5 {
+  font-size: var(--font-h5);
+  line-height: calc(var(--font-h5) * 1.2);
+}
+
+.heading-6 {
+  font-size: var(--font-h6);
+  line-height: calc(var(--font-h6) * 1.2);
+}
+
+.para-sm {
+  font-size: var(--font-p-sm);
+  line-height: calc(var(--font-p-sm) * 1.8);
+}
+
+.para-md {
+  font-size: var(--font-p-md);
+  line-height: calc(var(--font-p-md) * 1.8);
+}
+
+.para-lg {
+  font-size: var(--font-p-lg);
+  line-height: calc(var(--font-p-lg) * 1.8);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--text-main);
+  font-family: var(--font-greycliff-cf);
+}
+
+p,
+span,
+a,
+li,
+ul,
+ol,
+dl,
+dt,
+dd,
+blockquote,
+figure,
+figcaption,
+pre,
+code,
+table,
+th,
+td,
+caption,
+header,
+footer,
+nav,
+main,
+section,
+article,
+aside,
+address,
+mark,
+time {
+  color: var(--text-muted);
+  font-family: var(--font-sofia-pro);
+}

@@ -1,180 +1,47 @@
-import React from "react";
-import Image from "next/image";
-import Link from "next/link";
-import profile from "assets/images/picture.webp";
-import {
-	GitHub,
-	Twitter,
-	Youtube,
-	LinkedIn,
-	Gmail,
-	NextJS,
-	Sass,
-	Tailwind,
-	MDX,
-	Dev,
-} from "assets/icons/social";
-type FooterProps = {
-	footer?: string;
-	children?: React.ReactElement[];
-};
-const Footer = ({ footer }: FooterProps) => {
-	const social = [
-		{
-			Icon: Youtube,
-			link: "https://www.youtube.com/@xcode-io",
-			title: "YouTube",
-		},
-		{
-			Icon: GitHub,
-			link: "https://github.com/akash-aman/",
-			title: "GitHub",
-		},
-		{
-			Icon: Twitter,
-			link: "https://twitter.com/sirakashaman",
-			title: "Twitter",
-		},
-		{
-			Icon: LinkedIn,
-			link: "https://www.linkedin.com/in/aman-akash/",
-			title: "LinkedIn",
-		},
-		{
-			Icon: Gmail,
-			link: "mailto:sir.akashaman@gmail.com",
-			title: "Gmail",
-		},
-	];
+import { BuyMeCoffee, GitHub, Gmail, LinkedIn, Twitter, Youtube } from '@/assets/icons/social'
+import Link from 'next/link'
 
+const Footer = () => {
 	return (
-		<div
-			className="
-				grid
-				w-full
-				h-full
-				p-4
-				md:p-[2rem_2rem]
-				lg:pr-40
-				lg:pl-20
-				content-center"
-		>
-			<section
-				className="
-					grid
-					justify-center
-					mb-4
-					sm:grid-cols-[repeat(auto-fit,_minmax(10rem,40rem)_minmax(10rem,13rem))]"
-			>
-				<div
-					className="
-						grid
-						content-center
-						text-center
-						text-xl"
-				>
-					<div>
-						<i>Created with </i>
-						<i>
-							<NextJS className="w-14 h-14 inline" />
-						</i>
-						<i> </i>
-						<i>
-							<Sass className="w-8 h-8 inline" />
-						</i>
-						<i> </i>
-						<i>
-							<Tailwind className="w-8 h-8 inline" />
-						</i>
-						<i> & </i>
-						<i>
-							<MDX className="w-10 h-10 inline" />
-						</i>
-						<br className="md:hidden" />
-						<i> By Akash Aman</i>
-						<i>
-							<Dev className="w-8 h-8 inline" />
-						</i>
-					</div>
-				</div>
-				<div
-					className="
-						grid 
-						justify-center
-						row-start-1
-						sm:col-start-2"
-				>
-					<Image
-						src={profile}
-						className="
-							rounded-full
-							m-3
-							h-24 
-							w-24
-							sm:h-28 
-							sm:w-28"
-						alt="Profile pic"
-					/>
-				</div>
-			</section>
-			<nav
-				className="
-					grid
-					grid-flow-col
-					grid-cols-[repeat(auto-fit,_4rem)]
-					sm:grid-cols-[repeat(auto-fit,_5rem)]
-					gap-3 
-					justify-center"
-			>
-				{social.map(({ Icon, link, title }, index) => (
-					<div key={index}>
-						<Link title={title} href={link} target="_blank">
-							<div
-								className="
-									grid
-									h-16
-									w-16
-									sm:h-20 
-									sm:w-20
-									justify-center
-									content-center
-									bg-[var(--bg-overlay-light)]
-									hover:bg-[var(--bg-overlay-light-hover)]
-									dark:bg-[var(--bg-overlay-dark)]
-									hover:dark:bg-[var(--bg-overlay-dark-hover)] 
-									rounded-full"
-							>
-								<Icon
-									className="
-										h-8
-										w-8
-										sm:h-[2.2rem] 
-										sm:w-[2.2rem]"
-								/>
-							</div>
-						</Link>
-					</div>
-				))}
-			</nav>
+		<div className='w-full grid justify-items-center border-t mt-6 border-(--dark-theme-300)'>
+			<div className="flex flex-wrap justify-center items-center gap-6 mt-8">
+				<Link href="/about" className="flex items-center gap-2 px-4 py-2 rounded-lg border text-gray-200 text-sm font-medium hover:border-gray-500 transition-all">
+					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+						<path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+						<circle cx="12" cy="7" r="4" />
+					</svg>
+					About Me
+				</Link>
 
-			<section
-				className="
-            text-center 
-            text-lg 
-            copyright
-            mt-3"
-			>
-				<p className="text-center text-lg copyright">
-					Copyright © 2026 Akash Aman{" "}
-					<i className="md:inline copyright not-italic hidden">|</i>{" "}
-					<br className="block md:hidden" />
-					<Link href="/terms">Terms & Conditions </Link>
-					{" | "}
-					<Link href="/privacy">Privay Policy</Link>
-				</p>
-			</section>
+				<div className="h-6 w-px bg-gray-700 hidden sm:block"></div>
+
+				<div className="flex items-center gap-5">
+					<Link href="mailto:sir.akashaman@gmail.com" className="text-gray-400 hover:text-white transition-colors">
+						<Gmail className="w-5 h-5 md:w-6 md:h-6" />
+					</Link>
+					<Link href="https://github.com/akash-aman/" target="_blank" className="text-gray-400 hover:text-white transition-colors">
+						<GitHub className="w-5 h-5 md:w-6 md:h-6" />
+					</Link>
+					<Link href="https://www.linkedin.com/in/aman-akash/" target="_blank" className="text-gray-400 hover:text-white transition-colors">
+						<LinkedIn className="w-5 h-5 md:w-6 md:h-6" />
+					</Link>
+					<Link href="https://twitter.com/sirakashaman" target="_blank" className="text-gray-400 hover:text-white transition-colors">
+						<Twitter className="w-5 h-5 md:w-6 md:h-6" />
+					</Link>
+					<Link href="https://www.youtube.com/@xcode-io" target="_blank" className="text-gray-400 hover:text-white transition-colors">
+						<Youtube className="w-5 h-5 md:w-6 md:h-6" />
+					</Link>
+					<Link href="https://buymeacoffee.com/akashaman" target="_blank" className="text-gray-400 hover:text-white transition-colors">
+						<BuyMeCoffee className="w-5 h-5 md:w-6 md:h-6" />
+					</Link>
+				</div>
+			</div>
+			<div className="mt-8">
+				<p className="text-gray-400 text-sm">© 2026 Akash Aman | All rights reserved</p>
+			</div>
+
 		</div>
-	);
-};
+	)
+}
 
-export default Footer;
+export default Footer

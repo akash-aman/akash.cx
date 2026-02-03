@@ -351,12 +351,7 @@ export const navMenu = [
 		icon: timelineIcon,
 		link: "/timeline",
 		title: "TimeLine",
-	},
-	{
-		icon: techstackIcon,
-		link: "/techstack",
-		title: "TechStack",
-	},
+	}
 	// {
 	// 	icon: more,
 	// 	link: "#",

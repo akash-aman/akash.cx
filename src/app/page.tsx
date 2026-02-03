@@ -168,7 +168,11 @@ const Page = async () => {
 							</Link>
 						</div>
 					</div>
+					<div className="mt-8">
+						<p className="text-gray-400 text-sm">© 2026 Akash Aman | All rights reserved</p>
+					</div>
 				</div>
+
 			</div>
 		</>
 	);

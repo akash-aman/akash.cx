@@ -1,18 +1,7 @@
-import React from 'react'
-
 import { U } from '@/components/elements/Html'
 
 import {
     GitHub,
-    Twitter,
-    Youtube,
-    LinkedIn,
-    Gmail,
-    NextJS as NextJSIcon,
-    Sass,
-    Tailwind as TailwindIcon,
-    MDX,
-    Dev,
 } from "@/assets/icons/social";
 
 import golang from "@/assets/svgs/go.svg";
@@ -21,7 +10,6 @@ import sass from "@/assets/svgs/sass.svg";
 import javascript from "@/assets/svgs/javascript.svg";
 import typescript from "@/assets/svgs/typescript.svg";
 import nextjs from "@/assets/svgs/next.svg";
-import gatsby from "@/assets/svgs/gatsby.svg";
 import redux from "@/assets/svgs/redux.svg";
 import tailwindcss from "@/assets/svgs/tailwindcss.svg";
 import graphql from "@/assets/svgs/graphql.svg";
@@ -39,18 +27,16 @@ import figma from "@/assets/svgs/figma.svg";
 import aws from "@/assets/svgs/aws.svg";
 import gcp from "@/assets/svgs/gcp.svg";
 import azure from "@/assets/svgs/azure.svg";
-
-
 import Image from "next/image";
 import { Tooltip } from "@/components/elements/Tooltip";
+import Footer from '@/components/blocks/Footer';
+
+
 
 const Page = () => {
     return (
         <div className='max-w-4xl mx-auto'>
             <h1 className="heading-1 py-6 border-b border-(--dark-theme-300)">About </h1>
-
-
-
             <section className='py-6 space-y-10'>
                 <p className='para-lg'>
                     I'm a <U className="gradient-green">Senior Software Engineer</U> 👨‍💻 at{" "}
@@ -157,6 +143,7 @@ const Page = () => {
                     </Tooltip>
                 </div>
             </section>
+            <Footer />
         </div>
     )
 }

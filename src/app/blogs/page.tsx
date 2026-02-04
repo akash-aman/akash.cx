@@ -7,7 +7,7 @@ import { Metadata } from "next";
 import { gqlAPI } from "@/config/constant";
 import { wretch } from "@/utils/fetchapi";
 import Footer from "@/components/blocks/Footer";
-import { U } from "@/components/elements/Html";
+import Card from "@/components/blocks/Card";
 
 /**
  * This is the metadata for the page.
@@ -82,18 +82,15 @@ const Page = async () => {
 	);
 
 	return (
-		<article className='max-w-4xl mx-auto'>
+		<article className='max-w-5xl mx-auto'>
 			<header>
 				<h1 className="heading-1 py-8 border-b border-(--dark-theme-300)">Blogs </h1>
 			</header>
-			<section className='py-8 space-y-10'>
+			<article className='py-8 space-y-10 grid w-full grid-cols-[repeat(auto-fill,minmax(230px,320px))] justify-center gap-8'>
 				{blogs?.nodes?.map((blog) => (
-					<div key={blog?.slug} className="space-y-4">
-						<h2 className="heading-2">{blog?.title}</h2>
-						<p className="para-lg">{blog?.content}</p>
-					</div>
+					<Card type='blog' key={blog?.slug} fields={blog} />
 				))}
-			</section>
+			</article>
 			<Footer />
 		</article>
 	);

@@ -1,89 +1,98 @@
-import Link from "next/link";
-import React from "react";
-import ImageComponent from "./Image";
-import MDBlog from "./Blog";
+import type { BlogsPageQuery, CoursesPageQuery } from 'generated/graphql'
+import Link from 'next/link';
+import Image from 'next/image';
 
-const Card = ({ type, slug, fields }: { type: string; slug: string; fields: any }) => {
-	const { title, modified, excerpt, tags, featuredImage, author } = fields;
+const Card = ({ type, fields }: {
+    type: 'blog' | 'course';
+    fields: NonNullable<BlogsPageQuery['blogs']>['nodes'][number]
+    | NonNullable<CoursesPageQuery['courses']>['nodes'][number]
+}) => {
+    const title = fields?.title || 'Untitled';
+    const slug = fields?.slug || '#';
+    const excerpt = fields?.excerpt;
 
-	return (
-		<>
-			<Link key={slug} href={`/${type}/${slug}`}>
-				<div className="bg-(--light-theme-500) dark:bg-(--bg-glass-dark) rounded-t-lg rounded-b-lg p-5">
-					<div className="w-full mb-4 rounded-t-md rounded-b-md aspect-video overflow-hidden place-content-center grid h-auto">
-						<ImageComponent
-							className="w-full h-[inherit] object-cover"
-							src={featuredImage?.node?.mediaItemUrl}
-							alt={featuredImage?.node?.caption}
-							sizes={featuredImage?.node?.sizes}
-							width={300}
-							height={200}
-							card={true}
-						/>
-					</div>
-					<p className="font-bold my-6 headFont capitalize">{title}</p>
-					<p className="text-sm mb-8">{excerpt}</p>
-					<div className="m-0 p-0 leading-3 mt-4">
-						{tags.nodes.map(({ name, slug, featuredImage }: { name: string; slug: string; featuredImage: any }) => (
-							<div key={slug} className="inline-block">
-								<i className="leading-2 grid items-center bg-(--bg-glass-light)  dark:bg-slate-300 dark:bg-opacity-5 grid-flow-col gap-1 rounded-md not-italic m-[2px] py-[2px] p-1">
-									<ImageComponent
-										className="w-full h-[inherit] object-cover"
-										src={featuredImage?.featuredImage?.mediaItemUrl}
-										alt={featuredImage?.featuredImage?.caption}
-										sizes={featuredImage?.featuredImage?.sizes}
-										width={18}
-										height={18}
-										card={true}
-									/>
-									<span className="font-light text-xs text-(--text-glass-light) dark:text-(--text-glass-dark)">
-										{name}
-									</span>
-								</i>
-							</div>
-						))}
-					</div>
-				</div>
-			</Link>
-		</>
-	);
-};
+    // Normalize Image URL
+    // @ts-ignore - Union type complexity optimization
+    const image = fields?.featuredImage?.node?.mediaItemUrl || fields?.featuredImage?.node?.sourceUrl;
+    // Normalize Author
+    // @ts-ignore
+    const authorFirstName = fields?.author?.node?.firstName;
+    // @ts-ignore
+    const authorLastName = fields?.author?.node?.lastName;
+    // @ts-ignore
+    const authorName = fields?.author?.node?.name || (authorFirstName ? `${authorFirstName} ${authorLastName}` : null);
 
-export default Card;
+    // Normalize Tags
+    // @ts-ignore
+    const tags = fields?.tags?.nodes || [];
+    const href = type === 'blog' ? `/blogs/${slug}` : `/courses/${slug}`;
 
-export const CardMini = ({ type, slug, fields }: { type: string; slug: string; fields: any }) => {
-	const { title, modified, excerpt, tags, featuredImage, author } = fields;
+    return (
+        <section className="group h-full flex flex-col bg-(--card-bg) rounded-xl overflow-hidden transition-transform! duration-100! ease-in-out hover:scale-102!">
+            <Link href={href} className="flex flex-col h-full">
+                <div className="relative w-full aspect-video overflow-hidden">
+                    {image ? (
+                        <Image
+                            src={image}
+                            alt={title}
+                            fill
+                            className="object-cover transition-transform! duration-500! group-hover:scale-105! ease-in-out!"
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        />
+                    ) : (
+                        <div className="absolute inset-0 flex items-center justify-center text-xs">
+                            No image available
+                        </div>
+                    )}
+                </div>
+                <div className="flex flex-col flex-1 p-5 space-y-4">
+                    <header>
+                        <h2 title={title} className="heading-5 line-clamp-2 transition-colors">
+                            {title}
+                        </h2>
+                    </header>
 
-	return (
-		<>
-			<Link key={slug} href={`/${type}/${slug}`}>
-				<div className="bg-(--light-theme-500) dark:bg-[rgba(255,255,255,0.05)] rounded-t-lg rounded-b-lg p-5">
-					<p className="font-bold my-3 headFont leading-8 uppercase">{title}</p>
-					<p className="text-sm mb-3">{excerpt}</p>
-					{tags.length && (
-						<div className="m-0 mt-9 p-0 leading-3">
-							{tags.nodes.map(({ name, slug, featuredImage }: { name: string; slug: string; featuredImage: any }) => (
-								<div key={slug} className="inline-block">
-									<i className="leading-2 grid items-center bg-[rgba(255,255,255,0.6)]  dark:bg-slate-300 dark:bg-opacity-5 grid-flow-col gap-1 rounded-md not-italic m-[2px] py-[2px] p-1">
-										<ImageComponent
-											className="w-full h-[inherit] object-cover"
-											src={featuredImage?.featuredImage?.mediaItemUrl}
-											alt={featuredImage?.featuredImage?.caption}
-											sizes={featuredImage?.featuredImage?.sizes}
-											width={18}
-											height={18}
-											card={true}
-										/>
-										<span className="font-light text-xs text-[rgba(0,0,0,0.55)] dark:text-[rgba(255,255,255,0.4)]">
-											{name}
-										</span>
-									</i>
-								</div>
-							))}
-						</div>
-					)}
-				</div>
-			</Link>
-		</>
-	);
-};
+                    <div className="flex-1">
+                        <p className="text-sm line-clamp-3 leading-relaxed">
+                            {excerpt}
+                        </p>
+                    </div>
+
+                    <footer className="flex flex-wrap gap-2 pt-2 mt-auto">
+                        {tags.length > 0 ? (
+                            tags.map((tag: any) => {
+                                const tagImage = tag?.featuredImage?.featuredImage?.mediaItemUrl;
+                                return (
+                                    <div key={tag?.slug || tag?.name} className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-md bg-(--bg-secondary)/90">
+                                        {tagImage && (
+                                            <div className="relative w-4 h-4 shrink-0">
+                                                <Image
+                                                    src={tagImage}
+                                                    alt={tag?.name}
+                                                    fill
+                                                    className="object-contain"
+                                                />
+                                            </div>
+                                        )}
+                                        <span className="text-xs font-medium whitespace-nowrap">{tag?.name}</span>
+                                    </div>
+                                );
+                            })
+                        ) : (
+                            <div className="flex items-center gap-2 px-2.5 py-1.5 rounded-md bg-(--bg-secondary)/90">
+                                <div className="w-4 h-4 rounded-full flex items-center justify-center text-xs">
+                                    {(authorName?.[0] || 'A').toUpperCase()}
+                                </div>
+                                <span className="text-xs font-medium">
+                                    {authorName || 'Personal'}
+                                </span>
+                            </div>
+                        )}
+                    </footer>
+                </div>
+            </Link>
+        </section>
+    )
+}
+
+export default Card

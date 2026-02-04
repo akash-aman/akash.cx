@@ -65,8 +65,6 @@ dd,
 blockquote,
 figure,
 figcaption,
-pre,
-code,
 table,
 th,
 td,
@@ -83,4 +81,13 @@ mark,
 time {
   color: var(--text-muted);
   font-family: var(--font-sofia-pro);
+}
+
+code *,
+pre *{
+  font-family: var(--font-attribute-mono);
+}
+
+iframe {
+  aspect-ratio: 16/9;
 }

@@ -106,7 +106,7 @@ export const Span = (props: SpanProps) => {
 	}
 
 	return (
-		<span className="span" {...props}>
+		<span className="span para-lg" {...props}>
 			{props.children}
 		</span>
 	);

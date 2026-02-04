@@ -42,3 +42,43 @@ body {
 }
 
 
+.scrollbar {
+	&::-webkit-scrollbar {
+		width: 0.375rem;
+		height: 0.375rem;
+	}
+
+	/* Track */
+	&::-webkit-scrollbar-track {
+		background-color: oklch(92.8% 0.006 264.531);
+	}
+
+	/* Handle */
+	&::-webkit-scrollbar-thumb {
+		background-color: oklch(92.8% 0.006 264.531);
+		border-radius: 0.125rem;
+	}
+
+	/* Handle on hover */
+	&::-webkit-scrollbar-thumb:hover {
+		background-color: oklch(70.7% 0.022 261.325);
+		opacity: 0.9;
+	}
+}
+
+.dark .scrollbar {
+
+	&::-webkit-scrollbar-track {
+		background-color: oklch(37.3% 0.034 259.733);
+	}
+
+	&::-webkit-scrollbar-thumb {
+		background-color: oklch(55.1% 0.027 264.364);
+		border-radius: 0.125rem;
+	}
+
+	&::-webkit-scrollbar-thumb:hover {
+		background-color: oklch(70.7% 0.022 261.325);
+		opacity: 0.9;
+	}
+}

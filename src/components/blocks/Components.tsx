@@ -11,6 +11,7 @@ import { Span } from "../elements/Span";
 import { U } from "../elements/Html";
 import ImageElement from "../elements/Image";
 import A from "../elements/A";
+import ReactCode from "../elements/ReactCode";
 
 export const elements: { [key: string]: React.ElementType | Components } = {
 	h1: H1,
@@ -27,7 +28,7 @@ export const elements: { [key: string]: React.ElementType | Components } = {
 	u: U,
 	span: Span,
 	img: ImageElement,
-	code: RehypeCode,
+	code: ReactCode,
 	multicode: MultiCode,
 	blockquote: Blockquote,
 	a: A,

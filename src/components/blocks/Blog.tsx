@@ -19,8 +19,10 @@ type BlogProps = {
 };
 
 const MDBlog: FC<BlogProps> = ({ markdown, ...attributes }: BlogProps) => {
+
 	const isExist = markdown?.includes("## Table of Contents") as boolean;
 	const isMermaid = markdown?.includes("mermaid") as boolean;
+
 	return (
 		<>
 			<div className="toc">
@@ -42,15 +44,16 @@ const MDBlog: FC<BlogProps> = ({ markdown, ...attributes }: BlogProps) => {
 				remarkPlugins={[remarkTocRM, remarkMath, remarkGfm]}
 				rehypePlugins={[
 					rehypeKatex,
-					rehypePrism,
+					// rehypePrism,
 					rehypeSlug,
 					rehypeRaw,
 					rehypeSanitize,
+
 				]}
 			/>
-			{
+			{/* {
 				<Mermaid isMermaid={isMermaid} />
-			}
+			} */}
 		</>
 	);
 };

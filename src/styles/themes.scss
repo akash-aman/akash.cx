@@ -1,26 +1,26 @@
 :root.dark {
-  --code-color-1:  #A6E3A1; /* s1 - String */
-  --code-color-2:  #FAB387; /* nl - Number */
-  --code-color-3:  #C6A0F6; /* nt - Keyword/Type */
-  --code-color-4:  #F9E2AF; /* na - Attribute */
-  --code-color-5:  #6C7086; /* c1 - Comment */
-  --code-color-6:  #EBA0AC; /* kr - Keyword/Return */
-  --code-color-7:  #94E2D5; /* nx - Teal/Special */
-  --code-color-8:  #F2CDCD; /* kd - Dusty Rose */
-  --code-color-9:  #B4BEFE; /* nc - Lavender */
-  --code-color-10: #89B4FA; /* nf - Function */
-  --code-color-11: #F5E0DC; /* n  - Variable */
-  --code-color-12: #F38BA8; /* m  - Maroon/Pink */
-  --code-color-13: #89DCEB; /* s  - Cyan */
-  --code-color-14: #74C7EC; /* o  - Sapphire */
+  --code-color-1: #a3eea0; //s1
+  --code-color-2: #fdce68; //nl
+  --code-color-3: #ff8276; //nt
+  --code-color-4: #eddc96; //na
+  --code-color-5: #63677e; //c1
+  --code-color-6: #e19ef5; //kr
+  --code-color-7: #dee2f7; //nx
+  --code-color-8: #e19ef5; //kd bold
+  --code-color-9: #fdce68; //nc
+  --code-color-10: #9fadf1; //nf
+  --code-color-11: #dee2f7; //n
+  --code-color-12: #eddc96; //m
+  --code-color-13: #a3eea0; //s
+  --code-color-14: #dee2f7; //o
   --code-color-15: #F5C2E7; /* Secondary Pink */
 
   --bg-primary:    #121212; /* Deepest layer */
   --bg-secondary:  #1a1a1a; /* Section layer */
-  --card-bg:       #1e1e24; /* Card body */
+  --card-bg:       rgba(255,255,255,.05); /* Card body */
   --card-header:   #282830; /* Header highlight */
   
-  --text-main:     #e0e0e6;
+  --text-main:     rgb(255,255,255);
   --text-muted:    rgba(230,230,230,0.75);
   --border-color:  #33333c;
 
@@ -52,33 +52,34 @@
   --gradient-glow-1: #ff0000;
   --gradient-glow-2: #0000ff;
 
+  --container-45xl: 60rem;
+
   --content-area-fade: inset 120px 0px 40px -92px var(--bg-primary);
   --theme-transition: background-color 0.2s ease, background-image 0.2s ease, box-shadow 0.2s ease, color 0.1s ease, fill 0.1s ease;
 }
 
 :root {
-  --code-color-1:  #40A02B; /* Deep Green */
-  --code-color-2:  #D97E18; /* Burnt Orange */
-  --code-color-3:  #8839EF; /* Deep Purple */
-  --code-color-4:  #A98B00; /* Dark Gold */
-  --code-color-5:  #9CA0B0; /* Muted Grey */
-  --code-color-6:  #D20F39; /* Red */
-  --code-color-7:  #179287; /* Pine */
-  --code-color-8:  #E64553; /* Soft Red */
-  --code-color-9:  #7287FD; /* Blue/Indigo */
-  --code-color-10: #1E66F5; /* Royal Blue */
-  --code-color-11: #4C4F69; /* Slate */
-  --code-color-12: #D22E44; /* Crimson */
-  --code-color-13: #04A5E5; /* Cerulean */
-  --code-color-14: #209FB5; /* Deep Teal */
-  --code-color-15: #EA76CB; /* Magenta */
+	--code-color-1: #68c567; //s1 1
+	--code-color-2: #e66900; //nl 1
+	--code-color-3: #e45649; //nt 1
+	--code-color-4: #bb7512; //na 1
+	--code-color-5: #c9cbd6; //c1 1
+	--code-color-6: #9d5bb1; //kr 1
+	--code-color-7: #574c86; //nx
+	--code-color-8: #db928b; //kd
+	--code-color-9: #6d6a72; //nc
+	--code-color-10: #667efb; //nf 1
+	--code-color-11: #5c669b; //n
+	--code-color-12: #525564; //m
+	--code-color-13: #50a14f; //s
+	--code-color-14: #c2c6da; //o 1
 
   --bg-primary:    #f6f6f6; /* Soft off-white */
   --bg-secondary:  #ffffff; /* Pure white for contrast */
-  --card-bg:       #ebecf0; /* Soft grey card */
+  --card-bg:       #f6f6f6; /* Soft grey card */
   --card-header:   #dee0e6; /* Slightly deeper header */
 
-  --text-main:     #1a1a1e;
+  --text-main:     rgb(80,80,80,0.9);
   --text-muted:    rgb(90,90,90,0.75);
   --border-color:  #d1d1d6;
 
@@ -109,6 +110,8 @@
   --github: #181717;
   --gradient-glow-1: #E64553;
   --gradient-glow-2: #40A02B;
+
+  --container-45xl: 60rem;
 
   --content-area-fade: inset 120px 0px 40px -92px var(--bg-primary);
   --theme-transition: background-color 0.4s ease, background-image 0.4s ease, box-shadow 0.4s ease, color 0.2s ease, fill 0.2s ease;

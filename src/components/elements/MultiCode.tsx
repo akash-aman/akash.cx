@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import { useState } from "react";
 
 const MultiCode = ({ children }: { children: any[] }) => {
 	const [blockNo, setBlockNo] = useState(1);
@@ -20,7 +20,7 @@ const MultiCode = ({ children }: { children: any[] }) => {
 						return (
 							<button
 								title={`${language}`}
-								className=" py-1 px-4 rounded-xl bg-[var(--light-theme-500)] dark:bg-[var(--code-bg-dark-base)]"
+								className=" py-1 px-4 rounded-xl bg-(--light-theme-500) dark:bg-(--code-bg-dark-base)"
 								onClick={(e) => {
 									return setBlockNo(i);
 								}}
@@ -33,7 +33,7 @@ const MultiCode = ({ children }: { children: any[] }) => {
 						return (
 							<button
 								title={`${language}`}
-								className=" py-1 px-4 bg-[var(--code-bg-light-20)] dark:bg-[var(--code-bg-dark-30)]"
+								className=" py-1 px-4 bg-(--code-bg-light-20) dark:bg-(--code-bg-dark-30)"
 								onClick={(e) => {
 									return setBlockNo(i);
 								}}

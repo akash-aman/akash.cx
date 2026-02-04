@@ -26,7 +26,7 @@ export type AcfFieldGroup = {
 /** Avatars are profile images for users. WordPress by default uses the Gravatar service to host and fetch avatars from. */
 export type Avatar = {
   __typename?: 'Avatar';
-  /** URL for the default image or a default type. Accepts &#039;404&#039; (return a 404 instead of a default image), &#039;retro&#039; (8bit), &#039;monsterid&#039; (monster), &#039;wavatar&#039; (cartoon face), &#039;indenticon&#039; (the &#039;quilt&#039;), &#039;mystery&#039;, &#039;mm&#039;, or &#039;mysteryman&#039; (The Oyster Man), &#039;blank&#039; (transparent GIF), or &#039;gravatar_default&#039; (the Gravatar logo). */
+  /** TEST: URL for the default image or a default type. Accepts &#039;404&#039; (return a 404 instead of a default image), &#039;retro&#039; (8bit), &#039;monsterid&#039; (monster), &#039;wavatar&#039; (cartoon face), &#039;indenticon&#039; (the &#039;quilt&#039;), &#039;mystery&#039;, &#039;mm&#039;, or &#039;mysteryman&#039; (The Oyster Man), &#039;blank&#039; (transparent GIF), or &#039;gravatar_default&#039; (the Gravatar logo). */
   default?: Maybe<Scalars['String']['output']>;
   /** HTML attributes to insert in the IMG element. Is not sanitized. */
   extraAttr?: Maybe<Scalars['String']['output']>;
@@ -50,7 +50,7 @@ export type Avatar = {
   width?: Maybe<Scalars['Int']['output']>;
 };
 
-/** What rating to display avatars up to. Accepts 'G', 'PG', 'R', 'X', and are judged in that order. Default is the value of the 'avatar_rating' option */
+/** Content rating filter for user avatars. Determines the maximum maturity level of avatars to display, following standard content rating classifications (G, PG, R, X). */
 export enum AvatarRatingEnum {
   /** Indicates a G level avatar rating level. */
   G = 'G',
@@ -62,7 +62,7 @@ export enum AvatarRatingEnum {
   X = 'X'
 }
 
-/** The category type */
+/** A taxonomy term that classifies content. Categories support hierarchy and can be used to create a nested structure. */
 export type Category = DatabaseIdentifier & HierarchicalNode & HierarchicalTermNode & MenuItemLinkable & Node & TermNode & UniformResourceIdentifiable & {
   __typename?: 'Category';
   /** The ancestors of the node. Default ordered as lowest (closest to the child) to highest (closest to the root). */
@@ -129,7 +129,7 @@ export type Category = DatabaseIdentifier & HierarchicalNode & HierarchicalTermN
 };
 
 
-/** The category type */
+/** A taxonomy term that classifies content. Categories support hierarchy and can be used to create a nested structure. */
 export type CategoryAncestorsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   before?: InputMaybe<Scalars['String']['input']>;
@@ -138,7 +138,7 @@ export type CategoryAncestorsArgs = {
 };
 
 
-/** The category type */
+/** A taxonomy term that classifies content. Categories support hierarchy and can be used to create a nested structure. */
 export type CategoryChildrenArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   before?: InputMaybe<Scalars['String']['input']>;
@@ -148,7 +148,7 @@ export type CategoryChildrenArgs = {
 };
 
 
-/** The category type */
+/** A taxonomy term that classifies content. Categories support hierarchy and can be used to create a nested structure. */
 export type CategoryContentNodesArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   before?: InputMaybe<Scalars['String']['input']>;
@@ -158,7 +158,7 @@ export type CategoryContentNodesArgs = {
 };
 
 
-/** The category type */
+/** A taxonomy term that classifies content. Categories support hierarchy and can be used to create a nested structure. */
 export type CategoryEnqueuedScriptsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   before?: InputMaybe<Scalars['String']['input']>;
@@ -167,7 +167,7 @@ export type CategoryEnqueuedScriptsArgs = {
 };
 
 
-/** The category type */
+/** A taxonomy term that classifies content. Categories support hierarchy and can be used to create a nested structure. */
 export type CategoryEnqueuedStylesheetsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   before?: InputMaybe<Scalars['String']['input']>;
@@ -176,7 +176,7 @@ export type CategoryEnqueuedStylesheetsArgs = {
 };
 
 
-/** The category type */
+/** A taxonomy term that classifies content. Categories support hierarchy and can be used to create a nested structure. */
 export type CategoryPostsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   before?: InputMaybe<Scalars['String']['input']>;
@@ -185,7 +185,7 @@ export type CategoryPostsArgs = {
   where?: InputMaybe<CategoryToPostConnectionWhereArgs>;
 };
 
-/** Connection to category Nodes */
+/** A paginated collection of category Nodes, Supports cursor-based pagination and filtering to efficiently retrieve sets of category Nodes */
 export type CategoryConnection = {
   /** A list of edges (relational context) between RootQuery and connected category Nodes */
   edges: Array<CategoryConnectionEdge>;
@@ -195,7 +195,7 @@ export type CategoryConnection = {
   pageInfo: CategoryConnectionPageInfo;
 };
 
-/** Edge between a Node and a connected category */
+/** Represents a connection to a category. Contains both the category Node and metadata about the relationship. */
 export type CategoryConnectionEdge = {
   /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
   cursor?: Maybe<Scalars['String']['output']>;
@@ -203,7 +203,7 @@ export type CategoryConnectionEdge = {
   node: Category;
 };
 
-/** Page Info on the connected CategoryConnectionEdge */
+/** Pagination metadata specific to &quot;CategoryConnectionEdge&quot; collections. Provides cursors and flags for navigating through sets of &quot;CategoryConnectionEdge&quot; Nodes. */
 export type CategoryConnectionPageInfo = {
   /** When paginating forwards, the cursor to continue. */
   endCursor?: Maybe<Scalars['String']['output']>;
@@ -215,7 +215,7 @@ export type CategoryConnectionPageInfo = {
   startCursor?: Maybe<Scalars['String']['output']>;
 };
 
-/** The Type of Identifier used to fetch a single resource. Default is ID. */
+/** Identifier types for retrieving a specific Category. Determines which unique property (global ID, database ID, slug, etc.) is used to locate the Category. */
 export enum CategoryIdType {
   /** The Database ID for the node */
   DatabaseId = 'DATABASE_ID',
@@ -249,7 +249,7 @@ export type CategoryToAncestorsCategoryConnectionEdge = CategoryConnectionEdge &
   node: Category;
 };
 
-/** Page Info on the &quot;CategoryToAncestorsCategoryConnection&quot; */
+/** Pagination metadata specific to &quot;CategoryToAncestorsCategoryConnection&quot; collections. Provides cursors and flags for navigating through sets of CategoryToAncestorsCategoryConnection Nodes. */
 export type CategoryToAncestorsCategoryConnectionPageInfo = CategoryConnectionPageInfo & PageInfo & WpPageInfo & {
   __typename?: 'CategoryToAncestorsCategoryConnectionPageInfo';
   /** When paginating forwards, the cursor to continue. */
@@ -282,7 +282,7 @@ export type CategoryToCategoryConnectionEdge = CategoryConnectionEdge & Edge & {
   node: Category;
 };
 
-/** Page Info on the &quot;CategoryToCategoryConnection&quot; */
+/** Pagination metadata specific to &quot;CategoryToCategoryConnection&quot; collections. Provides cursors and flags for navigating through sets of CategoryToCategoryConnection Nodes. */
 export type CategoryToCategoryConnectionPageInfo = CategoryConnectionPageInfo & PageInfo & WpPageInfo & {
   __typename?: 'CategoryToCategoryConnectionPageInfo';
   /** When paginating forwards, the cursor to continue. */
@@ -334,8 +334,6 @@ export type CategoryToCategoryConnectionWhereArgs = {
   /** Array of slugs to return term(s) for. Default empty. */
   slug?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   /** Array of term taxonomy IDs, to match when querying terms. */
-  termTaxonomId?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Array of term taxonomy IDs, to match when querying terms. */
   termTaxonomyId?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
   /** Whether to prime meta caches for matched terms. Default true. */
   updateTermMetaCache?: InputMaybe<Scalars['Boolean']['input']>;
@@ -361,7 +359,7 @@ export type CategoryToContentNodeConnectionEdge = ContentNodeConnectionEdge & Ed
   node: ContentNode;
 };
 
-/** Page Info on the &quot;CategoryToContentNodeConnection&quot; */
+/** Pagination metadata specific to &quot;CategoryToContentNodeConnection&quot; collections. Provides cursors and flags for navigating through sets of CategoryToContentNodeConnection Nodes. */
 export type CategoryToContentNodeConnectionPageInfo = ContentNodeConnectionPageInfo & PageInfo & WpPageInfo & {
   __typename?: 'CategoryToContentNodeConnectionPageInfo';
   /** When paginating forwards, the cursor to continue. */
@@ -443,7 +441,7 @@ export type CategoryToPostConnectionEdge = Edge & PostConnectionEdge & {
   node: Post;
 };
 
-/** Page Info on the &quot;CategoryToPostConnection&quot; */
+/** Pagination metadata specific to &quot;CategoryToPostConnection&quot; collections. Provides cursors and flags for navigating through sets of CategoryToPostConnection Nodes. */
 export type CategoryToPostConnectionPageInfo = PageInfo & PostConnectionPageInfo & WpPageInfo & {
   __typename?: 'CategoryToPostConnectionPageInfo';
   /** When paginating forwards, the cursor to continue. */
@@ -542,6 +540,11 @@ export type Category_Featuredimage = AcfFieldGroup & {
 /** The chapter type */
 export type Chapter = ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & NodeWithAuthor & NodeWithContentEditor & NodeWithExcerpt & NodeWithFeaturedImage & NodeWithPageAttributes & NodeWithTemplate & NodeWithTitle & Previewable & UniformResourceIdentifiable & {
   __typename?: 'Chapter';
+  /**
+   * The ancestors of the content node.
+   * @deprecated This content type is not hierarchical and typically will not have ancestors
+   */
+  ancestors?: Maybe<ChapterToChapterConnection>;
   /** Connection between the NodeWithAuthor type and the User type */
   author?: Maybe<NodeWithAuthorToUserConnectionEdge>;
   /** The database identifier of the author of the node */
@@ -617,9 +620,14 @@ export type Chapter = ContentNode & DatabaseIdentifier & MenuItemLinkable & Node
   modified?: Maybe<Scalars['String']['output']>;
   /** The GMT modified time for a post. If a post was recently updated the modified field will change to match the corresponding time in GMT. */
   modifiedGmt?: Maybe<Scalars['String']['output']>;
+  /**
+   * The parent of the content node.
+   * @deprecated This content type is not hierarchical and typically will not have a parent
+   */
+  parent?: Maybe<ChapterToParentConnectionEdge>;
   /** The password for the chapters object. */
   password?: Maybe<Scalars['String']['output']>;
-  /** Connection between the Chapter type and the chapter type */
+  /** Connection between the chapter type and the chapter type */
   preview?: Maybe<ChapterToPreviewConnectionEdge>;
   /** The database id of the preview node */
   previewRevisionDatabaseId?: Maybe<Scalars['Int']['output']>;
@@ -643,6 +651,15 @@ export type Chapter = ContentNode & DatabaseIdentifier & MenuItemLinkable & Node
   title?: Maybe<Scalars['String']['output']>;
   /** The unique resource identifier path */
   uri?: Maybe<Scalars['String']['output']>;
+};
+
+
+/** The chapter type */
+export type ChapterAncestorsArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
 };
 
 
@@ -701,7 +718,7 @@ export type ChapterTitleArgs = {
   format?: InputMaybe<PostObjectFieldFormatEnum>;
 };
 
-/** Connection to chapter Nodes */
+/** A paginated collection of chapter Nodes, Supports cursor-based pagination and filtering to efficiently retrieve sets of chapter Nodes */
 export type ChapterConnection = {
   /** A list of edges (relational context) between RootQuery and connected chapter Nodes */
   edges: Array<ChapterConnectionEdge>;
@@ -711,7 +728,7 @@ export type ChapterConnection = {
   pageInfo: ChapterConnectionPageInfo;
 };
 
-/** Edge between a Node and a connected chapter */
+/** Represents a connection to a chapter. Contains both the chapter Node and metadata about the relationship. */
 export type ChapterConnectionEdge = {
   /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
   cursor?: Maybe<Scalars['String']['output']>;
@@ -719,7 +736,7 @@ export type ChapterConnectionEdge = {
   node: Chapter;
 };
 
-/** Page Info on the connected ChapterConnectionEdge */
+/** Pagination metadata specific to &quot;ChapterConnectionEdge&quot; collections. Provides cursors and flags for navigating through sets of &quot;ChapterConnectionEdge&quot; Nodes. */
 export type ChapterConnectionPageInfo = {
   /** When paginating forwards, the cursor to continue. */
   endCursor?: Maybe<Scalars['String']['output']>;
@@ -731,7 +748,7 @@ export type ChapterConnectionPageInfo = {
   startCursor?: Maybe<Scalars['String']['output']>;
 };
 
-/** The Type of Identifier used to fetch a single resource. Default is ID. */
+/** Identifier types for retrieving a specific Chapter. Specifies which unique attribute is used to find an exact Chapter. */
 export enum ChapterIdType {
   /** Identify a resource by the Database ID. */
   DatabaseId = 'DATABASE_ID',
@@ -763,7 +780,58 @@ export type ChapterTagsNodeInput = {
   slug?: InputMaybe<Scalars['String']['input']>;
 };
 
-/** Connection between the Chapter type and the chapter type */
+/** Connection between the chapter type and the chapter type */
+export type ChapterToChapterConnection = ChapterConnection & Connection & {
+  __typename?: 'ChapterToChapterConnection';
+  /** Edges for the ChapterToChapterConnection connection */
+  edges: Array<ChapterToChapterConnectionEdge>;
+  /** The nodes of the connection, without the edges */
+  nodes: Array<Chapter>;
+  /** Information about pagination in a connection. */
+  pageInfo: ChapterToChapterConnectionPageInfo;
+};
+
+/** An edge in a connection */
+export type ChapterToChapterConnectionEdge = ChapterConnectionEdge & Edge & {
+  __typename?: 'ChapterToChapterConnectionEdge';
+  /**
+   * A cursor for use in pagination
+   * @deprecated This content type is not hierarchical and typically will not have ancestors
+   */
+  cursor?: Maybe<Scalars['String']['output']>;
+  /**
+   * The item at the end of the edge
+   * @deprecated This content type is not hierarchical and typically will not have ancestors
+   */
+  node: Chapter;
+};
+
+/** Pagination metadata specific to &quot;ChapterToChapterConnection&quot; collections. Provides cursors and flags for navigating through sets of ChapterToChapterConnection Nodes. */
+export type ChapterToChapterConnectionPageInfo = ChapterConnectionPageInfo & PageInfo & WpPageInfo & {
+  __typename?: 'ChapterToChapterConnectionPageInfo';
+  /** When paginating forwards, the cursor to continue. */
+  endCursor?: Maybe<Scalars['String']['output']>;
+  /** When paginating forwards, are there more items? */
+  hasNextPage: Scalars['Boolean']['output'];
+  /** When paginating backwards, are there more items? */
+  hasPreviousPage: Scalars['Boolean']['output'];
+  /** When paginating backwards, the cursor to continue. */
+  startCursor?: Maybe<Scalars['String']['output']>;
+};
+
+/** Connection between the chapter type and the chapter type */
+export type ChapterToParentConnectionEdge = ChapterConnectionEdge & Edge & OneToOneConnection & {
+  __typename?: 'ChapterToParentConnectionEdge';
+  /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
+  cursor?: Maybe<Scalars['String']['output']>;
+  /**
+   * The node of the connection, without the edges
+   * @deprecated This content type is not hierarchical and typically will not have a parent
+   */
+  node: Chapter;
+};
+
+/** Connection between the chapter type and the chapter type */
 export type ChapterToPreviewConnectionEdge = ChapterConnectionEdge & Edge & OneToOneConnection & {
   __typename?: 'ChapterToPreviewConnectionEdge';
   /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
@@ -792,7 +860,7 @@ export type ChapterToTagConnectionEdge = Edge & TagConnectionEdge & {
   node: Tag;
 };
 
-/** Page Info on the &quot;ChapterToTagConnection&quot; */
+/** Pagination metadata specific to &quot;ChapterToTagConnection&quot; collections. Provides cursors and flags for navigating through sets of ChapterToTagConnection Nodes. */
 export type ChapterToTagConnectionPageInfo = PageInfo & TagConnectionPageInfo & WpPageInfo & {
   __typename?: 'ChapterToTagConnectionPageInfo';
   /** When paginating forwards, the cursor to continue. */
@@ -844,8 +912,6 @@ export type ChapterToTagConnectionWhereArgs = {
   /** Array of slugs to return term(s) for. Default empty. */
   slug?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   /** Array of term taxonomy IDs, to match when querying terms. */
-  termTaxonomId?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Array of term taxonomy IDs, to match when querying terms. */
   termTaxonomyId?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
   /** Whether to prime meta caches for matched terms. Default true. */
   updateTermMetaCache?: InputMaybe<Scalars['Boolean']['input']>;
@@ -871,7 +937,7 @@ export type ChapterToTermNodeConnectionEdge = Edge & TermNodeConnectionEdge & {
   node: TermNode;
 };
 
-/** Page Info on the &quot;ChapterToTermNodeConnection&quot; */
+/** Pagination metadata specific to &quot;ChapterToTermNodeConnection&quot; collections. Provides cursors and flags for navigating through sets of ChapterToTermNodeConnection Nodes. */
 export type ChapterToTermNodeConnectionPageInfo = PageInfo & TermNodeConnectionPageInfo & WpPageInfo & {
   __typename?: 'ChapterToTermNodeConnectionPageInfo';
   /** When paginating forwards, the cursor to continue. */
@@ -925,8 +991,6 @@ export type ChapterToTermNodeConnectionWhereArgs = {
   /** The Taxonomy to filter terms by */
   taxonomies?: InputMaybe<Array<InputMaybe<TaxonomyEnum>>>;
   /** Array of term taxonomy IDs, to match when querying terms. */
-  termTaxonomId?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Array of term taxonomy IDs, to match when querying terms. */
   termTaxonomyId?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
   /** Whether to prime meta caches for matched terms. Default true. */
   updateTermMetaCache?: InputMaybe<Scalars['Boolean']['input']>;
@@ -948,7 +1012,7 @@ export type Chapter_Section = AcfFieldGroup & {
   section?: Maybe<Scalars['String']['output']>;
 };
 
-/** A Comment object */
+/** A response or reaction to content submitted by users. Comments are typically associated with a specific content entry. */
 export type Comment = DatabaseIdentifier & Node & UniformResourceIdentifiable & {
   __typename?: 'Comment';
   /** User agent used to post the comment. This field is equivalent to WP_Comment-&gt;comment_agent and the value matching the &quot;comment_agent&quot; column in SQL. */
@@ -960,7 +1024,10 @@ export type Comment = DatabaseIdentifier & Node & UniformResourceIdentifiable & 
   approved?: Maybe<Scalars['Boolean']['output']>;
   /** The author of the comment */
   author?: Maybe<CommentToCommenterConnectionEdge>;
-  /** IP address for the author. This field is equivalent to WP_Comment-&gt;comment_author_IP and the value matching the &quot;comment_author_IP&quot; column in SQL. */
+  /**
+   * IP address for the author at the time of commenting. This field is equivalent to WP_Comment-&gt;comment_author_IP and the value matching the &quot;comment_author_IP&quot; column in SQL.
+   * @deprecated Use the ipAddress field on the edge between the comment and author
+   */
   authorIp?: Maybe<Scalars['String']['output']>;
   /**
    * ID for the comment, unique among comments.
@@ -1012,19 +1079,19 @@ export type Comment = DatabaseIdentifier & Node & UniformResourceIdentifiable & 
 };
 
 
-/** A Comment object */
+/** A response or reaction to content submitted by users. Comments are typically associated with a specific content entry. */
 export type CommentContentArgs = {
   format?: InputMaybe<PostObjectFieldFormatEnum>;
 };
 
 
-/** A Comment object */
+/** A response or reaction to content submitted by users. Comments are typically associated with a specific content entry. */
 export type CommentParentArgs = {
   where?: InputMaybe<CommentToParentCommentConnectionWhereArgs>;
 };
 
 
-/** A Comment object */
+/** A response or reaction to content submitted by users. Comments are typically associated with a specific content entry. */
 export type CommentRepliesArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   before?: InputMaybe<Scalars['String']['input']>;
@@ -1040,7 +1107,7 @@ export type CommentAuthor = Commenter & DatabaseIdentifier & Node & {
   avatar?: Maybe<Avatar>;
   /** The unique identifier stored in the database */
   databaseId: Scalars['Int']['output'];
-  /** The email for the comment author */
+  /** The email for the comment author. */
   email?: Maybe<Scalars['String']['output']>;
   /** The globally unique identifier for the comment author object */
   id: Scalars['ID']['output'];
@@ -1060,7 +1127,7 @@ export type CommentAuthorAvatarArgs = {
   size?: InputMaybe<Scalars['Int']['input']>;
 };
 
-/** Connection to Comment Nodes */
+/** A paginated collection of Comment Nodes, Supports cursor-based pagination and filtering to efficiently retrieve sets of Comment Nodes */
 export type CommentConnection = {
   /** A list of edges (relational context) between RootQuery and connected Comment Nodes */
   edges: Array<CommentConnectionEdge>;
@@ -1070,7 +1137,7 @@ export type CommentConnection = {
   pageInfo: CommentConnectionPageInfo;
 };
 
-/** Edge between a Node and a connected Comment */
+/** Represents a connection to a Comment. Contains both the Comment Node and metadata about the relationship. */
 export type CommentConnectionEdge = {
   /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
   cursor?: Maybe<Scalars['String']['output']>;
@@ -1078,7 +1145,7 @@ export type CommentConnectionEdge = {
   node: Comment;
 };
 
-/** Page Info on the connected CommentConnectionEdge */
+/** Pagination metadata specific to &quot;CommentConnectionEdge&quot; collections. Provides cursors and flags for navigating through sets of &quot;CommentConnectionEdge&quot; Nodes. */
 export type CommentConnectionPageInfo = {
   /** When paginating forwards, the cursor to continue. */
   endCursor?: Maybe<Scalars['String']['output']>;
@@ -1090,7 +1157,7 @@ export type CommentConnectionPageInfo = {
   startCursor?: Maybe<Scalars['String']['output']>;
 };
 
-/** The Type of Identifier used to fetch a single comment node. Default is "ID". To be used along with the "id" field. */
+/** Identifier types for retrieving a specific comment. Specifies which unique attribute is used to find a particular comment. */
 export enum CommentNodeIdTypeEnum {
   /** Identify a resource by the Database ID. */
   DatabaseId = 'DATABASE_ID',
@@ -1098,7 +1165,7 @@ export enum CommentNodeIdTypeEnum {
   Id = 'ID'
 }
 
-/** The status of the comment object. */
+/** Moderation state for user comments. Determines whether comments are publicly visible, pending approval, or marked as spam. */
 export enum CommentStatusEnum {
   /** Comments with the Approved status */
   Approve = 'APPROVE',
@@ -1130,7 +1197,7 @@ export type CommentToCommentConnectionEdge = CommentConnectionEdge & Edge & {
   node: Comment;
 };
 
-/** Page Info on the &quot;CommentToCommentConnection&quot; */
+/** Pagination metadata specific to &quot;CommentToCommentConnection&quot; collections. Provides cursors and flags for navigating through sets of CommentToCommentConnection Nodes. */
 export type CommentToCommentConnectionPageInfo = CommentConnectionPageInfo & PageInfo & WpPageInfo & {
   __typename?: 'CommentToCommentConnectionPageInfo';
   /** When paginating forwards, the cursor to continue. */
@@ -1199,8 +1266,8 @@ export type CommentToCommentConnectionWhereArgs = {
   parentNotIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
   /** Search term(s) to retrieve matching comments for. */
   search?: InputMaybe<Scalars['String']['input']>;
-  /** Comment status to limit results by. */
-  status?: InputMaybe<Scalars['String']['input']>;
+  /** One or more Comment Statuses to limit results by */
+  statusIn?: InputMaybe<Array<InputMaybe<CommentStatusEnum>>>;
   /** Include comments for a specific user ID. */
   userId?: InputMaybe<Scalars['ID']['input']>;
 };
@@ -1210,8 +1277,16 @@ export type CommentToCommenterConnectionEdge = CommenterConnectionEdge & Edge & 
   __typename?: 'CommentToCommenterConnectionEdge';
   /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
   cursor?: Maybe<Scalars['String']['output']>;
+  /** Email address representing the author for this particular comment */
+  email?: Maybe<Scalars['String']['output']>;
+  /** IP address of the author at the time of making this comment. This field is equivalent to WP_Comment-&gt;comment_author_IP and the value matching the &quot;comment_author_IP&quot; column in SQL. */
+  ipAddress?: Maybe<Scalars['String']['output']>;
+  /** The display name of the comment author for this particular comment */
+  name?: Maybe<Scalars['String']['output']>;
   /** The node of the connection, without the edges */
   node: Commenter;
+  /** The url entered for the comment author on this particular comment */
+  url?: Maybe<Scalars['String']['output']>;
 };
 
 /** Connection between the Comment type and the ContentNode type */
@@ -1288,13 +1363,13 @@ export type CommentToParentCommentConnectionWhereArgs = {
   parentNotIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
   /** Search term(s) to retrieve matching comments for. */
   search?: InputMaybe<Scalars['String']['input']>;
-  /** Comment status to limit results by. */
-  status?: InputMaybe<Scalars['String']['input']>;
+  /** One or more Comment Statuses to limit results by */
+  statusIn?: InputMaybe<Array<InputMaybe<CommentStatusEnum>>>;
   /** Include comments for a specific user ID. */
   userId?: InputMaybe<Scalars['ID']['input']>;
 };
 
-/** The author of a comment */
+/** A user or guest who has submitted a comment. Provides identification and contact information for the comment author. */
 export type Commenter = {
   /** Avatar object for user. The avatar object can be retrieved in different sizes by specifying the size argument. */
   avatar?: Maybe<Avatar>;
@@ -1312,7 +1387,7 @@ export type Commenter = {
   url?: Maybe<Scalars['String']['output']>;
 };
 
-/** Edge between a Node and a connected Commenter */
+/** Represents a connection to a Commenter. Contains both the Commenter Node and metadata about the relationship. */
 export type CommenterConnectionEdge = {
   /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
   cursor?: Maybe<Scalars['String']['output']>;
@@ -1320,7 +1395,7 @@ export type CommenterConnectionEdge = {
   node: Commenter;
 };
 
-/** Options for ordering the connection */
+/** Sorting attributes for comment collections. Specifies which comment property determines the order of results. */
 export enum CommentsConnectionOrderbyEnum {
   /** Order by browser user agent of the commenter. */
   CommentAgent = 'COMMENT_AGENT',
@@ -1336,27 +1411,27 @@ export enum CommentsConnectionOrderbyEnum {
   CommentAuthorUrl = 'COMMENT_AUTHOR_URL',
   /** Order by the comment contents. */
   CommentContent = 'COMMENT_CONTENT',
-  /** Order by date/time timestamp of the comment. */
+  /** Chronological ordering by comment submission date. */
   CommentDate = 'COMMENT_DATE',
-  /** Order by GMT timezone date/time timestamp of the comment. */
+  /** Chronological ordering by comment date in UTC/GMT time. */
   CommentDateGmt = 'COMMENT_DATE_GMT',
-  /** Order by the globally unique identifier for the comment object */
+  /** Ordering by internal ID (typically reflects creation order). */
   CommentId = 'COMMENT_ID',
-  /** Order by the array list of comment IDs listed in the where clause. */
+  /** Preserve custom order of IDs as specified in the query. */
   CommentIn = 'COMMENT_IN',
   /** Order by the comment karma score. */
   CommentKarma = 'COMMENT_KARMA',
-  /** Order by the comment parent ID. */
+  /** Ordering by parent comment relationship (threaded discussions). */
   CommentParent = 'COMMENT_PARENT',
-  /** Order by the post object ID. */
+  /** Ordering by associated content item ID. */
   CommentPostId = 'COMMENT_POST_ID',
-  /** Order by the the type of comment, such as 'comment', 'pingback', or 'trackback'. */
+  /** Ordering by comment classification (standard comments, pingbacks, etc.). */
   CommentType = 'COMMENT_TYPE',
-  /** Order by the user ID. */
+  /** Ordering by the user account ID associated with the comment as the comment author. */
   UserId = 'USER_ID'
 }
 
-/** A plural connection from one Node Type in the Graph to another Node Type, with support for relational data via &quot;edges&quot;. */
+/** A paginated relationship between objects. Supports cursor-based pagination with edges containing relationship metadata and nodes containing the related objects. */
 export type Connection = {
   /** A list of edges (relational context) between connected nodes */
   edges: Array<Edge>;
@@ -1366,7 +1441,7 @@ export type Connection = {
   pageInfo: PageInfo;
 };
 
-/** Nodes used to manage content */
+/** Base interface for content objects like posts, pages, and media items. Provides common fields available across these content types. */
 export type ContentNode = {
   /** Connection between the ContentNode type and the ContentType type */
   contentType?: Maybe<ContentNodeToContentTypeConnectionEdge>;
@@ -1429,7 +1504,7 @@ export type ContentNode = {
 };
 
 
-/** Nodes used to manage content */
+/** Base interface for content objects like posts, pages, and media items. Provides common fields available across these content types. */
 export type ContentNodeEnqueuedScriptsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   before?: InputMaybe<Scalars['String']['input']>;
@@ -1438,7 +1513,7 @@ export type ContentNodeEnqueuedScriptsArgs = {
 };
 
 
-/** Nodes used to manage content */
+/** Base interface for content objects like posts, pages, and media items. Provides common fields available across these content types. */
 export type ContentNodeEnqueuedStylesheetsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   before?: InputMaybe<Scalars['String']['input']>;
@@ -1446,7 +1521,7 @@ export type ContentNodeEnqueuedStylesheetsArgs = {
   last?: InputMaybe<Scalars['Int']['input']>;
 };
 
-/** Connection to ContentNode Nodes */
+/** A paginated collection of ContentNode Nodes, Supports cursor-based pagination and filtering to efficiently retrieve sets of ContentNode Nodes */
 export type ContentNodeConnection = {
   /** A list of edges (relational context) between ContentType and connected ContentNode Nodes */
   edges: Array<ContentNodeConnectionEdge>;
@@ -1456,7 +1531,7 @@ export type ContentNodeConnection = {
   pageInfo: ContentNodeConnectionPageInfo;
 };
 
-/** Edge between a Node and a connected ContentNode */
+/** Represents a connection to a ContentNode. Contains both the ContentNode Node and metadata about the relationship. */
 export type ContentNodeConnectionEdge = {
   /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
   cursor?: Maybe<Scalars['String']['output']>;
@@ -1464,7 +1539,7 @@ export type ContentNodeConnectionEdge = {
   node: ContentNode;
 };
 
-/** Page Info on the connected ContentNodeConnectionEdge */
+/** Pagination metadata specific to &quot;ContentNodeConnectionEdge&quot; collections. Provides cursors and flags for navigating through sets of &quot;ContentNodeConnectionEdge&quot; Nodes. */
 export type ContentNodeConnectionPageInfo = {
   /** When paginating forwards, the cursor to continue. */
   endCursor?: Maybe<Scalars['String']['output']>;
@@ -1476,7 +1551,7 @@ export type ContentNodeConnectionPageInfo = {
   startCursor?: Maybe<Scalars['String']['output']>;
 };
 
-/** The Type of Identifier used to fetch a single resource. Default is ID. */
+/** Identifier types for retrieving specific content. Determines which property (global ID, database ID, URI) is used to locate content objects. */
 export enum ContentNodeIdTypeEnum {
   /** Identify a resource by the Database ID. */
   DatabaseId = 'DATABASE_ID',
@@ -1535,7 +1610,7 @@ export type ContentNodeToEnqueuedScriptConnectionEdge = Edge & EnqueuedScriptCon
   node: EnqueuedScript;
 };
 
-/** Page Info on the &quot;ContentNodeToEnqueuedScriptConnection&quot; */
+/** Pagination metadata specific to &quot;ContentNodeToEnqueuedScriptConnection&quot; collections. Provides cursors and flags for navigating through sets of ContentNodeToEnqueuedScriptConnection Nodes. */
 export type ContentNodeToEnqueuedScriptConnectionPageInfo = EnqueuedScriptConnectionPageInfo & PageInfo & WpPageInfo & {
   __typename?: 'ContentNodeToEnqueuedScriptConnectionPageInfo';
   /** When paginating forwards, the cursor to continue. */
@@ -1568,7 +1643,7 @@ export type ContentNodeToEnqueuedStylesheetConnectionEdge = Edge & EnqueuedStyle
   node: EnqueuedStylesheet;
 };
 
-/** Page Info on the &quot;ContentNodeToEnqueuedStylesheetConnection&quot; */
+/** Pagination metadata specific to &quot;ContentNodeToEnqueuedStylesheetConnection&quot; collections. Provides cursors and flags for navigating through sets of ContentNodeToEnqueuedStylesheetConnection Nodes. */
 export type ContentNodeToEnqueuedStylesheetConnectionPageInfo = EnqueuedStylesheetConnectionPageInfo & PageInfo & WpPageInfo & {
   __typename?: 'ContentNodeToEnqueuedStylesheetConnectionPageInfo';
   /** When paginating forwards, the cursor to continue. */
@@ -1581,7 +1656,7 @@ export type ContentNodeToEnqueuedStylesheetConnectionPageInfo = EnqueuedStyleshe
   startCursor?: Maybe<Scalars['String']['output']>;
 };
 
-/** The template assigned to a node of content */
+/** A layout pattern that can help inform how content might be structured and displayed. Templates can define specialized layouts for different types of content. */
 export type ContentTemplate = {
   /** The name of the template */
   templateName?: Maybe<Scalars['String']['output']>;
@@ -1677,7 +1752,7 @@ export type ContentTypeContentNodesArgs = {
   where?: InputMaybe<ContentTypeToContentNodeConnectionWhereArgs>;
 };
 
-/** Connection to ContentType Nodes */
+/** A paginated collection of ContentType Nodes, Supports cursor-based pagination and filtering to efficiently retrieve sets of ContentType Nodes */
 export type ContentTypeConnection = {
   /** A list of edges (relational context) between RootQuery and connected ContentType Nodes */
   edges: Array<ContentTypeConnectionEdge>;
@@ -1687,7 +1762,7 @@ export type ContentTypeConnection = {
   pageInfo: ContentTypeConnectionPageInfo;
 };
 
-/** Edge between a Node and a connected ContentType */
+/** Represents a connection to a ContentType. Contains both the ContentType Node and metadata about the relationship. */
 export type ContentTypeConnectionEdge = {
   /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
   cursor?: Maybe<Scalars['String']['output']>;
@@ -1695,7 +1770,7 @@ export type ContentTypeConnectionEdge = {
   node: ContentType;
 };
 
-/** Page Info on the connected ContentTypeConnectionEdge */
+/** Pagination metadata specific to &quot;ContentTypeConnectionEdge&quot; collections. Provides cursors and flags for navigating through sets of &quot;ContentTypeConnectionEdge&quot; Nodes. */
 export type ContentTypeConnectionPageInfo = {
   /** When paginating forwards, the cursor to continue. */
   endCursor?: Maybe<Scalars['String']['output']>;
@@ -1707,7 +1782,7 @@ export type ContentTypeConnectionPageInfo = {
   startCursor?: Maybe<Scalars['String']['output']>;
 };
 
-/** Allowed Content Types */
+/** Available content entity types that can be queried or filtered. Identifies the primary content structures available in the system. */
 export enum ContentTypeEnum {
   /** The Type of Content object */
   Attachment = 'ATTACHMENT',
@@ -1721,7 +1796,7 @@ export enum ContentTypeEnum {
   Post = 'POST'
 }
 
-/** The Type of Identifier used to fetch a single Content Type node. To be used along with the "id" field. Default is "ID". */
+/** Identifier types for retrieving a specific content type definition. Determines whether to look up content types by ID or name. */
 export enum ContentTypeIdTypeEnum {
   /** The globally unique ID */
   Id = 'ID',
@@ -1749,7 +1824,7 @@ export type ContentTypeToContentNodeConnectionEdge = ContentNodeConnectionEdge &
   node: ContentNode;
 };
 
-/** Page Info on the &quot;ContentTypeToContentNodeConnection&quot; */
+/** Pagination metadata specific to &quot;ContentTypeToContentNodeConnection&quot; collections. Provides cursors and flags for navigating through sets of ContentTypeToContentNodeConnection Nodes. */
 export type ContentTypeToContentNodeConnectionPageInfo = ContentNodeConnectionPageInfo & PageInfo & WpPageInfo & {
   __typename?: 'ContentTypeToContentNodeConnectionPageInfo';
   /** When paginating forwards, the cursor to continue. */
@@ -1822,7 +1897,7 @@ export type ContentTypeToTaxonomyConnectionEdge = Edge & TaxonomyConnectionEdge 
   node: Taxonomy;
 };
 
-/** Page Info on the &quot;ContentTypeToTaxonomyConnection&quot; */
+/** Pagination metadata specific to &quot;ContentTypeToTaxonomyConnection&quot; collections. Provides cursors and flags for navigating through sets of ContentTypeToTaxonomyConnection Nodes. */
 export type ContentTypeToTaxonomyConnectionPageInfo = PageInfo & TaxonomyConnectionPageInfo & WpPageInfo & {
   __typename?: 'ContentTypeToTaxonomyConnectionPageInfo';
   /** When paginating forwards, the cursor to continue. */
@@ -1860,6 +1935,11 @@ export enum ContentTypesOfTagEnum {
 /** The course type */
 export type Course = ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & NodeWithAuthor & NodeWithContentEditor & NodeWithExcerpt & NodeWithFeaturedImage & NodeWithPageAttributes & NodeWithTemplate & NodeWithTitle & Previewable & UniformResourceIdentifiable & {
   __typename?: 'Course';
+  /**
+   * The ancestors of the content node.
+   * @deprecated This content type is not hierarchical and typically will not have ancestors
+   */
+  ancestors?: Maybe<CourseToCourseConnection>;
   /** Connection between the NodeWithAuthor type and the User type */
   author?: Maybe<NodeWithAuthorToUserConnectionEdge>;
   /** The database identifier of the author of the node */
@@ -1937,9 +2017,14 @@ export type Course = ContentNode & DatabaseIdentifier & MenuItemLinkable & Node 
   modified?: Maybe<Scalars['String']['output']>;
   /** The GMT modified time for a post. If a post was recently updated the modified field will change to match the corresponding time in GMT. */
   modifiedGmt?: Maybe<Scalars['String']['output']>;
+  /**
+   * The parent of the content node.
+   * @deprecated This content type is not hierarchical and typically will not have a parent
+   */
+  parent?: Maybe<CourseToParentConnectionEdge>;
   /** The password for the courses object. */
   password?: Maybe<Scalars['String']['output']>;
-  /** Connection between the Course type and the course type */
+  /** Connection between the course type and the course type */
   preview?: Maybe<CourseToPreviewConnectionEdge>;
   /** The database id of the preview node */
   previewRevisionDatabaseId?: Maybe<Scalars['Int']['output']>;
@@ -1961,6 +2046,15 @@ export type Course = ContentNode & DatabaseIdentifier & MenuItemLinkable & Node 
   title?: Maybe<Scalars['String']['output']>;
   /** The unique resource identifier path */
   uri?: Maybe<Scalars['String']['output']>;
+};
+
+
+/** The course type */
+export type CourseAncestorsArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
 };
 
 
@@ -2019,7 +2113,7 @@ export type CourseTitleArgs = {
   format?: InputMaybe<PostObjectFieldFormatEnum>;
 };
 
-/** Connection to course Nodes */
+/** A paginated collection of course Nodes, Supports cursor-based pagination and filtering to efficiently retrieve sets of course Nodes */
 export type CourseConnection = {
   /** A list of edges (relational context) between RootQuery and connected course Nodes */
   edges: Array<CourseConnectionEdge>;
@@ -2029,7 +2123,7 @@ export type CourseConnection = {
   pageInfo: CourseConnectionPageInfo;
 };
 
-/** Edge between a Node and a connected course */
+/** Represents a connection to a course. Contains both the course Node and metadata about the relationship. */
 export type CourseConnectionEdge = {
   /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
   cursor?: Maybe<Scalars['String']['output']>;
@@ -2037,7 +2131,7 @@ export type CourseConnectionEdge = {
   node: Course;
 };
 
-/** Page Info on the connected CourseConnectionEdge */
+/** Pagination metadata specific to &quot;CourseConnectionEdge&quot; collections. Provides cursors and flags for navigating through sets of &quot;CourseConnectionEdge&quot; Nodes. */
 export type CourseConnectionPageInfo = {
   /** When paginating forwards, the cursor to continue. */
   endCursor?: Maybe<Scalars['String']['output']>;
@@ -2049,7 +2143,7 @@ export type CourseConnectionPageInfo = {
   startCursor?: Maybe<Scalars['String']['output']>;
 };
 
-/** The Type of Identifier used to fetch a single resource. Default is ID. */
+/** Identifier types for retrieving a specific Course. Specifies which unique attribute is used to find an exact Course. */
 export enum CourseIdType {
   /** Identify a resource by the Database ID. */
   DatabaseId = 'DATABASE_ID',
@@ -2081,7 +2175,58 @@ export type CourseTagsNodeInput = {
   slug?: InputMaybe<Scalars['String']['input']>;
 };
 
-/** Connection between the Course type and the course type */
+/** Connection between the course type and the course type */
+export type CourseToCourseConnection = Connection & CourseConnection & {
+  __typename?: 'CourseToCourseConnection';
+  /** Edges for the CourseToCourseConnection connection */
+  edges: Array<CourseToCourseConnectionEdge>;
+  /** The nodes of the connection, without the edges */
+  nodes: Array<Course>;
+  /** Information about pagination in a connection. */
+  pageInfo: CourseToCourseConnectionPageInfo;
+};
+
+/** An edge in a connection */
+export type CourseToCourseConnectionEdge = CourseConnectionEdge & Edge & {
+  __typename?: 'CourseToCourseConnectionEdge';
+  /**
+   * A cursor for use in pagination
+   * @deprecated This content type is not hierarchical and typically will not have ancestors
+   */
+  cursor?: Maybe<Scalars['String']['output']>;
+  /**
+   * The item at the end of the edge
+   * @deprecated This content type is not hierarchical and typically will not have ancestors
+   */
+  node: Course;
+};
+
+/** Pagination metadata specific to &quot;CourseToCourseConnection&quot; collections. Provides cursors and flags for navigating through sets of CourseToCourseConnection Nodes. */
+export type CourseToCourseConnectionPageInfo = CourseConnectionPageInfo & PageInfo & WpPageInfo & {
+  __typename?: 'CourseToCourseConnectionPageInfo';
+  /** When paginating forwards, the cursor to continue. */
+  endCursor?: Maybe<Scalars['String']['output']>;
+  /** When paginating forwards, are there more items? */
+  hasNextPage: Scalars['Boolean']['output'];
+  /** When paginating backwards, are there more items? */
+  hasPreviousPage: Scalars['Boolean']['output'];
+  /** When paginating backwards, the cursor to continue. */
+  startCursor?: Maybe<Scalars['String']['output']>;
+};
+
+/** Connection between the course type and the course type */
+export type CourseToParentConnectionEdge = CourseConnectionEdge & Edge & OneToOneConnection & {
+  __typename?: 'CourseToParentConnectionEdge';
+  /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
+  cursor?: Maybe<Scalars['String']['output']>;
+  /**
+   * The node of the connection, without the edges
+   * @deprecated This content type is not hierarchical and typically will not have a parent
+   */
+  node: Course;
+};
+
+/** Connection between the course type and the course type */
 export type CourseToPreviewConnectionEdge = CourseConnectionEdge & Edge & OneToOneConnection & {
   __typename?: 'CourseToPreviewConnectionEdge';
   /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
@@ -2110,7 +2255,7 @@ export type CourseToTagConnectionEdge = Edge & TagConnectionEdge & {
   node: Tag;
 };
 
-/** Page Info on the &quot;CourseToTagConnection&quot; */
+/** Pagination metadata specific to &quot;CourseToTagConnection&quot; collections. Provides cursors and flags for navigating through sets of CourseToTagConnection Nodes. */
 export type CourseToTagConnectionPageInfo = PageInfo & TagConnectionPageInfo & WpPageInfo & {
   __typename?: 'CourseToTagConnectionPageInfo';
   /** When paginating forwards, the cursor to continue. */
@@ -2162,8 +2307,6 @@ export type CourseToTagConnectionWhereArgs = {
   /** Array of slugs to return term(s) for. Default empty. */
   slug?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   /** Array of term taxonomy IDs, to match when querying terms. */
-  termTaxonomId?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Array of term taxonomy IDs, to match when querying terms. */
   termTaxonomyId?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
   /** Whether to prime meta caches for matched terms. Default true. */
   updateTermMetaCache?: InputMaybe<Scalars['Boolean']['input']>;
@@ -2189,7 +2332,7 @@ export type CourseToTermNodeConnectionEdge = Edge & TermNodeConnectionEdge & {
   node: TermNode;
 };
 
-/** Page Info on the &quot;CourseToTermNodeConnection&quot; */
+/** Pagination metadata specific to &quot;CourseToTermNodeConnection&quot; collections. Provides cursors and flags for navigating through sets of CourseToTermNodeConnection Nodes. */
 export type CourseToTermNodeConnectionPageInfo = PageInfo & TermNodeConnectionPageInfo & WpPageInfo & {
   __typename?: 'CourseToTermNodeConnectionPageInfo';
   /** When paginating forwards, the cursor to continue. */
@@ -2243,8 +2386,6 @@ export type CourseToTermNodeConnectionWhereArgs = {
   /** The Taxonomy to filter terms by */
   taxonomies?: InputMaybe<Array<InputMaybe<TaxonomyEnum>>>;
   /** Array of term taxonomy IDs, to match when querying terms. */
-  termTaxonomId?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Array of term taxonomy IDs, to match when querying terms. */
   termTaxonomyId?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
   /** Whether to prime meta caches for matched terms. Default true. */
   updateTermMetaCache?: InputMaybe<Scalars['Boolean']['input']>;
@@ -2278,7 +2419,9 @@ export type CreateCategoryInput = {
   description?: InputMaybe<Scalars['String']['input']>;
   /** The name of the category object to mutate */
   name: Scalars['String']['input'];
-  /** The ID of the category that should be set as the parent */
+  /** The database ID of the category that should be set as the parent. This field cannot be used in conjunction with parentId */
+  parentDatabaseId?: InputMaybe<Scalars['Int']['input']>;
+  /** The ID of the category that should be set as the parent. This field cannot be used in conjunction with parentDatabaseId */
   parentId?: InputMaybe<Scalars['ID']['input']>;
   /** If this argument exists then the slug will be checked to see if it is not an existing valid term. If that check succeeds (it is not a valid term), then it is added and the term id is given. If it fails, then a check is made to whether the taxonomy is hierarchical and the parent argument is not empty. If the second check succeeds, the term will be inserted and the term id will be given. If the slug argument is empty, then it will be calculated from the term name. */
   slug?: InputMaybe<Scalars['String']['input']>;
@@ -2330,8 +2473,6 @@ export type CreateChapterPayload = {
 
 /** Input for the createComment mutation. */
 export type CreateCommentInput = {
-  /** The approval status of the comment. */
-  approved?: InputMaybe<Scalars['String']['input']>;
   /** The name of the comment's author. */
   author?: InputMaybe<Scalars['String']['input']>;
   /** The email of the comment's author. */
@@ -2583,7 +2724,7 @@ export type CreateUserInput = {
   displayName?: InputMaybe<Scalars['String']['input']>;
   /** A string containing the user's email address. */
   email?: InputMaybe<Scalars['String']['input']>;
-  /** 	The user's first name. */
+  /** The user's first name. */
   firstName?: InputMaybe<Scalars['String']['input']>;
   /** User's Jabber account. */
   jabber?: InputMaybe<Scalars['String']['input']>;
@@ -2620,7 +2761,7 @@ export type CreateUserPayload = {
   user?: Maybe<User>;
 };
 
-/** Object that can be identified with a Database ID */
+/** An object that has a unique numeric identifier in the database. Provides consistent access to the database ID across different object types. */
 export type DatabaseIdentifier = {
   /** The unique identifier stored in the database */
   databaseId: Scalars['Int']['output'];
@@ -2894,7 +3035,7 @@ export type DiscussionSettings = {
   defaultPingStatus?: Maybe<Scalars['String']['output']>;
 };
 
-/** Relational context between connected nodes */
+/** Represents a connection between two objects. Contains both the related object (node) and metadata about the relationship (cursor). */
 export type Edge = {
   /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
   cursor?: Maybe<Scalars['String']['output']>;
@@ -2902,7 +3043,7 @@ export type Edge = {
   node: Node;
 };
 
-/** Asset enqueued by the CMS */
+/** A script or stylesheet resource that should be loaded by the client. Contains information about the resource&#039;s location, dependencies, and loading behavior. */
 export type EnqueuedAsset = {
   /** The inline code to be run after the asset is loaded. */
   after?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
@@ -2922,6 +3063,8 @@ export type EnqueuedAsset = {
    * @deprecated Use `EnqueuedScript.extraData` instead.
    */
   extra?: Maybe<Scalars['String']['output']>;
+  /** The loading group to which this asset belongs. */
+  group?: Maybe<Scalars['Int']['output']>;
   /** The handle of the enqueued asset */
   handle?: Maybe<Scalars['String']['output']>;
   /** The ID of the enqueued asset */
@@ -2955,6 +3098,10 @@ export type EnqueuedScript = EnqueuedAsset & Node & {
   extra?: Maybe<Scalars['String']['output']>;
   /** Extra data supplied to the enqueued script */
   extraData?: Maybe<Scalars['String']['output']>;
+  /** The loading group to which this asset belongs. */
+  group?: Maybe<Scalars['Int']['output']>;
+  /** The location where this script should be loaded */
+  groupLocation?: Maybe<ScriptLoadingGroupLocationEnum>;
   /** The handle of the enqueued asset */
   handle?: Maybe<Scalars['String']['output']>;
   /** The global ID of the enqueued script */
@@ -2967,7 +3114,7 @@ export type EnqueuedScript = EnqueuedAsset & Node & {
   version?: Maybe<Scalars['String']['output']>;
 };
 
-/** Connection to EnqueuedScript Nodes */
+/** A paginated collection of EnqueuedScript Nodes, Supports cursor-based pagination and filtering to efficiently retrieve sets of EnqueuedScript Nodes */
 export type EnqueuedScriptConnection = {
   /** A list of edges (relational context) between ContentNode and connected EnqueuedScript Nodes */
   edges: Array<EnqueuedScriptConnectionEdge>;
@@ -2977,7 +3124,7 @@ export type EnqueuedScriptConnection = {
   pageInfo: EnqueuedScriptConnectionPageInfo;
 };
 
-/** Edge between a Node and a connected EnqueuedScript */
+/** Represents a connection to a EnqueuedScript. Contains both the EnqueuedScript Node and metadata about the relationship. */
 export type EnqueuedScriptConnectionEdge = {
   /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
   cursor?: Maybe<Scalars['String']['output']>;
@@ -2985,7 +3132,7 @@ export type EnqueuedScriptConnectionEdge = {
   node: EnqueuedScript;
 };
 
-/** Page Info on the connected EnqueuedScriptConnectionEdge */
+/** Pagination metadata specific to &quot;EnqueuedScriptConnectionEdge&quot; collections. Provides cursors and flags for navigating through sets of &quot;EnqueuedScriptConnectionEdge&quot; Nodes. */
 export type EnqueuedScriptConnectionPageInfo = {
   /** When paginating forwards, the cursor to continue. */
   endCursor?: Maybe<Scalars['String']['output']>;
@@ -3018,6 +3165,8 @@ export type EnqueuedStylesheet = EnqueuedAsset & Node & {
    * @deprecated Use `EnqueuedScript.extraData` instead.
    */
   extra?: Maybe<Scalars['String']['output']>;
+  /** The loading group to which this asset belongs. */
+  group?: Maybe<Scalars['Int']['output']>;
   /** The handle of the enqueued asset */
   handle?: Maybe<Scalars['String']['output']>;
   /** The global ID of the enqueued stylesheet */
@@ -3040,7 +3189,7 @@ export type EnqueuedStylesheet = EnqueuedAsset & Node & {
   version?: Maybe<Scalars['String']['output']>;
 };
 
-/** Connection to EnqueuedStylesheet Nodes */
+/** A paginated collection of EnqueuedStylesheet Nodes, Supports cursor-based pagination and filtering to efficiently retrieve sets of EnqueuedStylesheet Nodes */
 export type EnqueuedStylesheetConnection = {
   /** A list of edges (relational context) between ContentNode and connected EnqueuedStylesheet Nodes */
   edges: Array<EnqueuedStylesheetConnectionEdge>;
@@ -3050,7 +3199,7 @@ export type EnqueuedStylesheetConnection = {
   pageInfo: EnqueuedStylesheetConnectionPageInfo;
 };
 
-/** Edge between a Node and a connected EnqueuedStylesheet */
+/** Represents a connection to a EnqueuedStylesheet. Contains both the EnqueuedStylesheet Node and metadata about the relationship. */
 export type EnqueuedStylesheetConnectionEdge = {
   /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
   cursor?: Maybe<Scalars['String']['output']>;
@@ -3058,7 +3207,7 @@ export type EnqueuedStylesheetConnectionEdge = {
   node: EnqueuedStylesheet;
 };
 
-/** Page Info on the connected EnqueuedStylesheetConnectionEdge */
+/** Pagination metadata specific to &quot;EnqueuedStylesheetConnectionEdge&quot; collections. Provides cursors and flags for navigating through sets of &quot;EnqueuedStylesheetConnectionEdge&quot; Nodes. */
 export type EnqueuedStylesheetConnectionPageInfo = {
   /** When paginating forwards, the cursor to continue. */
   endCursor?: Maybe<Scalars['String']['output']>;
@@ -3093,7 +3242,7 @@ export type GeneralSettings = {
   url?: Maybe<Scalars['String']['output']>;
 };
 
-/** Content node with hierarchical (parent/child) relationships */
+/** Content that can be organized in a parent-child structure. Provides fields for navigating up and down the hierarchy and maintaining structured relationships. */
 export type HierarchicalContentNode = {
   /** Returns ancestors of the node. Default ordered as lowest (closest to the child) to highest (closest to the root). */
   ancestors?: Maybe<HierarchicalContentNodeToContentNodeAncestorsConnection>;
@@ -3166,7 +3315,7 @@ export type HierarchicalContentNode = {
 };
 
 
-/** Content node with hierarchical (parent/child) relationships */
+/** Content that can be organized in a parent-child structure. Provides fields for navigating up and down the hierarchy and maintaining structured relationships. */
 export type HierarchicalContentNodeAncestorsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   before?: InputMaybe<Scalars['String']['input']>;
@@ -3176,7 +3325,7 @@ export type HierarchicalContentNodeAncestorsArgs = {
 };
 
 
-/** Content node with hierarchical (parent/child) relationships */
+/** Content that can be organized in a parent-child structure. Provides fields for navigating up and down the hierarchy and maintaining structured relationships. */
 export type HierarchicalContentNodeChildrenArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   before?: InputMaybe<Scalars['String']['input']>;
@@ -3186,7 +3335,7 @@ export type HierarchicalContentNodeChildrenArgs = {
 };
 
 
-/** Content node with hierarchical (parent/child) relationships */
+/** Content that can be organized in a parent-child structure. Provides fields for navigating up and down the hierarchy and maintaining structured relationships. */
 export type HierarchicalContentNodeEnqueuedScriptsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   before?: InputMaybe<Scalars['String']['input']>;
@@ -3195,7 +3344,7 @@ export type HierarchicalContentNodeEnqueuedScriptsArgs = {
 };
 
 
-/** Content node with hierarchical (parent/child) relationships */
+/** Content that can be organized in a parent-child structure. Provides fields for navigating up and down the hierarchy and maintaining structured relationships. */
 export type HierarchicalContentNodeEnqueuedStylesheetsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   before?: InputMaybe<Scalars['String']['input']>;
@@ -3223,7 +3372,7 @@ export type HierarchicalContentNodeToContentNodeAncestorsConnectionEdge = Conten
   node: ContentNode;
 };
 
-/** Page Info on the &quot;HierarchicalContentNodeToContentNodeAncestorsConnection&quot; */
+/** Pagination metadata specific to &quot;HierarchicalContentNodeToContentNodeAncestorsConnection&quot; collections. Provides cursors and flags for navigating through sets of HierarchicalContentNodeToContentNodeAncestorsConnection Nodes. */
 export type HierarchicalContentNodeToContentNodeAncestorsConnectionPageInfo = ContentNodeConnectionPageInfo & PageInfo & WpPageInfo & {
   __typename?: 'HierarchicalContentNodeToContentNodeAncestorsConnectionPageInfo';
   /** When paginating forwards, the cursor to continue. */
@@ -3296,7 +3445,7 @@ export type HierarchicalContentNodeToContentNodeChildrenConnectionEdge = Content
   node: ContentNode;
 };
 
-/** Page Info on the &quot;HierarchicalContentNodeToContentNodeChildrenConnection&quot; */
+/** Pagination metadata specific to &quot;HierarchicalContentNodeToContentNodeChildrenConnection&quot; collections. Provides cursors and flags for navigating through sets of HierarchicalContentNodeToContentNodeChildrenConnection Nodes. */
 export type HierarchicalContentNodeToContentNodeChildrenConnectionPageInfo = ContentNodeConnectionPageInfo & PageInfo & WpPageInfo & {
   __typename?: 'HierarchicalContentNodeToContentNodeChildrenConnectionPageInfo';
   /** When paginating forwards, the cursor to continue. */
@@ -3358,7 +3507,7 @@ export type HierarchicalContentNodeToParentContentNodeConnectionEdge = ContentNo
   node: ContentNode;
 };
 
-/** Node with hierarchical (parent/child) relationships */
+/** Content that can exist in a parent-child structure. Provides fields for navigating up (parent) and down (children) through the hierarchy. */
 export type HierarchicalNode = {
   /** The unique identifier stored in the database */
   databaseId: Scalars['Int']['output'];
@@ -3439,6 +3588,8 @@ export type MediaDetails = {
   __typename?: 'MediaDetails';
   /** The filename of the mediaItem */
   file?: Maybe<Scalars['String']['output']>;
+  /** The path to the mediaItem relative to the uploads directory */
+  filePath?: Maybe<Scalars['String']['output']>;
   /** The height of the mediaItem */
   height?: Maybe<Scalars['Int']['output']>;
   /** Meta information associated with the mediaItem */
@@ -3456,7 +3607,7 @@ export type MediaDetailsSizesArgs = {
   include?: InputMaybe<Array<InputMaybe<MediaItemSizeEnum>>>;
 };
 
-/** The mediaItem type */
+/** Represents uploaded media, including images, videos, documents, and audio files. */
 export type MediaItem = ContentNode & DatabaseIdentifier & HierarchicalContentNode & HierarchicalNode & Node & NodeWithAuthor & NodeWithComments & NodeWithTemplate & NodeWithTitle & UniformResourceIdentifiable & {
   __typename?: 'MediaItem';
   /** Alternative text to display when resource is not displayed */
@@ -3501,6 +3652,10 @@ export type MediaItem = ContentNode & DatabaseIdentifier & HierarchicalContentNo
   enqueuedScripts?: Maybe<ContentNodeToEnqueuedScriptConnection>;
   /** Connection between the ContentNode type and the EnqueuedStylesheet type */
   enqueuedStylesheets?: Maybe<ContentNodeToEnqueuedStylesheetConnection>;
+  /** The filename of the mediaItem for the specified size (default size is full) */
+  file?: Maybe<Scalars['String']['output']>;
+  /** The path to the original file relative to the uploads directory */
+  filePath?: Maybe<Scalars['String']['output']>;
   /** The filesize in bytes of the resource */
   fileSize?: Maybe<Scalars['Int']['output']>;
   /** The global unique identifier for this post. This currently matches the value stored in WP_Post-&gt;guid and the guid column in the &quot;post_objects&quot; database table. */
@@ -3575,7 +3730,7 @@ export type MediaItem = ContentNode & DatabaseIdentifier & HierarchicalContentNo
 };
 
 
-/** The mediaItem type */
+/** Represents uploaded media, including images, videos, documents, and audio files. */
 export type MediaItemAncestorsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   before?: InputMaybe<Scalars['String']['input']>;
@@ -3585,13 +3740,13 @@ export type MediaItemAncestorsArgs = {
 };
 
 
-/** The mediaItem type */
+/** Represents uploaded media, including images, videos, documents, and audio files. */
 export type MediaItemCaptionArgs = {
   format?: InputMaybe<PostObjectFieldFormatEnum>;
 };
 
 
-/** The mediaItem type */
+/** Represents uploaded media, including images, videos, documents, and audio files. */
 export type MediaItemChildrenArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   before?: InputMaybe<Scalars['String']['input']>;
@@ -3601,7 +3756,7 @@ export type MediaItemChildrenArgs = {
 };
 
 
-/** The mediaItem type */
+/** Represents uploaded media, including images, videos, documents, and audio files. */
 export type MediaItemCommentsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   before?: InputMaybe<Scalars['String']['input']>;
@@ -3611,13 +3766,13 @@ export type MediaItemCommentsArgs = {
 };
 
 
-/** The mediaItem type */
+/** Represents uploaded media, including images, videos, documents, and audio files. */
 export type MediaItemDescriptionArgs = {
   format?: InputMaybe<PostObjectFieldFormatEnum>;
 };
 
 
-/** The mediaItem type */
+/** Represents uploaded media, including images, videos, documents, and audio files. */
 export type MediaItemEnqueuedScriptsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   before?: InputMaybe<Scalars['String']['input']>;
@@ -3626,7 +3781,7 @@ export type MediaItemEnqueuedScriptsArgs = {
 };
 
 
-/** The mediaItem type */
+/** Represents uploaded media, including images, videos, documents, and audio files. */
 export type MediaItemEnqueuedStylesheetsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   before?: InputMaybe<Scalars['String']['input']>;
@@ -3635,36 +3790,48 @@ export type MediaItemEnqueuedStylesheetsArgs = {
 };
 
 
-/** The mediaItem type */
+/** Represents uploaded media, including images, videos, documents, and audio files. */
+export type MediaItemFileArgs = {
+  size?: InputMaybe<MediaItemSizeEnum>;
+};
+
+
+/** Represents uploaded media, including images, videos, documents, and audio files. */
+export type MediaItemFilePathArgs = {
+  size?: InputMaybe<MediaItemSizeEnum>;
+};
+
+
+/** Represents uploaded media, including images, videos, documents, and audio files. */
 export type MediaItemFileSizeArgs = {
   size?: InputMaybe<MediaItemSizeEnum>;
 };
 
 
-/** The mediaItem type */
+/** Represents uploaded media, including images, videos, documents, and audio files. */
 export type MediaItemSizesArgs = {
   size?: InputMaybe<MediaItemSizeEnum>;
 };
 
 
-/** The mediaItem type */
+/** Represents uploaded media, including images, videos, documents, and audio files. */
 export type MediaItemSourceUrlArgs = {
   size?: InputMaybe<MediaItemSizeEnum>;
 };
 
 
-/** The mediaItem type */
+/** Represents uploaded media, including images, videos, documents, and audio files. */
 export type MediaItemSrcSetArgs = {
   size?: InputMaybe<MediaItemSizeEnum>;
 };
 
 
-/** The mediaItem type */
+/** Represents uploaded media, including images, videos, documents, and audio files. */
 export type MediaItemTitleArgs = {
   format?: InputMaybe<PostObjectFieldFormatEnum>;
 };
 
-/** Connection to mediaItem Nodes */
+/** A paginated collection of mediaItem Nodes, Supports cursor-based pagination and filtering to efficiently retrieve sets of mediaItem Nodes */
 export type MediaItemConnection = {
   /** A list of edges (relational context) between RootQuery and connected mediaItem Nodes */
   edges: Array<MediaItemConnectionEdge>;
@@ -3674,7 +3841,7 @@ export type MediaItemConnection = {
   pageInfo: MediaItemConnectionPageInfo;
 };
 
-/** Edge between a Node and a connected mediaItem */
+/** Represents a connection to a mediaItem. Contains both the mediaItem Node and metadata about the relationship. */
 export type MediaItemConnectionEdge = {
   /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
   cursor?: Maybe<Scalars['String']['output']>;
@@ -3682,7 +3849,7 @@ export type MediaItemConnectionEdge = {
   node: MediaItem;
 };
 
-/** Page Info on the connected MediaItemConnectionEdge */
+/** Pagination metadata specific to &quot;MediaItemConnectionEdge&quot; collections. Provides cursors and flags for navigating through sets of &quot;MediaItemConnectionEdge&quot; Nodes. */
 export type MediaItemConnectionPageInfo = {
   /** When paginating forwards, the cursor to continue. */
   endCursor?: Maybe<Scalars['String']['output']>;
@@ -3694,7 +3861,7 @@ export type MediaItemConnectionPageInfo = {
   startCursor?: Maybe<Scalars['String']['output']>;
 };
 
-/** The Type of Identifier used to fetch a single resource. Default is ID. */
+/** Identifier types for retrieving a specific MediaItem. Specifies which unique attribute is used to find an exact MediaItem. */
 export enum MediaItemIdType {
   /** Identify a resource by the Database ID. */
   DatabaseId = 'DATABASE_ID',
@@ -3737,31 +3904,31 @@ export type MediaItemMeta = {
   title?: Maybe<Scalars['String']['output']>;
 };
 
-/** The size of the media item object. */
+/** Predefined image size variations. Represents the standard image dimensions available for media assets. */
 export enum MediaItemSizeEnum {
-  /** MediaItem with the large size */
+  /** Large image preview suitable for detail views. (1024x1024) */
   Large = 'LARGE',
-  /** MediaItem with the medium size */
+  /** Medium image preview typically suitable for listings and detail views. (300x300) */
   Medium = 'MEDIUM',
-  /** MediaItem with the medium_large size */
+  /** Medium-to-large image preview suitable for listings and detail views. (768x0) */
   MediumLarge = 'MEDIUM_LARGE',
-  /** MediaItem with the thumbnail size */
+  /** Small image preview suitable for thumbnails and listings. (150x150) */
   Thumbnail = 'THUMBNAIL',
-  /** MediaItem with the 1536x1536 size */
+  /** Custom Image Size. (1536x1536) */
   '1536X1536' = '_1536X1536',
-  /** MediaItem with the 2048x2048 size */
+  /** Custom Image Size. (2048x2048) */
   '2048X2048' = '_2048X2048'
 }
 
-/** The status of the media item object. */
+/** Publication status for media items. Controls whether media is publicly accessible, private, or in another state. */
 export enum MediaItemStatusEnum {
-  /** Objects with the auto-draft status */
+  /** Automatically created media that has not been finalized */
   AutoDraft = 'AUTO_DRAFT',
-  /** Objects with the inherit status */
+  /** Media that inherits its publication status from the parent content */
   Inherit = 'INHERIT',
-  /** Objects with the private status */
+  /** Media visible only to users with appropriate permissions */
   Private = 'PRIVATE',
-  /** Objects with the trash status */
+  /** Media marked for deletion but still recoverable */
   Trash = 'TRASH'
 }
 
@@ -3785,7 +3952,7 @@ export type MediaItemToCommentConnectionEdge = CommentConnectionEdge & Edge & {
   node: Comment;
 };
 
-/** Page Info on the &quot;MediaItemToCommentConnection&quot; */
+/** Pagination metadata specific to &quot;MediaItemToCommentConnection&quot; collections. Provides cursors and flags for navigating through sets of MediaItemToCommentConnection Nodes. */
 export type MediaItemToCommentConnectionPageInfo = CommentConnectionPageInfo & PageInfo & WpPageInfo & {
   __typename?: 'MediaItemToCommentConnectionPageInfo';
   /** When paginating forwards, the cursor to continue. */
@@ -3854,8 +4021,8 @@ export type MediaItemToCommentConnectionWhereArgs = {
   parentNotIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
   /** Search term(s) to retrieve matching comments for. */
   search?: InputMaybe<Scalars['String']['input']>;
-  /** Comment status to limit results by. */
-  status?: InputMaybe<Scalars['String']['input']>;
+  /** One or more Comment Statuses to limit results by */
+  statusIn?: InputMaybe<Array<InputMaybe<CommentStatusEnum>>>;
   /** Include comments for a specific user ID. */
   userId?: InputMaybe<Scalars['ID']['input']>;
 };
@@ -3865,6 +4032,8 @@ export type MediaSize = {
   __typename?: 'MediaSize';
   /** The filename of the referenced size */
   file?: Maybe<Scalars['String']['output']>;
+  /** The path of the file for the referenced size (default size is full) */
+  filePath?: Maybe<Scalars['String']['output']>;
   /** The filesize of the resource */
   fileSize?: Maybe<Scalars['Int']['output']>;
   /** The height of the referenced size */
@@ -3879,7 +4048,7 @@ export type MediaSize = {
   width?: Maybe<Scalars['String']['output']>;
 };
 
-/** Menus are the containers for navigation items. Menus can be assigned to menu locations, which are typically registered by the active theme. */
+/** Collections of navigation links. Menus can be assigned to designated locations and used to build site navigation structures. */
 export type Menu = DatabaseIdentifier & Node & {
   __typename?: 'Menu';
   /** The number of items in the menu */
@@ -3906,7 +4075,7 @@ export type Menu = DatabaseIdentifier & Node & {
 };
 
 
-/** Menus are the containers for navigation items. Menus can be assigned to menu locations, which are typically registered by the active theme. */
+/** Collections of navigation links. Menus can be assigned to designated locations and used to build site navigation structures. */
 export type MenuMenuItemsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   before?: InputMaybe<Scalars['String']['input']>;
@@ -3915,7 +4084,7 @@ export type MenuMenuItemsArgs = {
   where?: InputMaybe<MenuToMenuItemConnectionWhereArgs>;
 };
 
-/** Connection to Menu Nodes */
+/** A paginated collection of Menu Nodes, Supports cursor-based pagination and filtering to efficiently retrieve sets of Menu Nodes */
 export type MenuConnection = {
   /** A list of edges (relational context) between RootQuery and connected Menu Nodes */
   edges: Array<MenuConnectionEdge>;
@@ -3925,7 +4094,7 @@ export type MenuConnection = {
   pageInfo: MenuConnectionPageInfo;
 };
 
-/** Edge between a Node and a connected Menu */
+/** Represents a connection to a Menu. Contains both the Menu Node and metadata about the relationship. */
 export type MenuConnectionEdge = {
   /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
   cursor?: Maybe<Scalars['String']['output']>;
@@ -3933,7 +4102,7 @@ export type MenuConnectionEdge = {
   node: Menu;
 };
 
-/** Page Info on the connected MenuConnectionEdge */
+/** Pagination metadata specific to &quot;MenuConnectionEdge&quot; collections. Provides cursors and flags for navigating through sets of &quot;MenuConnectionEdge&quot; Nodes. */
 export type MenuConnectionPageInfo = {
   /** When paginating forwards, the cursor to continue. */
   endCursor?: Maybe<Scalars['String']['output']>;
@@ -4008,7 +4177,7 @@ export type MenuItemChildItemsArgs = {
   where?: InputMaybe<MenuItemToMenuItemConnectionWhereArgs>;
 };
 
-/** Connection to MenuItem Nodes */
+/** A paginated collection of MenuItem Nodes, Supports cursor-based pagination and filtering to efficiently retrieve sets of MenuItem Nodes */
 export type MenuItemConnection = {
   /** A list of edges (relational context) between RootQuery and connected MenuItem Nodes */
   edges: Array<MenuItemConnectionEdge>;
@@ -4018,7 +4187,7 @@ export type MenuItemConnection = {
   pageInfo: MenuItemConnectionPageInfo;
 };
 
-/** Edge between a Node and a connected MenuItem */
+/** Represents a connection to a MenuItem. Contains both the MenuItem Node and metadata about the relationship. */
 export type MenuItemConnectionEdge = {
   /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
   cursor?: Maybe<Scalars['String']['output']>;
@@ -4026,7 +4195,7 @@ export type MenuItemConnectionEdge = {
   node: MenuItem;
 };
 
-/** Page Info on the connected MenuItemConnectionEdge */
+/** Pagination metadata specific to &quot;MenuItemConnectionEdge&quot; collections. Provides cursors and flags for navigating through sets of &quot;MenuItemConnectionEdge&quot; Nodes. */
 export type MenuItemConnectionPageInfo = {
   /** When paginating forwards, the cursor to continue. */
   endCursor?: Maybe<Scalars['String']['output']>;
@@ -4038,7 +4207,7 @@ export type MenuItemConnectionPageInfo = {
   startCursor?: Maybe<Scalars['String']['output']>;
 };
 
-/** Nodes that can be linked to as Menu Items */
+/** Content that can be referenced by navigation menu items. Provides the essential fields needed to create links within navigation structures. */
 export type MenuItemLinkable = {
   /** The unique identifier stored in the database */
   databaseId: Scalars['Int']['output'];
@@ -4058,7 +4227,7 @@ export type MenuItemLinkable = {
   uri?: Maybe<Scalars['String']['output']>;
 };
 
-/** Edge between a Node and a connected MenuItemLinkable */
+/** Represents a connection to a MenuItemLinkable. Contains both the MenuItemLinkable Node and metadata about the relationship. */
 export type MenuItemLinkableConnectionEdge = {
   /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
   cursor?: Maybe<Scalars['String']['output']>;
@@ -4066,7 +4235,7 @@ export type MenuItemLinkableConnectionEdge = {
   node: MenuItemLinkable;
 };
 
-/** The Type of Identifier used to fetch a single node. Default is "ID". To be used along with the "id" field. */
+/** Identifier types for retrieving a specific menu item. Determines whether to look up menu items by global ID or database ID. */
 export enum MenuItemNodeIdTypeEnum {
   /** Identify a resource by the Database ID. */
   DatabaseId = 'DATABASE_ID',
@@ -4074,7 +4243,7 @@ export enum MenuItemNodeIdTypeEnum {
   Id = 'ID'
 }
 
-/** Deprecated in favor of MenuItemLinkeable Interface */
+/** Deprecated in favor of MenuItemLinkable Interface */
 export type MenuItemObjectUnion = Category | Chapter | Course | Page | Post | PostFormat | Tag;
 
 /** Connection between the MenuItem type and the Menu type */
@@ -4106,7 +4275,7 @@ export type MenuItemToMenuItemConnectionEdge = Edge & MenuItemConnectionEdge & {
   node: MenuItem;
 };
 
-/** Page Info on the &quot;MenuItemToMenuItemConnection&quot; */
+/** Pagination metadata specific to &quot;MenuItemToMenuItemConnection&quot; collections. Provides cursors and flags for navigating through sets of MenuItemToMenuItemConnection Nodes. */
 export type MenuItemToMenuItemConnectionPageInfo = MenuItemConnectionPageInfo & PageInfo & WpPageInfo & {
   __typename?: 'MenuItemToMenuItemConnectionPageInfo';
   /** When paginating forwards, the cursor to continue. */
@@ -4140,7 +4309,7 @@ export type MenuItemToMenuItemLinkableConnectionEdge = Edge & MenuItemLinkableCo
   node: MenuItemLinkable;
 };
 
-/** Registered menu locations */
+/** Designated areas where navigation menus can be displayed. Represents the named regions in the interface where menus can be assigned. */
 export enum MenuLocationEnum {
   /** Put the menu in the footer_menu location */
   FooterMenu = 'FOOTER_MENU',
@@ -4154,7 +4323,7 @@ export enum MenuLocationEnum {
   SecondaryMenu = 'SECONDARY_MENU'
 }
 
-/** The Type of Identifier used to fetch a single node. Default is "ID". To be used along with the "id" field. */
+/** Identifier types for retrieving a specific navigation menu. Specifies which property (ID, name, location) is used to locate a particular menu. */
 export enum MenuNodeIdTypeEnum {
   /** Identify a menu node by the Database ID. */
   DatabaseId = 'DATABASE_ID',
@@ -4188,7 +4357,7 @@ export type MenuToMenuItemConnectionEdge = Edge & MenuItemConnectionEdge & {
   node: MenuItem;
 };
 
-/** Page Info on the &quot;MenuToMenuItemConnection&quot; */
+/** Pagination metadata specific to &quot;MenuToMenuItemConnection&quot; collections. Provides cursors and flags for navigating through sets of MenuToMenuItemConnection Nodes. */
 export type MenuToMenuItemConnectionPageInfo = MenuItemConnectionPageInfo & PageInfo & WpPageInfo & {
   __typename?: 'MenuToMenuItemConnectionPageInfo';
   /** When paginating forwards, the cursor to continue. */
@@ -4213,7 +4382,7 @@ export type MenuToMenuItemConnectionWhereArgs = {
   parentId?: InputMaybe<Scalars['ID']['input']>;
 };
 
-/** The MimeType of the object */
+/** Media file type classification based on MIME standards. Used to identify and filter media items by their format and content type. */
 export enum MimeTypeEnum {
   /** application/java mime type. */
   ApplicationJava = 'APPLICATION_JAVA',
@@ -4403,13 +4572,13 @@ export enum MimeTypeEnum {
   VideoXMsWmx = 'VIDEO_X_MS_WMX'
 }
 
-/** An object with an ID */
+/** An object with a globally unique identifier. All objects that can be identified by a unique ID implement this interface. */
 export type Node = {
   /** The globally unique ID for the object */
   id: Scalars['ID']['output'];
 };
 
-/** A node that can have an author assigned to it */
+/** Content that can be attributed to a specific user. Provides fields for accessing the author&#039;s information and establishing content ownership. */
 export type NodeWithAuthor = {
   /** Connection between the NodeWithAuthor type and the User type */
   author?: Maybe<NodeWithAuthorToUserConnectionEdge>;
@@ -4430,7 +4599,7 @@ export type NodeWithAuthorToUserConnectionEdge = Edge & OneToOneConnection & Use
   node: User;
 };
 
-/** A node that can have comments associated with it */
+/** Content that can receive and display user-submitted comments. Provides fields for accessing comment counts and managing comment status. */
 export type NodeWithComments = {
   /** The number of comments. Even though WPGraphQL denotes this field as an integer, in WordPress this field should be saved as a numeric string for compatibility. */
   commentCount?: Maybe<Scalars['Int']['output']>;
@@ -4440,7 +4609,7 @@ export type NodeWithComments = {
   id: Scalars['ID']['output'];
 };
 
-/** A node that supports the content editor */
+/** Content that has a main body field which can contain formatted text and media. Provides access to both raw (with appropriate permissions) and rendered versions of the content. */
 export type NodeWithContentEditor = {
   /** The content of the post. */
   content?: Maybe<Scalars['String']['output']>;
@@ -4449,12 +4618,12 @@ export type NodeWithContentEditor = {
 };
 
 
-/** A node that supports the content editor */
+/** Content that has a main body field which can contain formatted text and media. Provides access to both raw (with appropriate permissions) and rendered versions of the content. */
 export type NodeWithContentEditorContentArgs = {
   format?: InputMaybe<PostObjectFieldFormatEnum>;
 };
 
-/** A node that can have an excerpt */
+/** A node which provides an excerpt field, which is a condensed summary of the main content. Excerpts can be manually created or automatically generated and are often used in content listings and search results. */
 export type NodeWithExcerpt = {
   /** The excerpt of the post. */
   excerpt?: Maybe<Scalars['String']['output']>;
@@ -4463,12 +4632,12 @@ export type NodeWithExcerpt = {
 };
 
 
-/** A node that can have an excerpt */
+/** A node which provides an excerpt field, which is a condensed summary of the main content. Excerpts can be manually created or automatically generated and are often used in content listings and search results. */
 export type NodeWithExcerptExcerptArgs = {
   format?: InputMaybe<PostObjectFieldFormatEnum>;
 };
 
-/** A node that can have a featured image set */
+/** Content that can have a primary image attached. This image is typically used for thumbnails, social sharing, and prominent display in the presentation layer. */
 export type NodeWithFeaturedImage = {
   /** Connection between the NodeWithFeaturedImage type and the MediaItem type */
   featuredImage?: Maybe<NodeWithFeaturedImageToMediaItemConnectionEdge>;
@@ -4489,7 +4658,7 @@ export type NodeWithFeaturedImageToMediaItemConnectionEdge = Edge & MediaItemCon
   node: MediaItem;
 };
 
-/** A node that can have page attributes */
+/** Content that supports ordering metadata. Includes a menu order field which can be used for custom sorting in navigation menus and other ordered collections. */
 export type NodeWithPageAttributes = {
   /** The globally unique ID for the object */
   id: Scalars['ID']['output'];
@@ -4497,7 +4666,7 @@ export type NodeWithPageAttributes = {
   menuOrder?: Maybe<Scalars['Int']['output']>;
 };
 
-/** A node that can have revisions */
+/** Content that maintains a history of changes. Provides access to previous versions of the content and the ability to restore earlier revisions. */
 export type NodeWithRevisions = {
   /** The globally unique ID for the object */
   id: Scalars['ID']['output'];
@@ -4516,7 +4685,7 @@ export type NodeWithRevisionsToContentNodeConnectionEdge = ContentNodeConnection
   node: ContentNode;
 };
 
-/** A node that can have a template associated with it */
+/** Content that provides template metadata. The template can help inform how the content is might be structured, styled, and presented to the user. */
 export type NodeWithTemplate = {
   /** The globally unique ID for the object */
   id: Scalars['ID']['output'];
@@ -4524,7 +4693,7 @@ export type NodeWithTemplate = {
   template?: Maybe<ContentTemplate>;
 };
 
-/** A node that NodeWith a title */
+/** Content with a dedicated title field. The title typically serves as the main heading and identifier for the content. */
 export type NodeWithTitle = {
   /** The globally unique ID for the object */
   id: Scalars['ID']['output'];
@@ -4533,12 +4702,12 @@ export type NodeWithTitle = {
 };
 
 
-/** A node that NodeWith a title */
+/** Content with a dedicated title field. The title typically serves as the main heading and identifier for the content. */
 export type NodeWithTitleTitleArgs = {
   format?: InputMaybe<PostObjectFieldFormatEnum>;
 };
 
-/** A node that can have trackbacks and pingbacks */
+/** Content that supports cross-site notifications when linked to by other sites. Includes fields for pingback status and linked URLs. */
 export type NodeWithTrackbacks = {
   /** The globally unique ID for the object */
   id: Scalars['ID']['output'];
@@ -4550,7 +4719,7 @@ export type NodeWithTrackbacks = {
   toPing?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
 };
 
-/** A singular connection from one Node to another, with support for relational data on the &quot;edge&quot; of the connection. */
+/** A direct one-to-one relationship between objects. Unlike plural connections, this represents a single related object rather than a collection. */
 export type OneToOneConnection = {
   /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
   cursor?: Maybe<Scalars['String']['output']>;
@@ -4558,15 +4727,15 @@ export type OneToOneConnection = {
   node: Node;
 };
 
-/** The cardinality of the connection order */
+/** Sort direction for ordered results. Determines whether items are returned in ascending or descending order. */
 export enum OrderEnum {
-  /** Sort the query result set in an ascending order */
+  /** Results ordered from lowest to highest values (i.e. A-Z, oldest-newest) */
   Asc = 'ASC',
-  /** Sort the query result set in a descending order */
+  /** Results ordered from highest to lowest values (i.e. Z-A, newest-oldest) */
   Desc = 'DESC'
 }
 
-/** The page type */
+/** A standalone content entry generally used for static, non-chronological content such as &quot;About Us&quot; or &quot;Contact&quot; pages. */
 export type Page = ContentNode & DatabaseIdentifier & HierarchicalContentNode & HierarchicalNode & MenuItemLinkable & Node & NodeWithAuthor & NodeWithComments & NodeWithContentEditor & NodeWithFeaturedImage & NodeWithPageAttributes & NodeWithRevisions & NodeWithTemplate & NodeWithTitle & Previewable & UniformResourceIdentifiable & {
   __typename?: 'Page';
   /** Returns ancestors of the node. Default ordered as lowest (closest to the child) to highest (closest to the root). */
@@ -4660,7 +4829,7 @@ export type Page = ContentNode & DatabaseIdentifier & HierarchicalContentNode & 
   parentId?: Maybe<Scalars['ID']['output']>;
   /** The password for the page object. */
   password?: Maybe<Scalars['String']['output']>;
-  /** Connection between the Page type and the page type */
+  /** Connection between the page type and the page type */
   preview?: Maybe<PageToPreviewConnectionEdge>;
   /** The database id of the preview node */
   previewRevisionDatabaseId?: Maybe<Scalars['Int']['output']>;
@@ -4683,7 +4852,7 @@ export type Page = ContentNode & DatabaseIdentifier & HierarchicalContentNode & 
 };
 
 
-/** The page type */
+/** A standalone content entry generally used for static, non-chronological content such as &quot;About Us&quot; or &quot;Contact&quot; pages. */
 export type PageAncestorsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   before?: InputMaybe<Scalars['String']['input']>;
@@ -4693,7 +4862,7 @@ export type PageAncestorsArgs = {
 };
 
 
-/** The page type */
+/** A standalone content entry generally used for static, non-chronological content such as &quot;About Us&quot; or &quot;Contact&quot; pages. */
 export type PageChildrenArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   before?: InputMaybe<Scalars['String']['input']>;
@@ -4703,7 +4872,7 @@ export type PageChildrenArgs = {
 };
 
 
-/** The page type */
+/** A standalone content entry generally used for static, non-chronological content such as &quot;About Us&quot; or &quot;Contact&quot; pages. */
 export type PageCommentsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   before?: InputMaybe<Scalars['String']['input']>;
@@ -4713,13 +4882,13 @@ export type PageCommentsArgs = {
 };
 
 
-/** The page type */
+/** A standalone content entry generally used for static, non-chronological content such as &quot;About Us&quot; or &quot;Contact&quot; pages. */
 export type PageContentArgs = {
   format?: InputMaybe<PostObjectFieldFormatEnum>;
 };
 
 
-/** The page type */
+/** A standalone content entry generally used for static, non-chronological content such as &quot;About Us&quot; or &quot;Contact&quot; pages. */
 export type PageEnqueuedScriptsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   before?: InputMaybe<Scalars['String']['input']>;
@@ -4728,7 +4897,7 @@ export type PageEnqueuedScriptsArgs = {
 };
 
 
-/** The page type */
+/** A standalone content entry generally used for static, non-chronological content such as &quot;About Us&quot; or &quot;Contact&quot; pages. */
 export type PageEnqueuedStylesheetsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   before?: InputMaybe<Scalars['String']['input']>;
@@ -4737,7 +4906,7 @@ export type PageEnqueuedStylesheetsArgs = {
 };
 
 
-/** The page type */
+/** A standalone content entry generally used for static, non-chronological content such as &quot;About Us&quot; or &quot;Contact&quot; pages. */
 export type PageRevisionsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   before?: InputMaybe<Scalars['String']['input']>;
@@ -4747,12 +4916,12 @@ export type PageRevisionsArgs = {
 };
 
 
-/** The page type */
+/** A standalone content entry generally used for static, non-chronological content such as &quot;About Us&quot; or &quot;Contact&quot; pages. */
 export type PageTitleArgs = {
   format?: InputMaybe<PostObjectFieldFormatEnum>;
 };
 
-/** Connection to page Nodes */
+/** A paginated collection of page Nodes, Supports cursor-based pagination and filtering to efficiently retrieve sets of page Nodes */
 export type PageConnection = {
   /** A list of edges (relational context) between RootQuery and connected page Nodes */
   edges: Array<PageConnectionEdge>;
@@ -4762,7 +4931,7 @@ export type PageConnection = {
   pageInfo: PageConnectionPageInfo;
 };
 
-/** Edge between a Node and a connected page */
+/** Represents a connection to a page. Contains both the page Node and metadata about the relationship. */
 export type PageConnectionEdge = {
   /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
   cursor?: Maybe<Scalars['String']['output']>;
@@ -4770,7 +4939,7 @@ export type PageConnectionEdge = {
   node: Page;
 };
 
-/** Page Info on the connected PageConnectionEdge */
+/** Pagination metadata specific to &quot;PageConnectionEdge&quot; collections. Provides cursors and flags for navigating through sets of &quot;PageConnectionEdge&quot; Nodes. */
 export type PageConnectionPageInfo = {
   /** When paginating forwards, the cursor to continue. */
   endCursor?: Maybe<Scalars['String']['output']>;
@@ -4782,7 +4951,7 @@ export type PageConnectionPageInfo = {
   startCursor?: Maybe<Scalars['String']['output']>;
 };
 
-/** The Type of Identifier used to fetch a single resource. Default is ID. */
+/** Identifier types for retrieving a specific Page. Specifies which unique attribute is used to find an exact Page. */
 export enum PageIdType {
   /** Identify a resource by the Database ID. */
   DatabaseId = 'DATABASE_ID',
@@ -4792,7 +4961,7 @@ export enum PageIdType {
   Uri = 'URI'
 }
 
-/** Information about pagination in a connection. */
+/** Metadata for cursor-based pagination. Provides cursors for continuing pagination and boolean flags indicating if more items exist in either direction. */
 export type PageInfo = {
   /** When paginating forwards, the cursor to continue. */
   endCursor?: Maybe<Scalars['String']['output']>;
@@ -4824,7 +4993,7 @@ export type PageToCommentConnectionEdge = CommentConnectionEdge & Edge & {
   node: Comment;
 };
 
-/** Page Info on the &quot;PageToCommentConnection&quot; */
+/** Pagination metadata specific to &quot;PageToCommentConnection&quot; collections. Provides cursors and flags for navigating through sets of PageToCommentConnection Nodes. */
 export type PageToCommentConnectionPageInfo = CommentConnectionPageInfo & PageInfo & WpPageInfo & {
   __typename?: 'PageToCommentConnectionPageInfo';
   /** When paginating forwards, the cursor to continue. */
@@ -4893,13 +5062,13 @@ export type PageToCommentConnectionWhereArgs = {
   parentNotIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
   /** Search term(s) to retrieve matching comments for. */
   search?: InputMaybe<Scalars['String']['input']>;
-  /** Comment status to limit results by. */
-  status?: InputMaybe<Scalars['String']['input']>;
+  /** One or more Comment Statuses to limit results by */
+  statusIn?: InputMaybe<Array<InputMaybe<CommentStatusEnum>>>;
   /** Include comments for a specific user ID. */
   userId?: InputMaybe<Scalars['ID']['input']>;
 };
 
-/** Connection between the Page type and the page type */
+/** Connection between the page type and the page type */
 export type PageToPreviewConnectionEdge = Edge & OneToOneConnection & PageConnectionEdge & {
   __typename?: 'PageToPreviewConnectionEdge';
   /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
@@ -4928,7 +5097,7 @@ export type PageToRevisionConnectionEdge = Edge & PageConnectionEdge & {
   node: Page;
 };
 
-/** Page Info on the &quot;PageToRevisionConnection&quot; */
+/** Pagination metadata specific to &quot;PageToRevisionConnection&quot; collections. Provides cursors and flags for navigating through sets of PageToRevisionConnection Nodes. */
 export type PageToRevisionConnectionPageInfo = PageConnectionPageInfo & PageInfo & WpPageInfo & {
   __typename?: 'PageToRevisionConnectionPageInfo';
   /** When paginating forwards, the cursor to continue. */
@@ -5010,7 +5179,7 @@ export type Plugin = Node & {
   version?: Maybe<Scalars['String']['output']>;
 };
 
-/** Connection to Plugin Nodes */
+/** A paginated collection of Plugin Nodes, Supports cursor-based pagination and filtering to efficiently retrieve sets of Plugin Nodes */
 export type PluginConnection = {
   /** A list of edges (relational context) between RootQuery and connected Plugin Nodes */
   edges: Array<PluginConnectionEdge>;
@@ -5020,7 +5189,7 @@ export type PluginConnection = {
   pageInfo: PluginConnectionPageInfo;
 };
 
-/** Edge between a Node and a connected Plugin */
+/** Represents a connection to a Plugin. Contains both the Plugin Node and metadata about the relationship. */
 export type PluginConnectionEdge = {
   /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
   cursor?: Maybe<Scalars['String']['output']>;
@@ -5028,7 +5197,7 @@ export type PluginConnectionEdge = {
   node: Plugin;
 };
 
-/** Page Info on the connected PluginConnectionEdge */
+/** Pagination metadata specific to &quot;PluginConnectionEdge&quot; collections. Provides cursors and flags for navigating through sets of &quot;PluginConnectionEdge&quot; Nodes. */
 export type PluginConnectionPageInfo = {
   /** When paginating forwards, the cursor to continue. */
   endCursor?: Maybe<Scalars['String']['output']>;
@@ -5040,7 +5209,7 @@ export type PluginConnectionPageInfo = {
   startCursor?: Maybe<Scalars['String']['output']>;
 };
 
-/** The status of the WordPress plugin. */
+/** Operational status of a plugin. Indicates whether a plugin is active, inactive, or in another state that affects its functionality. */
 export enum PluginStatusEnum {
   /** The plugin is currently active. */
   Active = 'ACTIVE',
@@ -5058,9 +5227,14 @@ export enum PluginStatusEnum {
   Upgrade = 'UPGRADE'
 }
 
-/** The post type */
+/** A chronological content entry typically used for blog posts, news articles, or similar date-based content. */
 export type Post = ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & NodeWithAuthor & NodeWithComments & NodeWithContentEditor & NodeWithExcerpt & NodeWithFeaturedImage & NodeWithRevisions & NodeWithTemplate & NodeWithTitle & NodeWithTrackbacks & Previewable & UniformResourceIdentifiable & {
   __typename?: 'Post';
+  /**
+   * The ancestors of the content node.
+   * @deprecated This content type is not hierarchical and typically will not have ancestors
+   */
+  ancestors?: Maybe<PostToPostConnection>;
   /** Connection between the NodeWithAuthor type and the User type */
   author?: Maybe<NodeWithAuthorToUserConnectionEdge>;
   /** The database identifier of the author of the node */
@@ -5139,6 +5313,11 @@ export type Post = ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & 
   modified?: Maybe<Scalars['String']['output']>;
   /** The GMT modified time for a post. If a post was recently updated the modified field will change to match the corresponding time in GMT. */
   modifiedGmt?: Maybe<Scalars['String']['output']>;
+  /**
+   * The parent of the content node.
+   * @deprecated This content type is not hierarchical and typically will not have a parent
+   */
+  parent?: Maybe<PostToParentConnectionEdge>;
   /** The password for the post object. */
   password?: Maybe<Scalars['String']['output']>;
   /** Whether the pings are open or closed for this particular post. */
@@ -5152,7 +5331,7 @@ export type Post = ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & 
    * @deprecated Deprecated in favor of the databaseId field
    */
   postId: Scalars['Int']['output'];
-  /** Connection between the Post type and the post type */
+  /** Connection between the post type and the post type */
   preview?: Maybe<PostToPreviewConnectionEdge>;
   /** The database id of the preview node */
   previewRevisionDatabaseId?: Maybe<Scalars['Int']['output']>;
@@ -5183,7 +5362,16 @@ export type Post = ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & 
 };
 
 
-/** The post type */
+/** A chronological content entry typically used for blog posts, news articles, or similar date-based content. */
+export type PostAncestorsArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+/** A chronological content entry typically used for blog posts, news articles, or similar date-based content. */
 export type PostCategoriesArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   before?: InputMaybe<Scalars['String']['input']>;
@@ -5193,7 +5381,7 @@ export type PostCategoriesArgs = {
 };
 
 
-/** The post type */
+/** A chronological content entry typically used for blog posts, news articles, or similar date-based content. */
 export type PostCommentsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   before?: InputMaybe<Scalars['String']['input']>;
@@ -5203,13 +5391,13 @@ export type PostCommentsArgs = {
 };
 
 
-/** The post type */
+/** A chronological content entry typically used for blog posts, news articles, or similar date-based content. */
 export type PostContentArgs = {
   format?: InputMaybe<PostObjectFieldFormatEnum>;
 };
 
 
-/** The post type */
+/** A chronological content entry typically used for blog posts, news articles, or similar date-based content. */
 export type PostEnqueuedScriptsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   before?: InputMaybe<Scalars['String']['input']>;
@@ -5218,7 +5406,7 @@ export type PostEnqueuedScriptsArgs = {
 };
 
 
-/** The post type */
+/** A chronological content entry typically used for blog posts, news articles, or similar date-based content. */
 export type PostEnqueuedStylesheetsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   before?: InputMaybe<Scalars['String']['input']>;
@@ -5227,13 +5415,13 @@ export type PostEnqueuedStylesheetsArgs = {
 };
 
 
-/** The post type */
+/** A chronological content entry typically used for blog posts, news articles, or similar date-based content. */
 export type PostExcerptArgs = {
   format?: InputMaybe<PostObjectFieldFormatEnum>;
 };
 
 
-/** The post type */
+/** A chronological content entry typically used for blog posts, news articles, or similar date-based content. */
 export type PostPostFormatsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   before?: InputMaybe<Scalars['String']['input']>;
@@ -5243,7 +5431,7 @@ export type PostPostFormatsArgs = {
 };
 
 
-/** The post type */
+/** A chronological content entry typically used for blog posts, news articles, or similar date-based content. */
 export type PostRevisionsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   before?: InputMaybe<Scalars['String']['input']>;
@@ -5253,7 +5441,7 @@ export type PostRevisionsArgs = {
 };
 
 
-/** The post type */
+/** A chronological content entry typically used for blog posts, news articles, or similar date-based content. */
 export type PostTagsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   before?: InputMaybe<Scalars['String']['input']>;
@@ -5263,7 +5451,7 @@ export type PostTagsArgs = {
 };
 
 
-/** The post type */
+/** A chronological content entry typically used for blog posts, news articles, or similar date-based content. */
 export type PostTermsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   before?: InputMaybe<Scalars['String']['input']>;
@@ -5273,7 +5461,7 @@ export type PostTermsArgs = {
 };
 
 
-/** The post type */
+/** A chronological content entry typically used for blog posts, news articles, or similar date-based content. */
 export type PostTitleArgs = {
   format?: InputMaybe<PostObjectFieldFormatEnum>;
 };
@@ -5298,7 +5486,7 @@ export type PostCategoriesNodeInput = {
   slug?: InputMaybe<Scalars['String']['input']>;
 };
 
-/** Connection to post Nodes */
+/** A paginated collection of post Nodes, Supports cursor-based pagination and filtering to efficiently retrieve sets of post Nodes */
 export type PostConnection = {
   /** A list of edges (relational context) between RootQuery and connected post Nodes */
   edges: Array<PostConnectionEdge>;
@@ -5308,7 +5496,7 @@ export type PostConnection = {
   pageInfo: PostConnectionPageInfo;
 };
 
-/** Edge between a Node and a connected post */
+/** Represents a connection to a post. Contains both the post Node and metadata about the relationship. */
 export type PostConnectionEdge = {
   /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
   cursor?: Maybe<Scalars['String']['output']>;
@@ -5316,7 +5504,7 @@ export type PostConnectionEdge = {
   node: Post;
 };
 
-/** Page Info on the connected PostConnectionEdge */
+/** Pagination metadata specific to &quot;PostConnectionEdge&quot; collections. Provides cursors and flags for navigating through sets of &quot;PostConnectionEdge&quot; Nodes. */
 export type PostConnectionPageInfo = {
   /** When paginating forwards, the cursor to continue. */
   endCursor?: Maybe<Scalars['String']['output']>;
@@ -5328,7 +5516,7 @@ export type PostConnectionPageInfo = {
   startCursor?: Maybe<Scalars['String']['output']>;
 };
 
-/** The postFormat type */
+/** A standardized classification system for content presentation styles. These formats can be used to display content differently based on type, such as &quot;standard&quot;, &quot;gallery&quot;, &quot;video&quot;, etc. */
 export type PostFormat = DatabaseIdentifier & MenuItemLinkable & Node & TermNode & UniformResourceIdentifiable & {
   __typename?: 'PostFormat';
   /** Connection between the PostFormat type and the ContentNode type */
@@ -5383,7 +5571,7 @@ export type PostFormat = DatabaseIdentifier & MenuItemLinkable & Node & TermNode
 };
 
 
-/** The postFormat type */
+/** A standardized classification system for content presentation styles. These formats can be used to display content differently based on type, such as &quot;standard&quot;, &quot;gallery&quot;, &quot;video&quot;, etc. */
 export type PostFormatContentNodesArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   before?: InputMaybe<Scalars['String']['input']>;
@@ -5393,7 +5581,7 @@ export type PostFormatContentNodesArgs = {
 };
 
 
-/** The postFormat type */
+/** A standardized classification system for content presentation styles. These formats can be used to display content differently based on type, such as &quot;standard&quot;, &quot;gallery&quot;, &quot;video&quot;, etc. */
 export type PostFormatEnqueuedScriptsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   before?: InputMaybe<Scalars['String']['input']>;
@@ -5402,7 +5590,7 @@ export type PostFormatEnqueuedScriptsArgs = {
 };
 
 
-/** The postFormat type */
+/** A standardized classification system for content presentation styles. These formats can be used to display content differently based on type, such as &quot;standard&quot;, &quot;gallery&quot;, &quot;video&quot;, etc. */
 export type PostFormatEnqueuedStylesheetsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   before?: InputMaybe<Scalars['String']['input']>;
@@ -5411,7 +5599,7 @@ export type PostFormatEnqueuedStylesheetsArgs = {
 };
 
 
-/** The postFormat type */
+/** A standardized classification system for content presentation styles. These formats can be used to display content differently based on type, such as &quot;standard&quot;, &quot;gallery&quot;, &quot;video&quot;, etc. */
 export type PostFormatPostsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   before?: InputMaybe<Scalars['String']['input']>;
@@ -5420,7 +5608,7 @@ export type PostFormatPostsArgs = {
   where?: InputMaybe<PostFormatToPostConnectionWhereArgs>;
 };
 
-/** Connection to postFormat Nodes */
+/** A paginated collection of postFormat Nodes, Supports cursor-based pagination and filtering to efficiently retrieve sets of postFormat Nodes */
 export type PostFormatConnection = {
   /** A list of edges (relational context) between RootQuery and connected postFormat Nodes */
   edges: Array<PostFormatConnectionEdge>;
@@ -5430,7 +5618,7 @@ export type PostFormatConnection = {
   pageInfo: PostFormatConnectionPageInfo;
 };
 
-/** Edge between a Node and a connected postFormat */
+/** Represents a connection to a postFormat. Contains both the postFormat Node and metadata about the relationship. */
 export type PostFormatConnectionEdge = {
   /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
   cursor?: Maybe<Scalars['String']['output']>;
@@ -5438,7 +5626,7 @@ export type PostFormatConnectionEdge = {
   node: PostFormat;
 };
 
-/** Page Info on the connected PostFormatConnectionEdge */
+/** Pagination metadata specific to &quot;PostFormatConnectionEdge&quot; collections. Provides cursors and flags for navigating through sets of &quot;PostFormatConnectionEdge&quot; Nodes. */
 export type PostFormatConnectionPageInfo = {
   /** When paginating forwards, the cursor to continue. */
   endCursor?: Maybe<Scalars['String']['output']>;
@@ -5450,7 +5638,7 @@ export type PostFormatConnectionPageInfo = {
   startCursor?: Maybe<Scalars['String']['output']>;
 };
 
-/** The Type of Identifier used to fetch a single resource. Default is ID. */
+/** Identifier types for retrieving a specific PostFormat. Determines which unique property (global ID, database ID, slug, etc.) is used to locate the PostFormat. */
 export enum PostFormatIdType {
   /** The Database ID for the node */
   DatabaseId = 'DATABASE_ID',
@@ -5484,7 +5672,7 @@ export type PostFormatToContentNodeConnectionEdge = ContentNodeConnectionEdge & 
   node: ContentNode;
 };
 
-/** Page Info on the &quot;PostFormatToContentNodeConnection&quot; */
+/** Pagination metadata specific to &quot;PostFormatToContentNodeConnection&quot; collections. Provides cursors and flags for navigating through sets of PostFormatToContentNodeConnection Nodes. */
 export type PostFormatToContentNodeConnectionPageInfo = ContentNodeConnectionPageInfo & PageInfo & WpPageInfo & {
   __typename?: 'PostFormatToContentNodeConnectionPageInfo';
   /** When paginating forwards, the cursor to continue. */
@@ -5557,7 +5745,7 @@ export type PostFormatToPostConnectionEdge = Edge & PostConnectionEdge & {
   node: Post;
 };
 
-/** Page Info on the &quot;PostFormatToPostConnection&quot; */
+/** Pagination metadata specific to &quot;PostFormatToPostConnection&quot; collections. Provides cursors and flags for navigating through sets of PostFormatToPostConnection Nodes. */
 export type PostFormatToPostConnectionPageInfo = PageInfo & PostConnectionPageInfo & WpPageInfo & {
   __typename?: 'PostFormatToPostConnectionPageInfo';
   /** When paginating forwards, the cursor to continue. */
@@ -5645,7 +5833,7 @@ export type PostFormatToTaxonomyConnectionEdge = Edge & OneToOneConnection & Tax
   node: Taxonomy;
 };
 
-/** The Type of Identifier used to fetch a single resource. Default is ID. */
+/** Identifier types for retrieving a specific Post. Specifies which unique attribute is used to find an exact Post. */
 export enum PostIdType {
   /** Identify a resource by the Database ID. */
   DatabaseId = 'DATABASE_ID',
@@ -5657,15 +5845,15 @@ export enum PostIdType {
   Uri = 'URI'
 }
 
-/** The format of post field data. */
+/** Content field rendering options. Determines whether content fields are returned as raw data or with applied formatting and transformations. Default is RENDERED. */
 export enum PostObjectFieldFormatEnum {
-  /** Provide the field value directly from database. Null on unauthenticated requests. */
+  /** Unprocessed content exactly as stored in the database, requires appropriate permissions. */
   Raw = 'RAW',
-  /** Provide the field value as rendered by WordPress. Default. */
+  /** Content with all formatting and transformations applied, ready for display. */
   Rendered = 'RENDERED'
 }
 
-/** The column to use when filtering by date */
+/** Date field selectors for content filtering. Specifies which date attribute (creation date, modification date) should be used for date-based queries. */
 export enum PostObjectsConnectionDateColumnEnum {
   /** The date the comment was created in local time. */
   Date = 'DATE',
@@ -5673,27 +5861,27 @@ export enum PostObjectsConnectionDateColumnEnum {
   Modified = 'MODIFIED'
 }
 
-/** Field to order the connection by */
+/** Content sorting attributes for post-type objects. Identifies which content property should be used to determine result order. */
 export enum PostObjectsConnectionOrderbyEnum {
-  /** Order by author */
+  /** Ordering by content author (typically by author name). */
   Author = 'AUTHOR',
-  /** Order by the number of comments it has acquired */
+  /** Ordering by popularity based on number of comments. */
   CommentCount = 'COMMENT_COUNT',
-  /** Order by publish date */
+  /** Chronological ordering by publication date. */
   Date = 'DATE',
-  /** Preserve the ID order given in the IN array */
+  /** Maintain custom order of IDs exactly as specified in the query with the IN field. */
   In = 'IN',
-  /** Order by the menu order value */
+  /** Ordering by manually defined sort position. */
   MenuOrder = 'MENU_ORDER',
-  /** Order by last modified date */
+  /** Chronological ordering by modified date. */
   Modified = 'MODIFIED',
-  /** Preserve slug order given in the NAME_IN array */
+  /** Maintain custom order of IDs exactly as specified in the query with the NAME_IN field. */
   NameIn = 'NAME_IN',
-  /** Order by parent ID */
+  /** Ordering by parent-child relationship in hierarchical content. */
   Parent = 'PARENT',
-  /** Order by slug */
+  /** Alphabetical ordering by URL-friendly name. */
   Slug = 'SLUG',
-  /** Order by title */
+  /** Alphabetical ordering by content title */
   Title = 'TITLE'
 }
 
@@ -5725,23 +5913,23 @@ export type PostPostFormatsNodeInput = {
   slug?: InputMaybe<Scalars['String']['input']>;
 };
 
-/** The status of the object. */
+/** Publishing status that controls the visibility and editorial state of content. Determines whether content is published, pending review, in draft state, or private. */
 export enum PostStatusEnum {
   /** Objects with the acf-disabled status */
   AcfDisabled = 'ACF_DISABLED',
-  /** Objects with the auto-draft status */
+  /** Automatically saved content that has not been manually saved */
   AutoDraft = 'AUTO_DRAFT',
-  /** Objects with the draft status */
+  /** Content that is saved but not yet published or visible to the public */
   Draft = 'DRAFT',
   /** Objects with the future status */
   Future = 'FUTURE',
-  /** Objects with the inherit status */
+  /** Content that inherits its status from a parent object */
   Inherit = 'INHERIT',
-  /** Objects with the pending status */
+  /** Content awaiting review before publication */
   Pending = 'PENDING',
-  /** Objects with the private status */
+  /** Content only visible to authorized users with appropriate permissions */
   Private = 'PRIVATE',
-  /** Objects with the publish status */
+  /** Content that is publicly visible to all visitors */
   Publish = 'PUBLISH',
   /** Objects with the request-completed status */
   RequestCompleted = 'REQUEST_COMPLETED',
@@ -5751,7 +5939,7 @@ export enum PostStatusEnum {
   RequestFailed = 'REQUEST_FAILED',
   /** Objects with the request-pending status */
   RequestPending = 'REQUEST_PENDING',
-  /** Objects with the trash status */
+  /** Content marked for deletion but still recoverable */
   Trash = 'TRASH'
 }
 
@@ -5795,7 +5983,7 @@ export type PostToCategoryConnectionEdge = CategoryConnectionEdge & Edge & {
   node: Category;
 };
 
-/** Page Info on the &quot;PostToCategoryConnection&quot; */
+/** Pagination metadata specific to &quot;PostToCategoryConnection&quot; collections. Provides cursors and flags for navigating through sets of PostToCategoryConnection Nodes. */
 export type PostToCategoryConnectionPageInfo = CategoryConnectionPageInfo & PageInfo & WpPageInfo & {
   __typename?: 'PostToCategoryConnectionPageInfo';
   /** When paginating forwards, the cursor to continue. */
@@ -5847,8 +6035,6 @@ export type PostToCategoryConnectionWhereArgs = {
   /** Array of slugs to return term(s) for. Default empty. */
   slug?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   /** Array of term taxonomy IDs, to match when querying terms. */
-  termTaxonomId?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Array of term taxonomy IDs, to match when querying terms. */
   termTaxonomyId?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
   /** Whether to prime meta caches for matched terms. Default true. */
   updateTermMetaCache?: InputMaybe<Scalars['Boolean']['input']>;
@@ -5874,7 +6060,7 @@ export type PostToCommentConnectionEdge = CommentConnectionEdge & Edge & {
   node: Comment;
 };
 
-/** Page Info on the &quot;PostToCommentConnection&quot; */
+/** Pagination metadata specific to &quot;PostToCommentConnection&quot; collections. Provides cursors and flags for navigating through sets of PostToCommentConnection Nodes. */
 export type PostToCommentConnectionPageInfo = CommentConnectionPageInfo & PageInfo & WpPageInfo & {
   __typename?: 'PostToCommentConnectionPageInfo';
   /** When paginating forwards, the cursor to continue. */
@@ -5943,10 +6129,61 @@ export type PostToCommentConnectionWhereArgs = {
   parentNotIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
   /** Search term(s) to retrieve matching comments for. */
   search?: InputMaybe<Scalars['String']['input']>;
-  /** Comment status to limit results by. */
-  status?: InputMaybe<Scalars['String']['input']>;
+  /** One or more Comment Statuses to limit results by */
+  statusIn?: InputMaybe<Array<InputMaybe<CommentStatusEnum>>>;
   /** Include comments for a specific user ID. */
   userId?: InputMaybe<Scalars['ID']['input']>;
+};
+
+/** Connection between the post type and the post type */
+export type PostToParentConnectionEdge = Edge & OneToOneConnection & PostConnectionEdge & {
+  __typename?: 'PostToParentConnectionEdge';
+  /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
+  cursor?: Maybe<Scalars['String']['output']>;
+  /**
+   * The node of the connection, without the edges
+   * @deprecated This content type is not hierarchical and typically will not have a parent
+   */
+  node: Post;
+};
+
+/** Connection between the post type and the post type */
+export type PostToPostConnection = Connection & PostConnection & {
+  __typename?: 'PostToPostConnection';
+  /** Edges for the PostToPostConnection connection */
+  edges: Array<PostToPostConnectionEdge>;
+  /** The nodes of the connection, without the edges */
+  nodes: Array<Post>;
+  /** Information about pagination in a connection. */
+  pageInfo: PostToPostConnectionPageInfo;
+};
+
+/** An edge in a connection */
+export type PostToPostConnectionEdge = Edge & PostConnectionEdge & {
+  __typename?: 'PostToPostConnectionEdge';
+  /**
+   * A cursor for use in pagination
+   * @deprecated This content type is not hierarchical and typically will not have ancestors
+   */
+  cursor?: Maybe<Scalars['String']['output']>;
+  /**
+   * The item at the end of the edge
+   * @deprecated This content type is not hierarchical and typically will not have ancestors
+   */
+  node: Post;
+};
+
+/** Pagination metadata specific to &quot;PostToPostConnection&quot; collections. Provides cursors and flags for navigating through sets of PostToPostConnection Nodes. */
+export type PostToPostConnectionPageInfo = PageInfo & PostConnectionPageInfo & WpPageInfo & {
+  __typename?: 'PostToPostConnectionPageInfo';
+  /** When paginating forwards, the cursor to continue. */
+  endCursor?: Maybe<Scalars['String']['output']>;
+  /** When paginating forwards, are there more items? */
+  hasNextPage: Scalars['Boolean']['output'];
+  /** When paginating backwards, are there more items? */
+  hasPreviousPage: Scalars['Boolean']['output'];
+  /** When paginating backwards, the cursor to continue. */
+  startCursor?: Maybe<Scalars['String']['output']>;
 };
 
 /** Connection between the Post type and the postFormat type */
@@ -5969,7 +6206,7 @@ export type PostToPostFormatConnectionEdge = Edge & PostFormatConnectionEdge & {
   node: PostFormat;
 };
 
-/** Page Info on the &quot;PostToPostFormatConnection&quot; */
+/** Pagination metadata specific to &quot;PostToPostFormatConnection&quot; collections. Provides cursors and flags for navigating through sets of PostToPostFormatConnection Nodes. */
 export type PostToPostFormatConnectionPageInfo = PageInfo & PostFormatConnectionPageInfo & WpPageInfo & {
   __typename?: 'PostToPostFormatConnectionPageInfo';
   /** When paginating forwards, the cursor to continue. */
@@ -6021,14 +6258,12 @@ export type PostToPostFormatConnectionWhereArgs = {
   /** Array of slugs to return term(s) for. Default empty. */
   slug?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   /** Array of term taxonomy IDs, to match when querying terms. */
-  termTaxonomId?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Array of term taxonomy IDs, to match when querying terms. */
   termTaxonomyId?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
   /** Whether to prime meta caches for matched terms. Default true. */
   updateTermMetaCache?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
-/** Connection between the Post type and the post type */
+/** Connection between the post type and the post type */
 export type PostToPreviewConnectionEdge = Edge & OneToOneConnection & PostConnectionEdge & {
   __typename?: 'PostToPreviewConnectionEdge';
   /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
@@ -6057,7 +6292,7 @@ export type PostToRevisionConnectionEdge = Edge & PostConnectionEdge & {
   node: Post;
 };
 
-/** Page Info on the &quot;PostToRevisionConnection&quot; */
+/** Pagination metadata specific to &quot;PostToRevisionConnection&quot; collections. Provides cursors and flags for navigating through sets of PostToRevisionConnection Nodes. */
 export type PostToRevisionConnectionPageInfo = PageInfo & PostConnectionPageInfo & WpPageInfo & {
   __typename?: 'PostToRevisionConnectionPageInfo';
   /** When paginating forwards, the cursor to continue. */
@@ -6156,7 +6391,7 @@ export type PostToTagConnectionEdge = Edge & TagConnectionEdge & {
   node: Tag;
 };
 
-/** Page Info on the &quot;PostToTagConnection&quot; */
+/** Pagination metadata specific to &quot;PostToTagConnection&quot; collections. Provides cursors and flags for navigating through sets of PostToTagConnection Nodes. */
 export type PostToTagConnectionPageInfo = PageInfo & TagConnectionPageInfo & WpPageInfo & {
   __typename?: 'PostToTagConnectionPageInfo';
   /** When paginating forwards, the cursor to continue. */
@@ -6208,8 +6443,6 @@ export type PostToTagConnectionWhereArgs = {
   /** Array of slugs to return term(s) for. Default empty. */
   slug?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   /** Array of term taxonomy IDs, to match when querying terms. */
-  termTaxonomId?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Array of term taxonomy IDs, to match when querying terms. */
   termTaxonomyId?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
   /** Whether to prime meta caches for matched terms. Default true. */
   updateTermMetaCache?: InputMaybe<Scalars['Boolean']['input']>;
@@ -6235,7 +6468,7 @@ export type PostToTermNodeConnectionEdge = Edge & TermNodeConnectionEdge & {
   node: TermNode;
 };
 
-/** Page Info on the &quot;PostToTermNodeConnection&quot; */
+/** Pagination metadata specific to &quot;PostToTermNodeConnection&quot; collections. Provides cursors and flags for navigating through sets of PostToTermNodeConnection Nodes. */
 export type PostToTermNodeConnectionPageInfo = PageInfo & TermNodeConnectionPageInfo & WpPageInfo & {
   __typename?: 'PostToTermNodeConnectionPageInfo';
   /** When paginating forwards, the cursor to continue. */
@@ -6288,8 +6521,6 @@ export type PostToTermNodeConnectionWhereArgs = {
   slug?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   /** The Taxonomy to filter terms by */
   taxonomies?: InputMaybe<Array<InputMaybe<TaxonomyEnum>>>;
-  /** Array of term taxonomy IDs, to match when querying terms. */
-  termTaxonomId?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
   /** Array of term taxonomy IDs, to match when querying terms. */
   termTaxonomyId?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
   /** Whether to prime meta caches for matched terms. Default true. */
@@ -6351,7 +6582,7 @@ export type PostTypeLabelDetails = {
   viewItems?: Maybe<Scalars['String']['output']>;
 };
 
-/** Nodes that can be seen in a preview (unpublished) state. */
+/** Content that supports a draft preview mode. Allows viewing unpublished changes before they are made publicly available. Previewing unpublished changes requires appropriate permissions. */
 export type Previewable = {
   /** Whether the object is a node in the preview state */
   isPreview?: Maybe<Scalars['Boolean']['output']>;
@@ -6386,7 +6617,7 @@ export type RegisterUserInput = {
   displayName?: InputMaybe<Scalars['String']['input']>;
   /** A string containing the user's email address. */
   email?: InputMaybe<Scalars['String']['input']>;
-  /** 	The user's first name. */
+  /** The user's first name. */
   firstName?: InputMaybe<Scalars['String']['input']>;
   /** User's Jabber account. */
   jabber?: InputMaybe<Scalars['String']['input']>;
@@ -6421,11 +6652,11 @@ export type RegisterUserPayload = {
   user?: Maybe<User>;
 };
 
-/** The logical relation between each item in the array when there are more than one. */
+/** Logical operators for filter conditions. Determines whether multiple filtering criteria should be combined with AND (all must match) or OR (any can match). */
 export enum RelationEnum {
-  /** The logical AND condition returns true if both operands are true, otherwise, it returns false. */
+  /** All conditions must match (more restrictive filtering) */
   And = 'AND',
-  /** The logical OR condition returns false if both operands are false, otherwise, it returns true. */
+  /** Any condition can match (more inclusive filtering) */
   Or = 'OR'
 }
 
@@ -7318,7 +7549,7 @@ export type RootQueryToCategoryConnectionEdge = CategoryConnectionEdge & Edge & 
   node: Category;
 };
 
-/** Page Info on the &quot;RootQueryToCategoryConnection&quot; */
+/** Pagination metadata specific to &quot;RootQueryToCategoryConnection&quot; collections. Provides cursors and flags for navigating through sets of RootQueryToCategoryConnection Nodes. */
 export type RootQueryToCategoryConnectionPageInfo = CategoryConnectionPageInfo & PageInfo & WpPageInfo & {
   __typename?: 'RootQueryToCategoryConnectionPageInfo';
   /** When paginating forwards, the cursor to continue. */
@@ -7370,8 +7601,6 @@ export type RootQueryToCategoryConnectionWhereArgs = {
   /** Array of slugs to return term(s) for. Default empty. */
   slug?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   /** Array of term taxonomy IDs, to match when querying terms. */
-  termTaxonomId?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Array of term taxonomy IDs, to match when querying terms. */
   termTaxonomyId?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
   /** Whether to prime meta caches for matched terms. Default true. */
   updateTermMetaCache?: InputMaybe<Scalars['Boolean']['input']>;
@@ -7397,7 +7626,7 @@ export type RootQueryToChapterConnectionEdge = ChapterConnectionEdge & Edge & {
   node: Chapter;
 };
 
-/** Page Info on the &quot;RootQueryToChapterConnection&quot; */
+/** Pagination metadata specific to &quot;RootQueryToChapterConnection&quot; collections. Provides cursors and flags for navigating through sets of RootQueryToChapterConnection Nodes. */
 export type RootQueryToChapterConnectionPageInfo = ChapterConnectionPageInfo & PageInfo & WpPageInfo & {
   __typename?: 'RootQueryToChapterConnectionPageInfo';
   /** When paginating forwards, the cursor to continue. */
@@ -7488,7 +7717,7 @@ export type RootQueryToCommentConnectionEdge = CommentConnectionEdge & Edge & {
   node: Comment;
 };
 
-/** Page Info on the &quot;RootQueryToCommentConnection&quot; */
+/** Pagination metadata specific to &quot;RootQueryToCommentConnection&quot; collections. Provides cursors and flags for navigating through sets of RootQueryToCommentConnection Nodes. */
 export type RootQueryToCommentConnectionPageInfo = CommentConnectionPageInfo & PageInfo & WpPageInfo & {
   __typename?: 'RootQueryToCommentConnectionPageInfo';
   /** When paginating forwards, the cursor to continue. */
@@ -7557,8 +7786,8 @@ export type RootQueryToCommentConnectionWhereArgs = {
   parentNotIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
   /** Search term(s) to retrieve matching comments for. */
   search?: InputMaybe<Scalars['String']['input']>;
-  /** Comment status to limit results by. */
-  status?: InputMaybe<Scalars['String']['input']>;
+  /** One or more Comment Statuses to limit results by */
+  statusIn?: InputMaybe<Array<InputMaybe<CommentStatusEnum>>>;
   /** Include comments for a specific user ID. */
   userId?: InputMaybe<Scalars['ID']['input']>;
 };
@@ -7583,7 +7812,7 @@ export type RootQueryToContentNodeConnectionEdge = ContentNodeConnectionEdge & E
   node: ContentNode;
 };
 
-/** Page Info on the &quot;RootQueryToContentNodeConnection&quot; */
+/** Pagination metadata specific to &quot;RootQueryToContentNodeConnection&quot; collections. Provides cursors and flags for navigating through sets of RootQueryToContentNodeConnection Nodes. */
 export type RootQueryToContentNodeConnectionPageInfo = ContentNodeConnectionPageInfo & PageInfo & WpPageInfo & {
   __typename?: 'RootQueryToContentNodeConnectionPageInfo';
   /** When paginating forwards, the cursor to continue. */
@@ -7656,7 +7885,7 @@ export type RootQueryToContentTypeConnectionEdge = ContentTypeConnectionEdge & E
   node: ContentType;
 };
 
-/** Page Info on the &quot;RootQueryToContentTypeConnection&quot; */
+/** Pagination metadata specific to &quot;RootQueryToContentTypeConnection&quot; collections. Provides cursors and flags for navigating through sets of RootQueryToContentTypeConnection Nodes. */
 export type RootQueryToContentTypeConnectionPageInfo = ContentTypeConnectionPageInfo & PageInfo & WpPageInfo & {
   __typename?: 'RootQueryToContentTypeConnectionPageInfo';
   /** When paginating forwards, the cursor to continue. */
@@ -7689,7 +7918,7 @@ export type RootQueryToCourseConnectionEdge = CourseConnectionEdge & Edge & {
   node: Course;
 };
 
-/** Page Info on the &quot;RootQueryToCourseConnection&quot; */
+/** Pagination metadata specific to &quot;RootQueryToCourseConnection&quot; collections. Provides cursors and flags for navigating through sets of RootQueryToCourseConnection Nodes. */
 export type RootQueryToCourseConnectionPageInfo = CourseConnectionPageInfo & PageInfo & WpPageInfo & {
   __typename?: 'RootQueryToCourseConnectionPageInfo';
   /** When paginating forwards, the cursor to continue. */
@@ -7780,7 +8009,7 @@ export type RootQueryToEnqueuedScriptConnectionEdge = Edge & EnqueuedScriptConne
   node: EnqueuedScript;
 };
 
-/** Page Info on the &quot;RootQueryToEnqueuedScriptConnection&quot; */
+/** Pagination metadata specific to &quot;RootQueryToEnqueuedScriptConnection&quot; collections. Provides cursors and flags for navigating through sets of RootQueryToEnqueuedScriptConnection Nodes. */
 export type RootQueryToEnqueuedScriptConnectionPageInfo = EnqueuedScriptConnectionPageInfo & PageInfo & WpPageInfo & {
   __typename?: 'RootQueryToEnqueuedScriptConnectionPageInfo';
   /** When paginating forwards, the cursor to continue. */
@@ -7813,7 +8042,7 @@ export type RootQueryToEnqueuedStylesheetConnectionEdge = Edge & EnqueuedStylesh
   node: EnqueuedStylesheet;
 };
 
-/** Page Info on the &quot;RootQueryToEnqueuedStylesheetConnection&quot; */
+/** Pagination metadata specific to &quot;RootQueryToEnqueuedStylesheetConnection&quot; collections. Provides cursors and flags for navigating through sets of RootQueryToEnqueuedStylesheetConnection Nodes. */
 export type RootQueryToEnqueuedStylesheetConnectionPageInfo = EnqueuedStylesheetConnectionPageInfo & PageInfo & WpPageInfo & {
   __typename?: 'RootQueryToEnqueuedStylesheetConnectionPageInfo';
   /** When paginating forwards, the cursor to continue. */
@@ -7846,7 +8075,7 @@ export type RootQueryToMediaItemConnectionEdge = Edge & MediaItemConnectionEdge 
   node: MediaItem;
 };
 
-/** Page Info on the &quot;RootQueryToMediaItemConnection&quot; */
+/** Pagination metadata specific to &quot;RootQueryToMediaItemConnection&quot; collections. Provides cursors and flags for navigating through sets of RootQueryToMediaItemConnection Nodes. */
 export type RootQueryToMediaItemConnectionPageInfo = MediaItemConnectionPageInfo & PageInfo & WpPageInfo & {
   __typename?: 'RootQueryToMediaItemConnectionPageInfo';
   /** When paginating forwards, the cursor to continue. */
@@ -7925,7 +8154,7 @@ export type RootQueryToMenuConnectionEdge = Edge & MenuConnectionEdge & {
   node: Menu;
 };
 
-/** Page Info on the &quot;RootQueryToMenuConnection&quot; */
+/** Pagination metadata specific to &quot;RootQueryToMenuConnection&quot; collections. Provides cursors and flags for navigating through sets of RootQueryToMenuConnection Nodes. */
 export type RootQueryToMenuConnectionPageInfo = MenuConnectionPageInfo & PageInfo & WpPageInfo & {
   __typename?: 'RootQueryToMenuConnectionPageInfo';
   /** When paginating forwards, the cursor to continue. */
@@ -7968,7 +8197,7 @@ export type RootQueryToMenuItemConnectionEdge = Edge & MenuItemConnectionEdge & 
   node: MenuItem;
 };
 
-/** Page Info on the &quot;RootQueryToMenuItemConnection&quot; */
+/** Pagination metadata specific to &quot;RootQueryToMenuItemConnection&quot; collections. Provides cursors and flags for navigating through sets of RootQueryToMenuItemConnection Nodes. */
 export type RootQueryToMenuItemConnectionPageInfo = MenuItemConnectionPageInfo & PageInfo & WpPageInfo & {
   __typename?: 'RootQueryToMenuItemConnectionPageInfo';
   /** When paginating forwards, the cursor to continue. */
@@ -8013,7 +8242,7 @@ export type RootQueryToPageConnectionEdge = Edge & PageConnectionEdge & {
   node: Page;
 };
 
-/** Page Info on the &quot;RootQueryToPageConnection&quot; */
+/** Pagination metadata specific to &quot;RootQueryToPageConnection&quot; collections. Provides cursors and flags for navigating through sets of RootQueryToPageConnection Nodes. */
 export type RootQueryToPageConnectionPageInfo = PageConnectionPageInfo & PageInfo & WpPageInfo & {
   __typename?: 'RootQueryToPageConnectionPageInfo';
   /** When paginating forwards, the cursor to continue. */
@@ -8092,7 +8321,7 @@ export type RootQueryToPluginConnectionEdge = Edge & PluginConnectionEdge & {
   node: Plugin;
 };
 
-/** Page Info on the &quot;RootQueryToPluginConnection&quot; */
+/** Pagination metadata specific to &quot;RootQueryToPluginConnection&quot; collections. Provides cursors and flags for navigating through sets of RootQueryToPluginConnection Nodes. */
 export type RootQueryToPluginConnectionPageInfo = PageInfo & PluginConnectionPageInfo & WpPageInfo & {
   __typename?: 'RootQueryToPluginConnectionPageInfo';
   /** When paginating forwards, the cursor to continue. */
@@ -8135,7 +8364,7 @@ export type RootQueryToPostConnectionEdge = Edge & PostConnectionEdge & {
   node: Post;
 };
 
-/** Page Info on the &quot;RootQueryToPostConnection&quot; */
+/** Pagination metadata specific to &quot;RootQueryToPostConnection&quot; collections. Provides cursors and flags for navigating through sets of RootQueryToPostConnection Nodes. */
 export type RootQueryToPostConnectionPageInfo = PageInfo & PostConnectionPageInfo & WpPageInfo & {
   __typename?: 'RootQueryToPostConnectionPageInfo';
   /** When paginating forwards, the cursor to continue. */
@@ -8234,7 +8463,7 @@ export type RootQueryToPostFormatConnectionEdge = Edge & PostFormatConnectionEdg
   node: PostFormat;
 };
 
-/** Page Info on the &quot;RootQueryToPostFormatConnection&quot; */
+/** Pagination metadata specific to &quot;RootQueryToPostFormatConnection&quot; collections. Provides cursors and flags for navigating through sets of RootQueryToPostFormatConnection Nodes. */
 export type RootQueryToPostFormatConnectionPageInfo = PageInfo & PostFormatConnectionPageInfo & WpPageInfo & {
   __typename?: 'RootQueryToPostFormatConnectionPageInfo';
   /** When paginating forwards, the cursor to continue. */
@@ -8286,8 +8515,6 @@ export type RootQueryToPostFormatConnectionWhereArgs = {
   /** Array of slugs to return term(s) for. Default empty. */
   slug?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   /** Array of term taxonomy IDs, to match when querying terms. */
-  termTaxonomId?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Array of term taxonomy IDs, to match when querying terms. */
   termTaxonomyId?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
   /** Whether to prime meta caches for matched terms. Default true. */
   updateTermMetaCache?: InputMaybe<Scalars['Boolean']['input']>;
@@ -8313,7 +8540,7 @@ export type RootQueryToRevisionsConnectionEdge = ContentNodeConnectionEdge & Edg
   node: ContentNode;
 };
 
-/** Page Info on the &quot;RootQueryToRevisionsConnection&quot; */
+/** Pagination metadata specific to &quot;RootQueryToRevisionsConnection&quot; collections. Provides cursors and flags for navigating through sets of RootQueryToRevisionsConnection Nodes. */
 export type RootQueryToRevisionsConnectionPageInfo = ContentNodeConnectionPageInfo & PageInfo & WpPageInfo & {
   __typename?: 'RootQueryToRevisionsConnectionPageInfo';
   /** When paginating forwards, the cursor to continue. */
@@ -8386,7 +8613,7 @@ export type RootQueryToTagConnectionEdge = Edge & TagConnectionEdge & {
   node: Tag;
 };
 
-/** Page Info on the &quot;RootQueryToTagConnection&quot; */
+/** Pagination metadata specific to &quot;RootQueryToTagConnection&quot; collections. Provides cursors and flags for navigating through sets of RootQueryToTagConnection Nodes. */
 export type RootQueryToTagConnectionPageInfo = PageInfo & TagConnectionPageInfo & WpPageInfo & {
   __typename?: 'RootQueryToTagConnectionPageInfo';
   /** When paginating forwards, the cursor to continue. */
@@ -8438,8 +8665,6 @@ export type RootQueryToTagConnectionWhereArgs = {
   /** Array of slugs to return term(s) for. Default empty. */
   slug?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   /** Array of term taxonomy IDs, to match when querying terms. */
-  termTaxonomId?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Array of term taxonomy IDs, to match when querying terms. */
   termTaxonomyId?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
   /** Whether to prime meta caches for matched terms. Default true. */
   updateTermMetaCache?: InputMaybe<Scalars['Boolean']['input']>;
@@ -8465,7 +8690,7 @@ export type RootQueryToTaxonomyConnectionEdge = Edge & TaxonomyConnectionEdge & 
   node: Taxonomy;
 };
 
-/** Page Info on the &quot;RootQueryToTaxonomyConnection&quot; */
+/** Pagination metadata specific to &quot;RootQueryToTaxonomyConnection&quot; collections. Provides cursors and flags for navigating through sets of RootQueryToTaxonomyConnection Nodes. */
 export type RootQueryToTaxonomyConnectionPageInfo = PageInfo & TaxonomyConnectionPageInfo & WpPageInfo & {
   __typename?: 'RootQueryToTaxonomyConnectionPageInfo';
   /** When paginating forwards, the cursor to continue. */
@@ -8498,7 +8723,7 @@ export type RootQueryToTermNodeConnectionEdge = Edge & TermNodeConnectionEdge & 
   node: TermNode;
 };
 
-/** Page Info on the &quot;RootQueryToTermNodeConnection&quot; */
+/** Pagination metadata specific to &quot;RootQueryToTermNodeConnection&quot; collections. Provides cursors and flags for navigating through sets of RootQueryToTermNodeConnection Nodes. */
 export type RootQueryToTermNodeConnectionPageInfo = PageInfo & TermNodeConnectionPageInfo & WpPageInfo & {
   __typename?: 'RootQueryToTermNodeConnectionPageInfo';
   /** When paginating forwards, the cursor to continue. */
@@ -8552,8 +8777,6 @@ export type RootQueryToTermNodeConnectionWhereArgs = {
   /** The Taxonomy to filter terms by */
   taxonomies?: InputMaybe<Array<InputMaybe<TaxonomyEnum>>>;
   /** Array of term taxonomy IDs, to match when querying terms. */
-  termTaxonomId?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Array of term taxonomy IDs, to match when querying terms. */
   termTaxonomyId?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
   /** Whether to prime meta caches for matched terms. Default true. */
   updateTermMetaCache?: InputMaybe<Scalars['Boolean']['input']>;
@@ -8579,7 +8802,7 @@ export type RootQueryToThemeConnectionEdge = Edge & ThemeConnectionEdge & {
   node: Theme;
 };
 
-/** Page Info on the &quot;RootQueryToThemeConnection&quot; */
+/** Pagination metadata specific to &quot;RootQueryToThemeConnection&quot; collections. Provides cursors and flags for navigating through sets of RootQueryToThemeConnection Nodes. */
 export type RootQueryToThemeConnectionPageInfo = PageInfo & ThemeConnectionPageInfo & WpPageInfo & {
   __typename?: 'RootQueryToThemeConnectionPageInfo';
   /** When paginating forwards, the cursor to continue. */
@@ -8612,7 +8835,7 @@ export type RootQueryToUserConnectionEdge = Edge & UserConnectionEdge & {
   node: User;
 };
 
-/** Page Info on the &quot;RootQueryToUserConnection&quot; */
+/** Pagination metadata specific to &quot;RootQueryToUserConnection&quot; collections. Provides cursors and flags for navigating through sets of RootQueryToUserConnection Nodes. */
 export type RootQueryToUserConnectionPageInfo = PageInfo & UserConnectionPageInfo & WpPageInfo & {
   __typename?: 'RootQueryToUserConnectionPageInfo';
   /** When paginating forwards, the cursor to continue. */
@@ -8679,7 +8902,7 @@ export type RootQueryToUserRoleConnectionEdge = Edge & UserRoleConnectionEdge & 
   node: UserRole;
 };
 
-/** Page Info on the &quot;RootQueryToUserRoleConnection&quot; */
+/** Pagination metadata specific to &quot;RootQueryToUserRoleConnection&quot; collections. Provides cursors and flags for navigating through sets of RootQueryToUserRoleConnection Nodes. */
 export type RootQueryToUserRoleConnectionPageInfo = PageInfo & UserRoleConnectionPageInfo & WpPageInfo & {
   __typename?: 'RootQueryToUserRoleConnectionPageInfo';
   /** When paginating forwards, the cursor to continue. */
@@ -8692,11 +8915,19 @@ export type RootQueryToUserRoleConnectionPageInfo = PageInfo & UserRoleConnectio
   startCursor?: Maybe<Scalars['String']['output']>;
 };
 
-/** The strategy to use when loading the script */
+/** Script insertion positions in the document structure. Determines whether scripts are placed in the document head or before the closing body tag. */
+export enum ScriptLoadingGroupLocationEnum {
+  /** Delayed loading at end of document, right before the closing `<body>` tag. (allows content to render first) */
+  Footer = 'FOOTER',
+  /** Early loading in document `<head>` tag. (executes before page content renders) */
+  Header = 'HEADER'
+}
+
+/** Script loading optimization attributes. Controls browser behavior for script loading to improve page performance (async or defer). */
 export enum ScriptLoadingStrategyEnum {
-  /** Use the script `async` attribute */
+  /** Load script in parallel with page rendering, executing as soon as downloaded */
   Async = 'ASYNC',
-  /** Use the script `defer` attribute */
+  /** Download script in parallel but defer execution until page is fully parsed */
   Defer = 'DEFER'
 }
 
@@ -8763,7 +8994,7 @@ export type Settings = {
   writingSettingsUseSmilies?: Maybe<Scalars['Boolean']['output']>;
 };
 
-/** The tag type */
+/** A taxonomy term used to organize and classify content. Tags do not have a hierarchy and are generally used for more specific classifications. */
 export type Tag = DatabaseIdentifier & MenuItemLinkable & Node & TermNode & UniformResourceIdentifiable & {
   __typename?: 'Tag';
   /** Connection between the Tag type and the chapter type */
@@ -8824,7 +9055,7 @@ export type Tag = DatabaseIdentifier & MenuItemLinkable & Node & TermNode & Unif
 };
 
 
-/** The tag type */
+/** A taxonomy term used to organize and classify content. Tags do not have a hierarchy and are generally used for more specific classifications. */
 export type TagChaptersArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   before?: InputMaybe<Scalars['String']['input']>;
@@ -8834,7 +9065,7 @@ export type TagChaptersArgs = {
 };
 
 
-/** The tag type */
+/** A taxonomy term used to organize and classify content. Tags do not have a hierarchy and are generally used for more specific classifications. */
 export type TagContentNodesArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   before?: InputMaybe<Scalars['String']['input']>;
@@ -8844,7 +9075,7 @@ export type TagContentNodesArgs = {
 };
 
 
-/** The tag type */
+/** A taxonomy term used to organize and classify content. Tags do not have a hierarchy and are generally used for more specific classifications. */
 export type TagCoursesArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   before?: InputMaybe<Scalars['String']['input']>;
@@ -8854,7 +9085,7 @@ export type TagCoursesArgs = {
 };
 
 
-/** The tag type */
+/** A taxonomy term used to organize and classify content. Tags do not have a hierarchy and are generally used for more specific classifications. */
 export type TagEnqueuedScriptsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   before?: InputMaybe<Scalars['String']['input']>;
@@ -8863,7 +9094,7 @@ export type TagEnqueuedScriptsArgs = {
 };
 
 
-/** The tag type */
+/** A taxonomy term used to organize and classify content. Tags do not have a hierarchy and are generally used for more specific classifications. */
 export type TagEnqueuedStylesheetsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   before?: InputMaybe<Scalars['String']['input']>;
@@ -8872,7 +9103,7 @@ export type TagEnqueuedStylesheetsArgs = {
 };
 
 
-/** The tag type */
+/** A taxonomy term used to organize and classify content. Tags do not have a hierarchy and are generally used for more specific classifications. */
 export type TagPostsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   before?: InputMaybe<Scalars['String']['input']>;
@@ -8881,7 +9112,7 @@ export type TagPostsArgs = {
   where?: InputMaybe<TagToPostConnectionWhereArgs>;
 };
 
-/** Connection to tag Nodes */
+/** A paginated collection of tag Nodes, Supports cursor-based pagination and filtering to efficiently retrieve sets of tag Nodes */
 export type TagConnection = {
   /** A list of edges (relational context) between RootQuery and connected tag Nodes */
   edges: Array<TagConnectionEdge>;
@@ -8891,7 +9122,7 @@ export type TagConnection = {
   pageInfo: TagConnectionPageInfo;
 };
 
-/** Edge between a Node and a connected tag */
+/** Represents a connection to a tag. Contains both the tag Node and metadata about the relationship. */
 export type TagConnectionEdge = {
   /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
   cursor?: Maybe<Scalars['String']['output']>;
@@ -8899,7 +9130,7 @@ export type TagConnectionEdge = {
   node: Tag;
 };
 
-/** Page Info on the connected TagConnectionEdge */
+/** Pagination metadata specific to &quot;TagConnectionEdge&quot; collections. Provides cursors and flags for navigating through sets of &quot;TagConnectionEdge&quot; Nodes. */
 export type TagConnectionPageInfo = {
   /** When paginating forwards, the cursor to continue. */
   endCursor?: Maybe<Scalars['String']['output']>;
@@ -8911,7 +9142,7 @@ export type TagConnectionPageInfo = {
   startCursor?: Maybe<Scalars['String']['output']>;
 };
 
-/** The Type of Identifier used to fetch a single resource. Default is ID. */
+/** Identifier types for retrieving a specific Tag. Determines which unique property (global ID, database ID, slug, etc.) is used to locate the Tag. */
 export enum TagIdType {
   /** The Database ID for the node */
   DatabaseId = 'DATABASE_ID',
@@ -8945,7 +9176,7 @@ export type TagToChapterConnectionEdge = ChapterConnectionEdge & Edge & {
   node: Chapter;
 };
 
-/** Page Info on the &quot;TagToChapterConnection&quot; */
+/** Pagination metadata specific to &quot;TagToChapterConnection&quot; collections. Provides cursors and flags for navigating through sets of TagToChapterConnection Nodes. */
 export type TagToChapterConnectionPageInfo = ChapterConnectionPageInfo & PageInfo & WpPageInfo & {
   __typename?: 'TagToChapterConnectionPageInfo';
   /** When paginating forwards, the cursor to continue. */
@@ -9036,7 +9267,7 @@ export type TagToContentNodeConnectionEdge = ContentNodeConnectionEdge & Edge & 
   node: ContentNode;
 };
 
-/** Page Info on the &quot;TagToContentNodeConnection&quot; */
+/** Pagination metadata specific to &quot;TagToContentNodeConnection&quot; collections. Provides cursors and flags for navigating through sets of TagToContentNodeConnection Nodes. */
 export type TagToContentNodeConnectionPageInfo = ContentNodeConnectionPageInfo & PageInfo & WpPageInfo & {
   __typename?: 'TagToContentNodeConnectionPageInfo';
   /** When paginating forwards, the cursor to continue. */
@@ -9109,7 +9340,7 @@ export type TagToCourseConnectionEdge = CourseConnectionEdge & Edge & {
   node: Course;
 };
 
-/** Page Info on the &quot;TagToCourseConnection&quot; */
+/** Pagination metadata specific to &quot;TagToCourseConnection&quot; collections. Provides cursors and flags for navigating through sets of TagToCourseConnection Nodes. */
 export type TagToCourseConnectionPageInfo = CourseConnectionPageInfo & PageInfo & WpPageInfo & {
   __typename?: 'TagToCourseConnectionPageInfo';
   /** When paginating forwards, the cursor to continue. */
@@ -9200,7 +9431,7 @@ export type TagToPostConnectionEdge = Edge & PostConnectionEdge & {
   node: Post;
 };
 
-/** Page Info on the &quot;TagToPostConnection&quot; */
+/** Pagination metadata specific to &quot;TagToPostConnection&quot; collections. Provides cursors and flags for navigating through sets of TagToPostConnection Nodes. */
 export type TagToPostConnectionPageInfo = PageInfo & PostConnectionPageInfo & WpPageInfo & {
   __typename?: 'TagToPostConnectionPageInfo';
   /** When paginating forwards, the cursor to continue. */
@@ -9361,7 +9592,7 @@ export type TaxonomyConnectedTermsArgs = {
   last?: InputMaybe<Scalars['Int']['input']>;
 };
 
-/** Connection to Taxonomy Nodes */
+/** A paginated collection of Taxonomy Nodes, Supports cursor-based pagination and filtering to efficiently retrieve sets of Taxonomy Nodes */
 export type TaxonomyConnection = {
   /** A list of edges (relational context) between RootQuery and connected Taxonomy Nodes */
   edges: Array<TaxonomyConnectionEdge>;
@@ -9371,7 +9602,7 @@ export type TaxonomyConnection = {
   pageInfo: TaxonomyConnectionPageInfo;
 };
 
-/** Edge between a Node and a connected Taxonomy */
+/** Represents a connection to a Taxonomy. Contains both the Taxonomy Node and metadata about the relationship. */
 export type TaxonomyConnectionEdge = {
   /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
   cursor?: Maybe<Scalars['String']['output']>;
@@ -9379,7 +9610,7 @@ export type TaxonomyConnectionEdge = {
   node: Taxonomy;
 };
 
-/** Page Info on the connected TaxonomyConnectionEdge */
+/** Pagination metadata specific to &quot;TaxonomyConnectionEdge&quot; collections. Provides cursors and flags for navigating through sets of &quot;TaxonomyConnectionEdge&quot; Nodes. */
 export type TaxonomyConnectionPageInfo = {
   /** When paginating forwards, the cursor to continue. */
   endCursor?: Maybe<Scalars['String']['output']>;
@@ -9391,7 +9622,7 @@ export type TaxonomyConnectionPageInfo = {
   startCursor?: Maybe<Scalars['String']['output']>;
 };
 
-/** Allowed taxonomies */
+/** Available classification systems for organizing content. Identifies the different taxonomy types that can be used for content categorization. */
 export enum TaxonomyEnum {
   /** Taxonomy enum category */
   Category = 'CATEGORY',
@@ -9401,7 +9632,7 @@ export enum TaxonomyEnum {
   Tag = 'TAG'
 }
 
-/** The Type of Identifier used to fetch a single Taxonomy node. To be used along with the "id" field. Default is "ID". */
+/** Identifier types for retrieving a taxonomy definition. Determines whether to look up taxonomies by ID or name. */
 export enum TaxonomyIdTypeEnum {
   /** The globally unique ID */
   Id = 'ID',
@@ -9429,7 +9660,7 @@ export type TaxonomyToContentTypeConnectionEdge = ContentTypeConnectionEdge & Ed
   node: ContentType;
 };
 
-/** Page Info on the &quot;TaxonomyToContentTypeConnection&quot; */
+/** Pagination metadata specific to &quot;TaxonomyToContentTypeConnection&quot; collections. Provides cursors and flags for navigating through sets of TaxonomyToContentTypeConnection Nodes. */
 export type TaxonomyToContentTypeConnectionPageInfo = ContentTypeConnectionPageInfo & PageInfo & WpPageInfo & {
   __typename?: 'TaxonomyToContentTypeConnectionPageInfo';
   /** When paginating forwards, the cursor to continue. */
@@ -9462,7 +9693,7 @@ export type TaxonomyToTermNodeConnectionEdge = Edge & TermNodeConnectionEdge & {
   node: TermNode;
 };
 
-/** Page Info on the &quot;TaxonomyToTermNodeConnection&quot; */
+/** Pagination metadata specific to &quot;TaxonomyToTermNodeConnection&quot; collections. Provides cursors and flags for navigating through sets of TaxonomyToTermNodeConnection Nodes. */
 export type TaxonomyToTermNodeConnectionPageInfo = PageInfo & TermNodeConnectionPageInfo & WpPageInfo & {
   __typename?: 'TaxonomyToTermNodeConnectionPageInfo';
   /** When paginating forwards, the cursor to continue. */
@@ -9475,7 +9706,7 @@ export type TaxonomyToTermNodeConnectionPageInfo = PageInfo & TermNodeConnection
   startCursor?: Maybe<Scalars['String']['output']>;
 };
 
-/** Terms are nodes within a Taxonomy, used to group and relate other nodes. */
+/** Base interface for taxonomy terms such as categories and tags. Terms are used to organize and classify content. */
 export type TermNode = {
   /** The number of objects connected to the object */
   count?: Maybe<Scalars['Int']['output']>;
@@ -9518,7 +9749,7 @@ export type TermNode = {
 };
 
 
-/** Terms are nodes within a Taxonomy, used to group and relate other nodes. */
+/** Base interface for taxonomy terms such as categories and tags. Terms are used to organize and classify content. */
 export type TermNodeEnqueuedScriptsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   before?: InputMaybe<Scalars['String']['input']>;
@@ -9527,7 +9758,7 @@ export type TermNodeEnqueuedScriptsArgs = {
 };
 
 
-/** Terms are nodes within a Taxonomy, used to group and relate other nodes. */
+/** Base interface for taxonomy terms such as categories and tags. Terms are used to organize and classify content. */
 export type TermNodeEnqueuedStylesheetsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   before?: InputMaybe<Scalars['String']['input']>;
@@ -9535,7 +9766,7 @@ export type TermNodeEnqueuedStylesheetsArgs = {
   last?: InputMaybe<Scalars['Int']['input']>;
 };
 
-/** Connection to TermNode Nodes */
+/** A paginated collection of TermNode Nodes, Supports cursor-based pagination and filtering to efficiently retrieve sets of TermNode Nodes */
 export type TermNodeConnection = {
   /** A list of edges (relational context) between RootQuery and connected TermNode Nodes */
   edges: Array<TermNodeConnectionEdge>;
@@ -9545,7 +9776,7 @@ export type TermNodeConnection = {
   pageInfo: TermNodeConnectionPageInfo;
 };
 
-/** Edge between a Node and a connected TermNode */
+/** Represents a connection to a TermNode. Contains both the TermNode Node and metadata about the relationship. */
 export type TermNodeConnectionEdge = {
   /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
   cursor?: Maybe<Scalars['String']['output']>;
@@ -9553,7 +9784,7 @@ export type TermNodeConnectionEdge = {
   node: TermNode;
 };
 
-/** Page Info on the connected TermNodeConnectionEdge */
+/** Pagination metadata specific to &quot;TermNodeConnectionEdge&quot; collections. Provides cursors and flags for navigating through sets of &quot;TermNodeConnectionEdge&quot; Nodes. */
 export type TermNodeConnectionPageInfo = {
   /** When paginating forwards, the cursor to continue. */
   endCursor?: Maybe<Scalars['String']['output']>;
@@ -9599,7 +9830,7 @@ export type TermNodeToEnqueuedScriptConnectionEdge = Edge & EnqueuedScriptConnec
   node: EnqueuedScript;
 };
 
-/** Page Info on the &quot;TermNodeToEnqueuedScriptConnection&quot; */
+/** Pagination metadata specific to &quot;TermNodeToEnqueuedScriptConnection&quot; collections. Provides cursors and flags for navigating through sets of TermNodeToEnqueuedScriptConnection Nodes. */
 export type TermNodeToEnqueuedScriptConnectionPageInfo = EnqueuedScriptConnectionPageInfo & PageInfo & WpPageInfo & {
   __typename?: 'TermNodeToEnqueuedScriptConnectionPageInfo';
   /** When paginating forwards, the cursor to continue. */
@@ -9632,7 +9863,7 @@ export type TermNodeToEnqueuedStylesheetConnectionEdge = Edge & EnqueuedStyleshe
   node: EnqueuedStylesheet;
 };
 
-/** Page Info on the &quot;TermNodeToEnqueuedStylesheetConnection&quot; */
+/** Pagination metadata specific to &quot;TermNodeToEnqueuedStylesheetConnection&quot; collections. Provides cursors and flags for navigating through sets of TermNodeToEnqueuedStylesheetConnection Nodes. */
 export type TermNodeToEnqueuedStylesheetConnectionPageInfo = EnqueuedStylesheetConnectionPageInfo & PageInfo & WpPageInfo & {
   __typename?: 'TermNodeToEnqueuedStylesheetConnectionPageInfo';
   /** When paginating forwards, the cursor to continue. */
@@ -9645,21 +9876,21 @@ export type TermNodeToEnqueuedStylesheetConnectionPageInfo = EnqueuedStylesheetC
   startCursor?: Maybe<Scalars['String']['output']>;
 };
 
-/** Options for ordering the connection by */
+/** Sorting attributes for taxonomy term collections. Determines which property of taxonomy terms is used for ordering results. */
 export enum TermObjectsConnectionOrderbyEnum {
-  /** Order the connection by item count. */
+  /** Ordering by number of associated content items. */
   Count = 'COUNT',
-  /** Order the connection by description. */
+  /** Alphabetical ordering by term description text. */
   Description = 'DESCRIPTION',
-  /** Order the connection by name. */
+  /** Alphabetical ordering by term name. */
   Name = 'NAME',
-  /** Order the connection by slug. */
+  /** Alphabetical ordering by URL-friendly name. */
   Slug = 'SLUG',
-  /** Order the connection by term group. */
+  /** Ordering by assigned term grouping value. */
   TermGroup = 'TERM_GROUP',
-  /** Order the connection by term id. */
+  /** Ordering by internal identifier. */
   TermId = 'TERM_ID',
-  /** Order the connection by term order. */
+  /** Ordering by manually defined sort position. */
   TermOrder = 'TERM_ORDER'
 }
 
@@ -9690,7 +9921,7 @@ export type Theme = Node & {
   version?: Maybe<Scalars['String']['output']>;
 };
 
-/** Connection to Theme Nodes */
+/** A paginated collection of Theme Nodes, Supports cursor-based pagination and filtering to efficiently retrieve sets of Theme Nodes */
 export type ThemeConnection = {
   /** A list of edges (relational context) between RootQuery and connected Theme Nodes */
   edges: Array<ThemeConnectionEdge>;
@@ -9700,7 +9931,7 @@ export type ThemeConnection = {
   pageInfo: ThemeConnectionPageInfo;
 };
 
-/** Edge between a Node and a connected Theme */
+/** Represents a connection to a Theme. Contains both the Theme Node and metadata about the relationship. */
 export type ThemeConnectionEdge = {
   /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
   cursor?: Maybe<Scalars['String']['output']>;
@@ -9708,7 +9939,7 @@ export type ThemeConnectionEdge = {
   node: Theme;
 };
 
-/** Page Info on the connected ThemeConnectionEdge */
+/** Pagination metadata specific to &quot;ThemeConnectionEdge&quot; collections. Provides cursors and flags for navigating through sets of &quot;ThemeConnectionEdge&quot; Nodes. */
 export type ThemeConnectionPageInfo = {
   /** When paginating forwards, the cursor to continue. */
   endCursor?: Maybe<Scalars['String']['output']>;
@@ -9720,7 +9951,7 @@ export type ThemeConnectionPageInfo = {
   startCursor?: Maybe<Scalars['String']['output']>;
 };
 
-/** Any node that has a URI */
+/** An interface for content that can be accessed via a unique URI/URL path. Implemented by content types that have their own permalinks. */
 export type UniformResourceIdentifiable = {
   /** The globally unique ID for the object */
   id: Scalars['ID']['output'];
@@ -9750,7 +9981,9 @@ export type UpdateCategoryInput = {
   id: Scalars['ID']['input'];
   /** The name of the category object to mutate */
   name?: InputMaybe<Scalars['String']['input']>;
-  /** The ID of the category that should be set as the parent */
+  /** The database ID of the category that should be set as the parent. This field cannot be used in conjunction with parentId */
+  parentDatabaseId?: InputMaybe<Scalars['Int']['input']>;
+  /** The ID of the category that should be set as the parent. This field cannot be used in conjunction with parentDatabaseId */
   parentId?: InputMaybe<Scalars['ID']['input']>;
   /** If this argument exists then the slug will be checked to see if it is not an existing valid term. If that check succeeds (it is not a valid term), then it is added and the term id is given. If it fails, then a check is made to whether the taxonomy is hierarchical and the parent argument is not empty. If the second check succeeds, the term will be inserted and the term id will be given. If the slug argument is empty, then it will be calculated from the term name. */
   slug?: InputMaybe<Scalars['String']['input']>;
@@ -9806,8 +10039,6 @@ export type UpdateChapterPayload = {
 
 /** Input for the updateComment mutation. */
 export type UpdateCommentInput = {
-  /** The approval status of the comment. */
-  approved?: InputMaybe<Scalars['String']['input']>;
   /** The name of the comment's author. */
   author?: InputMaybe<Scalars['String']['input']>;
   /** The email of the comment's author. */
@@ -10138,7 +10369,7 @@ export type UpdateUserInput = {
   displayName?: InputMaybe<Scalars['String']['input']>;
   /** A string containing the user's email address. */
   email?: InputMaybe<Scalars['String']['input']>;
-  /** 	The user's first name. */
+  /** The user's first name. */
   firstName?: InputMaybe<Scalars['String']['input']>;
   /** The ID of the user */
   id: Scalars['ID']['input'];
@@ -10175,7 +10406,7 @@ export type UpdateUserPayload = {
   user?: Maybe<User>;
 };
 
-/** A User object */
+/** A registered user account. Users can be assigned roles, author content, and have various capabilities within the site. */
 export type User = Commenter & DatabaseIdentifier & Node & UniformResourceIdentifiable & {
   __typename?: 'User';
   /** Avatar object for user. The avatar object can be retrieved in different sizes by specifying the size argument. */
@@ -10260,7 +10491,7 @@ export type User = Commenter & DatabaseIdentifier & Node & UniformResourceIdenti
 };
 
 
-/** A User object */
+/** A registered user account. Users can be assigned roles, author content, and have various capabilities within the site. */
 export type UserAvatarArgs = {
   forceDefault?: InputMaybe<Scalars['Boolean']['input']>;
   rating?: InputMaybe<AvatarRatingEnum>;
@@ -10268,7 +10499,7 @@ export type UserAvatarArgs = {
 };
 
 
-/** A User object */
+/** A registered user account. Users can be assigned roles, author content, and have various capabilities within the site. */
 export type UserChaptersArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   before?: InputMaybe<Scalars['String']['input']>;
@@ -10278,7 +10509,7 @@ export type UserChaptersArgs = {
 };
 
 
-/** A User object */
+/** A registered user account. Users can be assigned roles, author content, and have various capabilities within the site. */
 export type UserCommentsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   before?: InputMaybe<Scalars['String']['input']>;
@@ -10288,7 +10519,7 @@ export type UserCommentsArgs = {
 };
 
 
-/** A User object */
+/** A registered user account. Users can be assigned roles, author content, and have various capabilities within the site. */
 export type UserCoursesArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   before?: InputMaybe<Scalars['String']['input']>;
@@ -10298,7 +10529,7 @@ export type UserCoursesArgs = {
 };
 
 
-/** A User object */
+/** A registered user account. Users can be assigned roles, author content, and have various capabilities within the site. */
 export type UserEnqueuedScriptsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   before?: InputMaybe<Scalars['String']['input']>;
@@ -10307,7 +10538,7 @@ export type UserEnqueuedScriptsArgs = {
 };
 
 
-/** A User object */
+/** A registered user account. Users can be assigned roles, author content, and have various capabilities within the site. */
 export type UserEnqueuedStylesheetsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   before?: InputMaybe<Scalars['String']['input']>;
@@ -10316,7 +10547,7 @@ export type UserEnqueuedStylesheetsArgs = {
 };
 
 
-/** A User object */
+/** A registered user account. Users can be assigned roles, author content, and have various capabilities within the site. */
 export type UserMediaItemsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   before?: InputMaybe<Scalars['String']['input']>;
@@ -10326,7 +10557,7 @@ export type UserMediaItemsArgs = {
 };
 
 
-/** A User object */
+/** A registered user account. Users can be assigned roles, author content, and have various capabilities within the site. */
 export type UserPagesArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   before?: InputMaybe<Scalars['String']['input']>;
@@ -10336,7 +10567,7 @@ export type UserPagesArgs = {
 };
 
 
-/** A User object */
+/** A registered user account. Users can be assigned roles, author content, and have various capabilities within the site. */
 export type UserPostsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   before?: InputMaybe<Scalars['String']['input']>;
@@ -10346,7 +10577,7 @@ export type UserPostsArgs = {
 };
 
 
-/** A User object */
+/** A registered user account. Users can be assigned roles, author content, and have various capabilities within the site. */
 export type UserRevisionsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   before?: InputMaybe<Scalars['String']['input']>;
@@ -10356,7 +10587,7 @@ export type UserRevisionsArgs = {
 };
 
 
-/** A User object */
+/** A registered user account. Users can be assigned roles, author content, and have various capabilities within the site. */
 export type UserRolesArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   before?: InputMaybe<Scalars['String']['input']>;
@@ -10364,7 +10595,7 @@ export type UserRolesArgs = {
   last?: InputMaybe<Scalars['Int']['input']>;
 };
 
-/** Connection to User Nodes */
+/** A paginated collection of User Nodes, Supports cursor-based pagination and filtering to efficiently retrieve sets of User Nodes */
 export type UserConnection = {
   /** A list of edges (relational context) between RootQuery and connected User Nodes */
   edges: Array<UserConnectionEdge>;
@@ -10374,7 +10605,7 @@ export type UserConnection = {
   pageInfo: UserConnectionPageInfo;
 };
 
-/** Edge between a Node and a connected User */
+/** Represents a connection to a User. Contains both the User Node and metadata about the relationship. */
 export type UserConnectionEdge = {
   /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
   cursor?: Maybe<Scalars['String']['output']>;
@@ -10382,7 +10613,7 @@ export type UserConnectionEdge = {
   node: User;
 };
 
-/** Page Info on the connected UserConnectionEdge */
+/** Pagination metadata specific to &quot;UserConnectionEdge&quot; collections. Provides cursors and flags for navigating through sets of &quot;UserConnectionEdge&quot; Nodes. */
 export type UserConnectionPageInfo = {
   /** When paginating forwards, the cursor to continue. */
   endCursor?: Maybe<Scalars['String']['output']>;
@@ -10394,7 +10625,7 @@ export type UserConnectionPageInfo = {
   startCursor?: Maybe<Scalars['String']['output']>;
 };
 
-/** The Type of Identifier used to fetch a single User node. To be used along with the "id" field. Default is "ID". */
+/** Identifier types for retrieving a specific user. Determines whether to look up users by ID, email, username, or other unique properties. */
 export enum UserNodeIdTypeEnum {
   /** The Database ID for the node */
   DatabaseId = 'DATABASE_ID',
@@ -10425,7 +10656,7 @@ export type UserRole = Node & {
   name?: Maybe<Scalars['String']['output']>;
 };
 
-/** Connection to UserRole Nodes */
+/** A paginated collection of UserRole Nodes, Supports cursor-based pagination and filtering to efficiently retrieve sets of UserRole Nodes */
 export type UserRoleConnection = {
   /** A list of edges (relational context) between RootQuery and connected UserRole Nodes */
   edges: Array<UserRoleConnectionEdge>;
@@ -10435,7 +10666,7 @@ export type UserRoleConnection = {
   pageInfo: UserRoleConnectionPageInfo;
 };
 
-/** Edge between a Node and a connected UserRole */
+/** Represents a connection to a UserRole. Contains both the UserRole Node and metadata about the relationship. */
 export type UserRoleConnectionEdge = {
   /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
   cursor?: Maybe<Scalars['String']['output']>;
@@ -10443,7 +10674,7 @@ export type UserRoleConnectionEdge = {
   node: UserRole;
 };
 
-/** Page Info on the connected UserRoleConnectionEdge */
+/** Pagination metadata specific to &quot;UserRoleConnectionEdge&quot; collections. Provides cursors and flags for navigating through sets of &quot;UserRoleConnectionEdge&quot; Nodes. */
 export type UserRoleConnectionPageInfo = {
   /** When paginating forwards, the cursor to continue. */
   endCursor?: Maybe<Scalars['String']['output']>;
@@ -10455,7 +10686,7 @@ export type UserRoleConnectionPageInfo = {
   startCursor?: Maybe<Scalars['String']['output']>;
 };
 
-/** Names of available user roles */
+/** Permission levels for user accounts. Defines the standard access levels that control what actions users can perform within the system. */
 export enum UserRoleEnum {
   /** User role with specific capabilities */
   Administrator = 'ADMINISTRATOR',
@@ -10489,7 +10720,7 @@ export type UserToChapterConnectionEdge = ChapterConnectionEdge & Edge & {
   node: Chapter;
 };
 
-/** Page Info on the &quot;UserToChapterConnection&quot; */
+/** Pagination metadata specific to &quot;UserToChapterConnection&quot; collections. Provides cursors and flags for navigating through sets of UserToChapterConnection Nodes. */
 export type UserToChapterConnectionPageInfo = ChapterConnectionPageInfo & PageInfo & WpPageInfo & {
   __typename?: 'UserToChapterConnectionPageInfo';
   /** When paginating forwards, the cursor to continue. */
@@ -10580,7 +10811,7 @@ export type UserToCommentConnectionEdge = CommentConnectionEdge & Edge & {
   node: Comment;
 };
 
-/** Page Info on the &quot;UserToCommentConnection&quot; */
+/** Pagination metadata specific to &quot;UserToCommentConnection&quot; collections. Provides cursors and flags for navigating through sets of UserToCommentConnection Nodes. */
 export type UserToCommentConnectionPageInfo = CommentConnectionPageInfo & PageInfo & WpPageInfo & {
   __typename?: 'UserToCommentConnectionPageInfo';
   /** When paginating forwards, the cursor to continue. */
@@ -10649,8 +10880,8 @@ export type UserToCommentConnectionWhereArgs = {
   parentNotIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
   /** Search term(s) to retrieve matching comments for. */
   search?: InputMaybe<Scalars['String']['input']>;
-  /** Comment status to limit results by. */
-  status?: InputMaybe<Scalars['String']['input']>;
+  /** One or more Comment Statuses to limit results by */
+  statusIn?: InputMaybe<Array<InputMaybe<CommentStatusEnum>>>;
   /** Include comments for a specific user ID. */
   userId?: InputMaybe<Scalars['ID']['input']>;
 };
@@ -10675,7 +10906,7 @@ export type UserToCourseConnectionEdge = CourseConnectionEdge & Edge & {
   node: Course;
 };
 
-/** Page Info on the &quot;UserToCourseConnection&quot; */
+/** Pagination metadata specific to &quot;UserToCourseConnection&quot; collections. Provides cursors and flags for navigating through sets of UserToCourseConnection Nodes. */
 export type UserToCourseConnectionPageInfo = CourseConnectionPageInfo & PageInfo & WpPageInfo & {
   __typename?: 'UserToCourseConnectionPageInfo';
   /** When paginating forwards, the cursor to continue. */
@@ -10766,7 +10997,7 @@ export type UserToEnqueuedScriptConnectionEdge = Edge & EnqueuedScriptConnection
   node: EnqueuedScript;
 };
 
-/** Page Info on the &quot;UserToEnqueuedScriptConnection&quot; */
+/** Pagination metadata specific to &quot;UserToEnqueuedScriptConnection&quot; collections. Provides cursors and flags for navigating through sets of UserToEnqueuedScriptConnection Nodes. */
 export type UserToEnqueuedScriptConnectionPageInfo = EnqueuedScriptConnectionPageInfo & PageInfo & WpPageInfo & {
   __typename?: 'UserToEnqueuedScriptConnectionPageInfo';
   /** When paginating forwards, the cursor to continue. */
@@ -10799,7 +11030,7 @@ export type UserToEnqueuedStylesheetConnectionEdge = Edge & EnqueuedStylesheetCo
   node: EnqueuedStylesheet;
 };
 
-/** Page Info on the &quot;UserToEnqueuedStylesheetConnection&quot; */
+/** Pagination metadata specific to &quot;UserToEnqueuedStylesheetConnection&quot; collections. Provides cursors and flags for navigating through sets of UserToEnqueuedStylesheetConnection Nodes. */
 export type UserToEnqueuedStylesheetConnectionPageInfo = EnqueuedStylesheetConnectionPageInfo & PageInfo & WpPageInfo & {
   __typename?: 'UserToEnqueuedStylesheetConnectionPageInfo';
   /** When paginating forwards, the cursor to continue. */
@@ -10832,7 +11063,7 @@ export type UserToMediaItemConnectionEdge = Edge & MediaItemConnectionEdge & {
   node: MediaItem;
 };
 
-/** Page Info on the &quot;UserToMediaItemConnection&quot; */
+/** Pagination metadata specific to &quot;UserToMediaItemConnection&quot; collections. Provides cursors and flags for navigating through sets of UserToMediaItemConnection Nodes. */
 export type UserToMediaItemConnectionPageInfo = MediaItemConnectionPageInfo & PageInfo & WpPageInfo & {
   __typename?: 'UserToMediaItemConnectionPageInfo';
   /** When paginating forwards, the cursor to continue. */
@@ -10911,7 +11142,7 @@ export type UserToPageConnectionEdge = Edge & PageConnectionEdge & {
   node: Page;
 };
 
-/** Page Info on the &quot;UserToPageConnection&quot; */
+/** Pagination metadata specific to &quot;UserToPageConnection&quot; collections. Provides cursors and flags for navigating through sets of UserToPageConnection Nodes. */
 export type UserToPageConnectionPageInfo = PageConnectionPageInfo & PageInfo & WpPageInfo & {
   __typename?: 'UserToPageConnectionPageInfo';
   /** When paginating forwards, the cursor to continue. */
@@ -10990,7 +11221,7 @@ export type UserToPostConnectionEdge = Edge & PostConnectionEdge & {
   node: Post;
 };
 
-/** Page Info on the &quot;UserToPostConnection&quot; */
+/** Pagination metadata specific to &quot;UserToPostConnection&quot; collections. Provides cursors and flags for navigating through sets of UserToPostConnection Nodes. */
 export type UserToPostConnectionPageInfo = PageInfo & PostConnectionPageInfo & WpPageInfo & {
   __typename?: 'UserToPostConnectionPageInfo';
   /** When paginating forwards, the cursor to continue. */
@@ -11089,7 +11320,7 @@ export type UserToRevisionsConnectionEdge = ContentNodeConnectionEdge & Edge & {
   node: ContentNode;
 };
 
-/** Page Info on the &quot;UserToRevisionsConnection&quot; */
+/** Pagination metadata specific to &quot;UserToRevisionsConnection&quot; collections. Provides cursors and flags for navigating through sets of UserToRevisionsConnection Nodes. */
 export type UserToRevisionsConnectionPageInfo = ContentNodeConnectionPageInfo & PageInfo & WpPageInfo & {
   __typename?: 'UserToRevisionsConnectionPageInfo';
   /** When paginating forwards, the cursor to continue. */
@@ -11162,7 +11393,7 @@ export type UserToUserRoleConnectionEdge = Edge & UserRoleConnectionEdge & {
   node: UserRole;
 };
 
-/** Page Info on the &quot;UserToUserRoleConnection&quot; */
+/** Pagination metadata specific to &quot;UserToUserRoleConnection&quot; collections. Provides cursors and flags for navigating through sets of UserToUserRoleConnection Nodes. */
 export type UserToUserRoleConnectionPageInfo = PageInfo & UserRoleConnectionPageInfo & WpPageInfo & {
   __typename?: 'UserToUserRoleConnectionPageInfo';
   /** When paginating forwards, the cursor to continue. */
@@ -11183,7 +11414,7 @@ export type User_User = AcfFieldGroup & {
   profilePic?: Maybe<MediaItem>;
 };
 
-/** Field to order the connection by */
+/** User attribute sorting options. Determines which property of user accounts is used for ordering user listings. */
 export enum UsersConnectionOrderbyEnum {
   /** Order by display name */
   DisplayName = 'DISPLAY_NAME',
@@ -11211,7 +11442,7 @@ export type UsersConnectionOrderbyInput = {
   order?: InputMaybe<OrderEnum>;
 };
 
-/** Column used for searching for users. */
+/** User properties that can be targeted in search operations. Defines which user attributes can be searched when looking for specific users. */
 export enum UsersConnectionSearchColumnEnum {
   /** The user's email address. */
   Email = 'EMAIL',
@@ -11225,7 +11456,7 @@ export enum UsersConnectionSearchColumnEnum {
   Url = 'URL'
 }
 
-/** Information about pagination in a connection. */
+/** Metadata for cursor-based pagination. Provides cursors for continuing pagination and boolean flags indicating if more items exist in either direction. */
 export type WpPageInfo = {
   /** When paginating forwards, the cursor to continue. */
   endCursor?: Maybe<Scalars['String']['output']>;

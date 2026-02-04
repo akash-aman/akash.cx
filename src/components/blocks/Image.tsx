@@ -1,4 +1,4 @@
-import React, { use } from "react";
+import React from "react";
 import Image from "next/image";
 
 interface ImageComponentProps {
@@ -11,7 +11,7 @@ interface ImageComponentProps {
 	[key: string]: any;
 }
 
-const ImageComponent = ({
+const ImageComponent = async ({
 	src,
 	alt,
 	sizes,
@@ -24,16 +24,20 @@ const ImageComponent = ({
 
 	if (src?.endsWith(".svg")) {
 		// fetch the svg xml code.
-		let Svg = use(fetch(src).then((res) => res.text()));
-
-		return (
-			<span
-				className="w-[1.125rem] h-[1.125rem]"
-				dangerouslySetInnerHTML={{ __html: Svg }}
-			/>
-		);
+		try {
+			const res = await fetch(src);
+			const Svg = await res.text();
+			return (
+				<span
+					className="w-4.5 h-4.5"
+					dangerouslySetInnerHTML={{ __html: Svg }}
+				/>
+			);
+		} catch (error) {
+			console.error(`Error fetching SVG: ${src}`, error);
+			return null;
+		}
 	}
-
 	if (card) {
 		return (
 			<Image

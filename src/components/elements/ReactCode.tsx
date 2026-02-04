@@ -24,19 +24,18 @@ const ReactCode: React.FC<CodeProps> = ({
 	return !inline && match ? (
 		<>
 			<div
-				className="single-tab rounded-t-xl mt-8 py-1 px-4  bg-[var(--light-theme-500)] dark:bg-[var(--code-bg-dark-80)] flex max-w-min"
+				className="single-tab rounded-t-xl mt-8 py-1 px-4  bg-(--light-theme-500) dark:bg-(--code-bg-dark-80) flex max-w-min"
 				title={`${match[1]} code`}
 			>
 				{match[1]}
 			</div>
 			<SyntaxHighlighter
 				language={match[1]}
-				className="rounded-b-md rounded-tr-md bg-[var(--light-theme-500)] dark:bg-[var(--code-bg-dark-30)] scrollbar overflow-x-auto p-4"
-				PreTag="div"
 				key={match[1]}
-				style={undefined}
 				useInlineStyles={false}
 				{...props}
+				style={{}}
+				className="rounded-b-md rounded-tr-md bg-(--card-bg) scrollbar overflow-x-auto p-4"
 			>
 				{String(children).replace(/\n$/, "")}
 			</SyntaxHighlighter>

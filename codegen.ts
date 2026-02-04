@@ -20,7 +20,8 @@ const config: CodegenConfig = {
         "src/generated/graphql.ts": {
             plugins: [
                 "typescript",
-                "typescript-operations"
+                "typescript-operations",
+                "typescript-react-apollo"
             ]
         }
     }

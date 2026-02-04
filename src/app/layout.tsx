@@ -4,6 +4,7 @@ import "styles/globals.scss";
 import "styles/typography.scss";
 import "styles/tailwind.css";
 import "styles/styles.scss";
+import "styles/prism.scss";
 
 import ApplyTheme from "hooks/theme";
 import Navigation from "components/blocks/NavMenu";

@@ -5,7 +5,7 @@ interface PProps {
 }
 
 const P = ({ children }: PProps) => {
-	return <p className="p para-lg pb-5">{children}</p>;
+	return <p className="p para-lg pb-6">{children}</p>;
 };
 
 export default P;

@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import React from "react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 // scss is written in main
@@ -35,13 +36,13 @@ const ReactCode: React.FC<CodeProps> = ({
 				useInlineStyles={false}
 				{...props}
 				style={{}}
-				className="rounded-b-md rounded-tr-md bg-(--card-bg) scrollbar overflow-x-auto p-4"
+				className="rounded-b-md rounded-tr-md bg-(--card-bg) scrollbar overflow-x-auto p-4 mb-6"
 			>
 				{String(children).replace(/\n$/, "")}
 			</SyntaxHighlighter>
 		</>
 	) : (
-		<code className={className} {...props}>
+		<code className={clsx(className, "para-md")} {...props}>
 			{children}
 		</code>
 	);

@@ -30,7 +30,7 @@ const Toc = (props: TocProps) => {
 							className="toc-heading my-4 flex justify-between"
 							onClick={toggleToc}
 						>
-							<h2 className="inline-block">Table of Contents</h2>
+							<h2 className="inline-block heading-2">Table of Contents</h2>
 							<span className="text-4xl text-orange-300">
 								{isOpen ? "▲" : "▼"}
 							</span>

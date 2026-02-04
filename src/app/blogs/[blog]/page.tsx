@@ -146,7 +146,7 @@ const Blog = async (props: Props) => {
 							<Image src={arrow} className="w-5 inline-block" alt="arrow" />
 							<Link
 								href={`/blogs/${params.blog}`}
-								className="tk-attribute-mono text-black dark:text-white "
+								className="tk-attribute-mono text-black! dark:text-white!"
 							>
 								{blog.title}
 							</Link>

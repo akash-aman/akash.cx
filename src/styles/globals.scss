@@ -1,6 +1,7 @@
 
 :root {
 
+  font-size: 13px;
   /* Typography Variables - Mobile First */
   --font-h1: 2rem;
   --font-h2: 1.75rem;
@@ -16,6 +17,7 @@
 
 @media (min-width: 768px) {
   :root {
+    font-size: 14px;
     --font-h1: 2.5rem;
     --font-h2: 2rem;
     --font-h3: 1.75rem;
@@ -31,6 +33,7 @@
 
 @media (min-width: 1024px) {
   :root {
+    font-size: 16px;
     --font-h1: 3rem;
     --font-h2: 2.5rem;
     --font-h3: 2rem;

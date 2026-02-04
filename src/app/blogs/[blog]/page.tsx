@@ -85,7 +85,7 @@ const Blog = async (props: Props) => {
 		<article className="max-w-(--container-45xl) mx-auto ">
 			<div className="sm:grid-cols-[1fr_3rem] grid-cols-1 grid gap-8">
 				<div className="col-start-2 row-span-2 hidden sm:block">
-					<div className="w-10 grid gap-8 sticky top-[40%]">
+					<aside aria-label="Social Share" className="w-10 grid gap-8 sticky top-1/3">
 						<a
 							href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(`https://akash.cx/blogs/${params.blog}`)}&text=${encodeURIComponent(blog?.title ?? "")}`}
 							target="_blank"
@@ -131,11 +131,11 @@ const Blog = async (props: Props) => {
 						>
 							<Image src={email} alt="Email" />
 						</a>
-					</div>
+					</aside>
 				</div>
 				<div className="grid h-fit relative row-start-1">
 					<header className="w-full mb-10">
-						<div className=" grid grid-flow-col gap-2 justify-start items-center text-sm tk-attribute-mono mb-8">
+						<nav aria-label="Breadcrumb" className="grid grid-flow-col gap-2 justify-start items-center text-sm tk-attribute-mono mb-8">
 							<Link href="/" className="tk-attribute-mono mb-1">
 								<Image src={Home} className="w-5 inline-block" alt="home" />
 							</Link>
@@ -150,53 +150,53 @@ const Blog = async (props: Props) => {
 							>
 								{blog.title}
 							</Link>
-						</div>
-						<p className="text-center">{formattedDate}</p>
+						</nav>
+						<p className="text-center para-lg pb-8">{formattedDate}</p>
 						<h1 className="text-5xl md:text-6xl text-center">{blog?.title}</h1>
-						<div className="p-0 leading-3 text-center m-auto max-w-[60%] mt-4">
+						<ul className="leading-tight text-center m-auto max-w-lg mt-4 flex flex-wrap justify-center p-0">
 							{(blog?.tags?.nodes || []).map(({ name, slug, featuredImage }) => (
-								<div key={slug} className="inline-block">
-									<i className="leading-2 grid items-center bg-(--light-theme-500) dark:bg-[rgba(255,255,255,0.05)]  dark:bg-opacity-5 grid-flow-col gap-1 rounded-md not-italic m-[4px] py-[2px] p-1">
-										{/* <ImageComponent
-										className="w-full h-[inherit] object-cover"
-										src={featuredImage?.featuredImage?.mediaItemUrl ?? ""}
-										alt={featuredImage?.featuredImage?.caption ?? ""}
-										sizes={featuredImage?.featuredImage?.sizes ?? undefined}
-										width={32}
-										height={32}
-										card={true}
-									/> */}
-										<span className="font-light text-sm text-[rgba(0,0,0,0.55)] dark:text-[rgba(255,255,255,0.4)]">
+								<li key={slug} className="inline-block list-none">
+									<i className="leading-tight grid items-center bg-(--card-bg) grid-flow-col gap-1 rounded-md not-italic m-1 py-0.5 px-1">
+										<ImageComponent
+											className="w-full object-cover"
+											src={featuredImage?.featuredImage?.mediaItemUrl ?? ""}
+											alt={featuredImage?.featuredImage?.caption ?? ""}
+											sizes={featuredImage?.featuredImage?.sizes ?? undefined}
+											width={32}
+											height={32}
+											card={true}
+										/>
+										<span className="text-sm">
 											{name}
 										</span>
 									</i>
-								</div>
+								</li>
 							))}
-						</div>
+						</ul>
 						{blog?.author?.node?.user?.profilePic?.mediaItemUrl && (
 							<div className="flex justify-around my-10">
-								<div className="flex gap-2">
+								<div aria-label="Author" className="flex gap-2">
 									<span>
-										{/* <ImageComponent
-										className="w-9 h-[inherit] object-cover rounded-full"
-										src={blog?.author?.node?.user?.profilePic?.mediaItemUrl ?? ""}
-										alt={
-											"Profile Pic of " +
-											blog?.author?.node?.firstName +
-											" " +
-											blog?.author?.node?.lastName
-										}
-										sizes={blog?.author?.node?.user?.profilePic?.sizes ?? undefined}
-										width={1920}
-										height={952}
-										card={true}
-									/> */}
+										<ImageComponent
+											className="w-9 object-cover rounded-full"
+											src={blog?.author?.node?.user?.profilePic?.mediaItemUrl ?? ""}
+											alt={
+												"Profile Pic of " +
+												blog?.author?.node?.firstName +
+												" " +
+												blog?.author?.node?.lastName
+											}
+											sizes={blog?.author?.node?.user?.profilePic?.sizes ?? undefined}
+											width={1920}
+											height={952}
+											card={true}
+										/>
 									</span>
-									<span className="align-middle grid items-center text-lg font-thin italic">
+									<span aria-label="Author Name" className="align-middle grid items-center para-md font-thin italic">
 										{blog?.author?.node?.firstName} {blog?.author?.node?.lastName}
 									</span>
 								</div>
-								<div>
+								<div className="grid items-center" aria-label="Updated Date">
 									{/* modified date  */}
 									<p className="text-center m-0 text-lg font-thin italic">
 										Updated:{" "}
@@ -211,18 +211,18 @@ const Blog = async (props: Props) => {
 							</div>
 						)}
 
-						{/* {blog?.featuredImage?.node?.mediaItemUrl && (
-						<ImageComponent
-							className="w-full h-[inherit] object-cover"
-							src={blog?.featuredImage?.node?.mediaItemUrl ?? ""}
-							alt={blog?.featuredImage?.node?.caption ?? ""}
-							sizes={blog?.featuredImage?.node?.sizes ?? undefined}
-							width={1920}
-							height={952}
-							card={true}
-						/>
-					)} */}
-						<div className="sm:hidden grid grid-flow-col align-middle justify-center my-10 gap-4">
+						{blog?.featuredImage?.node?.mediaItemUrl && (
+							<ImageComponent
+								className="w-full object-cover"
+								src={blog?.featuredImage?.node?.mediaItemUrl ?? ""}
+								alt={blog?.featuredImage?.node?.caption ?? ""}
+								sizes={blog?.featuredImage?.node?.sizes ?? undefined}
+								width={1920}
+								height={952}
+								card={true}
+							/>
+						)}
+						<div aria-label="Social Share" className="sm:hidden grid grid-flow-col align-middle justify-center my-10 gap-4">
 							<a
 								href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(`https://akash.cx/blogs/${params.blog}`)}&text=${encodeURIComponent(blog?.title ?? "")}`}
 								target="_blank"

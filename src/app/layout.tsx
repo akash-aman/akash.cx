@@ -31,8 +31,8 @@ export default function RootLayout({
             </head>
             <body className="scrollbar bg-(--bg-secondary) h-svh">
                 <ApplyTheme />
-                <Navigation className="fixed w-full bottom-0 md:w-24 md:h-full md:left-0" />
-                <Layout className="h-full md:ml-24">{children}</Layout>
+                <Navigation className="fixed z-10 w-full bottom-0 md:w-24 md:h-full md:left-0" />
+                <Layout className="md:ml-24">{children}</Layout>
                 <RegisterPWA />
                 <GoogleAnalytics gaId="G-K5LQXQ8CTG" />
             </body>

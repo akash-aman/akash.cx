@@ -22,35 +22,37 @@ const NavMenu = ({ className }: { className?: string }) => {
 
 
   return (
-    <nav className={clsx("bg-(--bg-primary)", className)}>
-      <ul className="hidden md:flex flex-row items-center justify-center md:flex-col md:h-full md:w-24 md:p-2">
-        <li>
-          <Theme />
-        </li>
-        {
-          navMenu.map((item) => (
-            <li key={item.title} className="p-5 w-18 h-18  grid justify-center content-center rounded-full">
-              <Link href={item.link}>
-                <Tooltip area="right" content={item.title}>
-                  <Image className="" src={item.icon} alt={item.title} />
-                </Tooltip>
-              </Link>
-            </li>
-          ))
-        }
-      </ul>
-      <ul className="md:hidden flex flex-row items-center justify-center md:flex-col md:h-full md:w-24 md:p-2">
-        {
-          navModelMenu.map((item) => (
-            <li key={item.title} className="p-5 w-18 h-18  grid justify-center content-center rounded-full">
-              <Link href={item.link}>
-                <Image className="" src={item.icon} alt={item.title!} />
-              </Link>
-            </li>
-          ))
-        }
-      </ul>
-    </nav>
+    <header>
+      <nav className={clsx("bg-(--bg-primary)", className)}>
+        <ul className="hidden md:flex flex-row items-center justify-center md:flex-col md:h-full md:w-24 md:p-2 z-10">
+          <li>
+            <Theme />
+          </li>
+          {
+            navMenu.map((item) => (
+              <li key={item.title} className="p-5 w-18 h-18  grid justify-center content-center rounded-full">
+                <Link href={item.link}>
+                  <Tooltip area="right" content={item.title}>
+                    <Image className="" src={item.icon} alt={item.title} />
+                  </Tooltip>
+                </Link>
+              </li>
+            ))
+          }
+        </ul>
+        <ul className="md:hidden flex flex-row items-center justify-center md:flex-col md:h-full md:w-24 md:p-2 z-10">
+          {
+            navModelMenu.map((item) => (
+              <li key={item.title} className="p-5 w-18 h-18  grid justify-center content-center rounded-full">
+                <Link href={item.link}>
+                  <Image className="" src={item.icon} alt={item.title!} />
+                </Link>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+    </header>
   )
 }
 

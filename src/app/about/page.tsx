@@ -35,9 +35,11 @@ import Footer from '@/components/blocks/Footer';
 
 const Page = () => {
     return (
-        <div className='max-w-4xl mx-auto'>
-            <h1 className="heading-1 py-6 border-b border-(--dark-theme-300)">About </h1>
-            <section className='py-6 space-y-10'>
+        <article className='max-w-4xl mx-auto'>
+            <header>
+                <h1 className="heading-1 py-8 border-b border-(--dark-theme-300)">About </h1>
+            </header>
+            <section className='py-8 space-y-10'>
                 <p className='para-lg'>
                     I'm a <U className="gradient-green">Senior Software Engineer</U> 👨‍💻 at{" "}
                     <i className="not-italic animate-gradient font-extrabold text-transparent bg-clip-text bg-linear-to-r from-purple-400 to-pink-600">
@@ -65,86 +67,136 @@ const Page = () => {
                 </p>
 
                 <h2 className="heading-2 pt-4">Technical Arsenal 🛠️</h2>
-                <div className="flex flex-wrap gap-4 items-center">
-                    <Tooltip content="Golang">
-                        <Image className="hover:scale-110 transition-transform cursor-pointer" src={golang} alt="Golang" width="30" height="30" />
-                    </Tooltip>
-                    <Tooltip content="React">
-                        <Image className="hover:scale-110 transition-transform cursor-pointer" src={react} alt="React" width="30" height="30" />
-                    </Tooltip>
-                    <Tooltip content="SASS">
-                        <Image className="hover:scale-110 transition-transform cursor-pointer" src={sass} alt="SASS" width="30" height="30" />
-                    </Tooltip>
-                    <Tooltip content="JavaScript">
-                        <Image className="hover:scale-110 transition-transform cursor-pointer" src={javascript} alt="JavaScript" width="30" height="30" />
-                    </Tooltip>
-                    <Tooltip content="TypeScript">
-                        <Image className="hover:scale-110 transition-transform cursor-pointer" src={typescript} alt="TypeScript" width="30" height="30" />
-                    </Tooltip>
-                    <Tooltip content="Next.js">
-                        <Image className="hover:scale-110 transition-transform cursor-pointer" src={nextjs} alt="Next.js" width="30" height="30" />
-                    </Tooltip>
-                    {/* <Tooltip content="Gatsby">
-                        <Image className="hover:scale-110 transition-transform cursor-pointer" src={gatsby} alt="Gatsby" width="30" height="30" />
-                    </Tooltip> */}
-                    <Tooltip content="Redux">
-                        <Image className="hover:scale-110 transition-transform cursor-pointer" src={redux} alt="Redux" width="30" height="30" />
-                    </Tooltip>
-                    <Tooltip content="Tailwind CSS">
-                        <Image className="hover:scale-110 transition-transform cursor-pointer" src={tailwindcss} alt="Tailwind CSS" width="30" height="30" />
-                    </Tooltip>
-                    <Tooltip content="GraphQL">
-                        <Image className="hover:scale-110 transition-transform cursor-pointer" src={graphql} alt="GraphQL" width="30" height="30" />
-                    </Tooltip>
-                    <Tooltip content="NestJS">
-                        <Image className="hover:scale-110 transition-transform cursor-pointer" src={nestjs} alt="NestJS" width="30" height="30" />
-                    </Tooltip>
-                    <Tooltip content="C#">
-                        <Image className="hover:scale-110 transition-transform cursor-pointer" src={csharp} alt="C#" width="30" height="30" />
-                    </Tooltip>
-                    <Tooltip content="Node.js">
-                        <Image className="hover:scale-110 transition-transform cursor-pointer" src={nodejs} alt="Node.js" width="30" height="30" />
-                    </Tooltip>
-                    <Tooltip content="Python">
-                        <Image className="hover:scale-110 transition-transform cursor-pointer" src={python} alt="Python" width="30" height="30" />
-                    </Tooltip>
-                    <Tooltip content="NGINX">
-                        <Image className="hover:scale-110 transition-transform cursor-pointer" src={nginx} alt="NGINX" width="30" height="30" />
-                    </Tooltip>
-                    <Tooltip content="GitHub">
-                        <GitHub className="w-[30px] h-[30px] hover:scale-110 transition-transform cursor-pointer" />
-                    </Tooltip>
-                    <Tooltip content="MySQL">
-                        <Image className="hover:scale-110 transition-transform cursor-pointer" src={mysql} alt="MySQL" width="30" height="30" />
-                    </Tooltip>
-                    <Tooltip content="HTML5">
-                        <Image className="hover:scale-110 transition-transform cursor-pointer" src={html} alt="HTML5" width="30" height="30" />
-                    </Tooltip>
-                    <Tooltip content="CSS3">
-                        <Image className="hover:scale-110 transition-transform cursor-pointer" src={css} alt="CSS3" width="30" height="30" />
-                    </Tooltip>
-                    <Tooltip content="Figma">
-                        <Image className="hover:scale-110 transition-transform cursor-pointer" src={figma} alt="Figma" width="30" height="30" />
-                    </Tooltip>
-                    <Tooltip content="AWS">
-                        <Image className="hover:scale-110 transition-transform cursor-pointer" src={aws} alt="AWS" width="30" height="30" />
-                    </Tooltip>
-                    <Tooltip content="GCP">
-                        <Image className="hover:scale-110 transition-transform cursor-pointer" src={gcp} alt="GCP" width="30" height="30" />
-                    </Tooltip>
-                    <Tooltip content="Azure">
-                        <Image className="hover:scale-110 transition-transform cursor-pointer" src={azure} alt="Azure" width="30" height="30" />
-                    </Tooltip>
-                    <Tooltip content="Docker">
-                        <Image className="hover:scale-110 transition-transform cursor-pointer" src={docker} alt="Docker" width="30" height="30" />
-                    </Tooltip>
-                    <Tooltip content="Kubernetes">
-                        <Image className="hover:scale-110 transition-transform cursor-pointer" src={kubernetes} alt="Kubernetes" width="30" height="30" />
-                    </Tooltip>
-                </div>
+                <ul aria-label="Technical Skills" className="flex flex-wrap gap-4 items-center list-none p-0 m-0">
+                    <li>
+                        <Tooltip content="Golang">
+                            <Image className="hover:scale-110 transition-transform cursor-pointer" src={golang} alt="Golang" width="30" height="30" />
+                        </Tooltip>
+                    </li>
+                    <li>
+                        <Tooltip content="React">
+                            <Image className="hover:scale-110 transition-transform cursor-pointer" src={react} alt="React" width="30" height="30" />
+                        </Tooltip>
+                    </li>
+                    <li>
+                        <Tooltip content="SASS">
+                            <Image className="hover:scale-110 transition-transform cursor-pointer" src={sass} alt="SASS" width="30" height="30" />
+                        </Tooltip>
+                    </li>
+                    <li>
+                        <Tooltip content="JavaScript">
+                            <Image className="hover:scale-110 transition-transform cursor-pointer" src={javascript} alt="JavaScript" width="30" height="30" />
+                        </Tooltip>
+                    </li>
+                    <li>
+                        <Tooltip content="TypeScript">
+                            <Image className="hover:scale-110 transition-transform cursor-pointer" src={typescript} alt="TypeScript" width="30" height="30" />
+                        </Tooltip>
+                    </li>
+                    <li>
+                        <Tooltip content="Next.js">
+                            <Image className="hover:scale-110 transition-transform cursor-pointer" src={nextjs} alt="Next.js" width="30" height="30" />
+                        </Tooltip>
+                    </li>
+                    {/* <li>
+                        <Tooltip content="Gatsby">
+                            <Image className="hover:scale-110 transition-transform cursor-pointer" src={gatsby} alt="Gatsby" width="30" height="30" />
+                        </Tooltip>
+                    </li> */}
+                    <li>
+                        <Tooltip content="Redux">
+                            <Image className="hover:scale-110 transition-transform cursor-pointer" src={redux} alt="Redux" width="30" height="30" />
+                        </Tooltip>
+                    </li>
+                    <li>
+                        <Tooltip content="Tailwind CSS">
+                            <Image className="hover:scale-110 transition-transform cursor-pointer" src={tailwindcss} alt="Tailwind CSS" width="30" height="30" />
+                        </Tooltip>
+                    </li>
+                    <li>
+                        <Tooltip content="GraphQL">
+                            <Image className="hover:scale-110 transition-transform cursor-pointer" src={graphql} alt="GraphQL" width="30" height="30" />
+                        </Tooltip>
+                    </li>
+                    <li>
+                        <Tooltip content="NestJS">
+                            <Image className="hover:scale-110 transition-transform cursor-pointer" src={nestjs} alt="NestJS" width="30" height="30" />
+                        </Tooltip>
+                    </li>
+                    <li>
+                        <Tooltip content="C#">
+                            <Image className="hover:scale-110 transition-transform cursor-pointer" src={csharp} alt="C#" width="30" height="30" />
+                        </Tooltip>
+                    </li>
+                    <li>
+                        <Tooltip content="Node.js">
+                            <Image className="hover:scale-110 transition-transform cursor-pointer" src={nodejs} alt="Node.js" width="30" height="30" />
+                        </Tooltip>
+                    </li>
+                    <li>
+                        <Tooltip content="Python">
+                            <Image className="hover:scale-110 transition-transform cursor-pointer" src={python} alt="Python" width="30" height="30" />
+                        </Tooltip>
+                    </li>
+                    <li>
+                        <Tooltip content="NGINX">
+                            <Image className="hover:scale-110 transition-transform cursor-pointer" src={nginx} alt="NGINX" width="30" height="30" />
+                        </Tooltip>
+                    </li>
+                    <li>
+                        <Tooltip content="GitHub">
+                            <GitHub className="w-[30px] h-[30px] hover:scale-110 transition-transform cursor-pointer" />
+                        </Tooltip>
+                    </li>
+                    <li>
+                        <Tooltip content="MySQL">
+                            <Image className="hover:scale-110 transition-transform cursor-pointer" src={mysql} alt="MySQL" width="30" height="30" />
+                        </Tooltip>
+                    </li>
+                    <li>
+                        <Tooltip content="HTML5">
+                            <Image className="hover:scale-110 transition-transform cursor-pointer" src={html} alt="HTML5" width="30" height="30" />
+                        </Tooltip>
+                    </li>
+                    <li>
+                        <Tooltip content="CSS3">
+                            <Image className="hover:scale-110 transition-transform cursor-pointer" src={css} alt="CSS3" width="30" height="30" />
+                        </Tooltip>
+                    </li>
+                    <li>
+                        <Tooltip content="Figma">
+                            <Image className="hover:scale-110 transition-transform cursor-pointer" src={figma} alt="Figma" width="30" height="30" />
+                        </Tooltip>
+                    </li>
+                    <li>
+                        <Tooltip content="AWS">
+                            <Image className="hover:scale-110 transition-transform cursor-pointer" src={aws} alt="AWS" width="30" height="30" />
+                        </Tooltip>
+                    </li>
+                    <li>
+                        <Tooltip content="GCP">
+                            <Image className="hover:scale-110 transition-transform cursor-pointer" src={gcp} alt="GCP" width="30" height="30" />
+                        </Tooltip>
+                    </li>
+                    <li>
+                        <Tooltip content="Azure">
+                            <Image className="hover:scale-110 transition-transform cursor-pointer" src={azure} alt="Azure" width="30" height="30" />
+                        </Tooltip>
+                    </li>
+                    <li>
+                        <Tooltip content="Docker">
+                            <Image className="hover:scale-110 transition-transform cursor-pointer" src={docker} alt="Docker" width="30" height="30" />
+                        </Tooltip>
+                    </li>
+                    <li>
+                        <Tooltip content="Kubernetes">
+                            <Image className="hover:scale-110 transition-transform cursor-pointer" src={kubernetes} alt="Kubernetes" width="30" height="30" />
+                        </Tooltip>
+                    </li>
+                </ul>
             </section>
             <Footer />
-        </div>
+        </article>
     )
 }
 

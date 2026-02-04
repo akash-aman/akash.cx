@@ -9,7 +9,7 @@ const Card = ({ type, slug, fields }: { type: string; slug: string; fields: any 
 	return (
 		<>
 			<Link key={slug} href={`/${type}/${slug}`}>
-				<div className="bg-[var(--light-theme-500)] dark:bg-[var(--bg-glass-dark)] rounded-t-lg rounded-b-lg p-5">
+				<div className="bg-(--light-theme-500) dark:bg-(--bg-glass-dark) rounded-t-lg rounded-b-lg p-5">
 					<div className="w-full mb-4 rounded-t-md rounded-b-md aspect-video overflow-hidden place-content-center grid h-auto">
 						<ImageComponent
 							className="w-full h-[inherit] object-cover"
@@ -26,7 +26,7 @@ const Card = ({ type, slug, fields }: { type: string; slug: string; fields: any 
 					<div className="m-0 p-0 leading-3 mt-4">
 						{tags.nodes.map(({ name, slug, featuredImage }: { name: string; slug: string; featuredImage: any }) => (
 							<div key={slug} className="inline-block">
-								<i className="leading-2 grid items-center bg-[var(--bg-glass-light)]  dark:bg-slate-300 dark:bg-opacity-5 grid-flow-col gap-1 rounded-md not-italic m-[2px] py-[2px] p-1">
+								<i className="leading-2 grid items-center bg-(--bg-glass-light)  dark:bg-slate-300 dark:bg-opacity-5 grid-flow-col gap-1 rounded-md not-italic m-[2px] py-[2px] p-1">
 									<ImageComponent
 										className="w-full h-[inherit] object-cover"
 										src={featuredImage?.featuredImage?.mediaItemUrl}
@@ -36,7 +36,7 @@ const Card = ({ type, slug, fields }: { type: string; slug: string; fields: any 
 										height={18}
 										card={true}
 									/>
-									<span className="font-light text-xs text-[var(--text-glass-light)] dark:text-[var(--text-glass-dark)]">
+									<span className="font-light text-xs text-(--text-glass-light) dark:text-(--text-glass-dark)">
 										{name}
 									</span>
 								</i>
@@ -57,7 +57,7 @@ export const CardMini = ({ type, slug, fields }: { type: string; slug: string; f
 	return (
 		<>
 			<Link key={slug} href={`/${type}/${slug}`}>
-				<div className="bg-[var(--light-theme-500)] dark:bg-[rgba(255,255,255,0.05)] rounded-t-lg rounded-b-lg p-5">
+				<div className="bg-(--light-theme-500) dark:bg-[rgba(255,255,255,0.05)] rounded-t-lg rounded-b-lg p-5">
 					<p className="font-bold my-3 headFont leading-8 uppercase">{title}</p>
 					<p className="text-sm mb-3">{excerpt}</p>
 					{tags.length && (

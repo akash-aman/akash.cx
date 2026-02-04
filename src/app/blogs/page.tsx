@@ -6,6 +6,8 @@ import {
 import { Metadata } from "next";
 import { gqlAPI } from "@/config/constant";
 import { wretch } from "@/utils/fetchapi";
+import Footer from "@/components/blocks/Footer";
+import { U } from "@/components/elements/Html";
 
 /**
  * This is the metadata for the page.
@@ -80,11 +82,20 @@ const Page = async () => {
 	);
 
 	return (
-		<div className="grid w-full grid-cols-[repeat(auto-fill,minmax(230px,350px))] justify-center gap-8">
-			{
-				JSON.stringify(blogs)
-			}
-		</div>
+		<article className='max-w-4xl mx-auto'>
+			<header>
+				<h1 className="heading-1 py-8 border-b border-(--dark-theme-300)">Blogs </h1>
+			</header>
+			<section className='py-8 space-y-10'>
+				{blogs?.nodes?.map((blog) => (
+					<div key={blog?.slug} className="space-y-4">
+						<h2 className="heading-2">{blog?.title}</h2>
+						<p className="para-lg">{blog?.content}</p>
+					</div>
+				))}
+			</section>
+			<Footer />
+		</article>
 	);
 };
 

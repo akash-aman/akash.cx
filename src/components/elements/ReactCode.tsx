@@ -25,7 +25,7 @@ const ReactCode: React.FC<CodeProps> = ({
 	return !inline && match ? (
 		<>
 			<div
-				className="single-tab rounded-t-xl mt-8 py-1 px-4  bg-(--light-theme-500) dark:bg-(--code-bg-dark-80) flex max-w-min"
+				className="single-tab rounded-t-xl mt-8 py-1 px-4  bg-(--card-header) flex max-w-min"
 				title={`${match[1]} code`}
 			>
 				{match[1]}
@@ -42,7 +42,13 @@ const ReactCode: React.FC<CodeProps> = ({
 			</SyntaxHighlighter>
 		</>
 	) : (
-		<code className={clsx(className, "para-md")} {...props}>
+		<code
+			className={clsx(
+				className,
+				"para-md rounded-md px-2 py-1 bg-(--card-bg)",
+			)}
+			{...props}
+		>
 			{children}
 		</code>
 	);

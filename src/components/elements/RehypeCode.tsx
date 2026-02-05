@@ -35,15 +35,15 @@ const RehypeCode: FC<CodeProps> = ({ children, className, inline }) => {
 
 	return (
 		<>
-			<div className="single-tab rounded-t-xl py-1 px-4  bg-[var(--light-theme-500)] dark:bg-[var(--code-bg-dark-80)] flex max-w-min">
+			<div className="single-tab rounded-t-xl py-1 px-4  bg-(--light-theme-500) dark:bg-(--code-bg-dark-80) flex max-w-min">
 				{match[1]}
 			</div>
 			<pre className="code overflow-x-auto relative">
-				<div className="prismjs rounded-b-md max-h-[70vh] rounded-tr-md bg-[var(--light-theme-500)] dark:bg-[var(--code-bg-dark-30)] scrollbar overflow-x-auto p-4">
+				<div className="prismjs rounded-b-md max-h-[70vh] rounded-tr-md bg-(--light-theme-500) dark:bg-(--code-bg-dark-30) scrollbar overflow-x-auto p-4">
 					<button
 						title="Copy to clipboard"
 						onClick={copyToClipboard}
-						className="p-2 m-4 rounded-lg ctc absolute right-0 top-0 bg-[white] dark:bg-[var(--code-bg-dark-base)]"
+						className="p-2 m-4 rounded-lg ctc absolute right-0 top-0 bg-[white] dark:bg-(--code-bg-dark-base)"
 					>
 						{copied ? (
 							<Tick className="h-4 w-4" />

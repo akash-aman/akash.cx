@@ -8,7 +8,6 @@ import "styles/prism.scss";
 
 import ApplyTheme from "hooks/theme";
 import Navigation from "components/blocks/NavMenu";
-import Layout from "../layouts/basiclayout";
 import { RegisterPWA } from "./register-pwa";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { metadata, viewport } from "config/site";
@@ -33,7 +32,7 @@ export default function RootLayout({
             <body className="scrollbar bg-(--bg-secondary) h-svh">
                 <ApplyTheme />
                 <Navigation className="fixed z-10 w-full bottom-0 md:w-24 md:h-full md:left-0" />
-                <Layout className="md:ml-24">{children}</Layout>
+                <div className="md:ml-24 md:shadow-(--content-area-fade) grid min-h-full px-6 py-12 sm:px-12 sm:py-14 md:px-12 lg:px-16 md:py-20">{children}</div>
                 <RegisterPWA />
                 <GoogleAnalytics gaId="G-K5LQXQ8CTG" />
             </body>

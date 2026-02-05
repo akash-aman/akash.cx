@@ -12,7 +12,7 @@ export const Span = (props: SpanProps) => {
 		return (
 			<span
 				{...props}
-				className="span not-italic animate-gradient font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600"
+				className="span not-italic animate-gradient font-extrabold text-transparent bg-clip-text bg-linear-to-r from-purple-400 to-pink-600"
 			>
 				{props.children}
 			</span>
@@ -26,7 +26,7 @@ export const Span = (props: SpanProps) => {
 		return (
 			<span
 				{...props}
-				className="span not-italic animate-gradient font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-green-300 via-blue-500 to-purple-600"
+				className="span not-italic animate-gradient font-extrabold text-transparent bg-clip-text bg-linear-to-r from-green-300 via-blue-500 to-purple-600"
 			>
 				{props.children}
 			</span>

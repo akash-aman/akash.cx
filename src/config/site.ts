@@ -79,7 +79,7 @@ export const metadata: Metadata = {
         url: baseURL,
         images: [
             {
-                url: "/akash.cx.png",
+                url: "/portfolio.png",
                 width: 1920,
                 height: 952,
                 alt: "Akash Aman | Full Stack Dev",
@@ -109,7 +109,7 @@ export const metadata: Metadata = {
         site: baseURL,
         images: [
             {
-                url: "/akash.cx.png",
+                url: "/portfolio.png",
                 width: 1920,
                 height: 952,
                 alt: "Akash Aman | Full Stack Dev",

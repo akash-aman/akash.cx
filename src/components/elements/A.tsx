@@ -16,7 +16,7 @@ const A = ({ children, className, href, level }: AProps) => {
 				<div className="bg-neutral-100 dark:bg-neutral-800 p-6 sm:p-6 justify-between rounded-lg grid grid-flow-col  gap-5 sm:gap-5">
 					<div className="grid grid-flow-col gap-5 sm:gap-5">
 						<Leetcode className="w-8" />
-						<div>
+						<div className="self-center">
 							{children}
 						</div>
 					</div>

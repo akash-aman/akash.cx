@@ -1,6 +1,5 @@
 "use client";
 import React, { useState } from "react";
-import { useSpring, animated } from "@react-spring/web";
 
 interface TocProps {
 	isExist: boolean;
@@ -15,17 +14,11 @@ const Toc = (props: TocProps) => {
 		setIsOpen(!isOpen);
 	};
 
-	const animationProps = useSpring({
-		from: { height: 0, opacity: 0 },
-		to: { height: isOpen ? "max-content" : 0, opacity: isOpen ? 1 : 0 },
-		config: { duration: 300 },
-	});
-
 	return (
 		<>
 			{isExist && (
 				<>
-					<nav className="toc-details mb-0">
+					<nav className="toc-details mb-0 select-none">
 						<div
 							className="toc-heading my-4 flex justify-between"
 							onClick={toggleToc}
@@ -35,12 +28,13 @@ const Toc = (props: TocProps) => {
 								{isOpen ? "▲" : "▼"}
 							</span>
 						</div>
-						<animated.div
-							style={animationProps}
-							className="toc-content scrollbar max-h-80 mr overflow-y-auto xl:mr-6"
-						>
-							{children}
-						</animated.div>
+						{
+							isOpen && <div
+								className="toc-content scrollbar max-h-80 mr animate-page-enter overflow-y-auto xl:mr-6"
+							>
+								{children}
+							</div>
+						}
 					</nav>
 				</>
 			)}

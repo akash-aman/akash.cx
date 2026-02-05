@@ -32,7 +32,7 @@ const Page = () => {
   return (
     <article className="max-w-6xl mx-auto">
       <header>
-        <h1 className="heading-1 py-8 border-b border-(--dark-theme-300)">Timeline</h1>
+        <h1 className="heading-1 py-8 border-b border-(--dark-theme-300)">Projects</h1>
       </header>
       <div className="projects my-12 mx-3 grid grid-cols-2 grid-flow-row-dense">
         {projects.map(({ title, description, year, image, techstack, link }, index) => {
@@ -45,7 +45,7 @@ const Page = () => {
                 }}
                 className={`${row} t-${index} relative timeline-detail`}
               >
-                <a href={link}> <div className="max-w-xl w-lg grid items-start">
+                <a href={link} target="_blank">  <div className="max-w-xl w-lg grid items-start">
                   <div className="rounded-lg p-4 lg:p-7 bg-(--card-bg) hover:shadow-lg">
                     <h2 className="opacity-90 font-thin heading-4 mb-4">
                       {title}

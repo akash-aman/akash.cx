@@ -1,0 +1,122 @@
+// Timeline colors
+$timeline-colors: (
+	rgba(0, 153, 255, 1),
+	rgba(0, 168, 247, 1),
+	rgba(0, 182, 239, 1),
+	rgba(0, 197, 231, 1),
+	rgba(0, 211, 224, 1),
+	rgba(0, 226, 216, 1),
+	rgba(0, 240, 208, 1),
+	rgba(0, 255, 200, 1),
+	rgba(0, 255, 200, 1) // t-8 matches t-7
+);
+
+.timeline .even-row.timeline-year,
+.timeline .odd-row.timeline-detail,
+.projects .even-row.timeline-year,
+.projects .odd-row.timeline-detail {
+	grid-column-start: 2;
+	display: flex;
+	justify-content: flex-start;
+	padding: 0 0 4rem 2rem;
+	border-left: 2.5px solid var(--dev-text-color6);
+    transition: background-color 0.5s ease-in-out;
+	top: 0px;
+}
+
+.timeline .even-row.timeline-detail,
+.timeline .odd-row.timeline-year,
+.projects .even-row.timeline-detail,
+.projects .odd-row.timeline-year {
+	grid-column-start: 1;
+	display: flex;
+	justify-content: flex-end;
+	padding: 0 2rem 4rem 0;
+	border-right: 2.5px solid var(--dev-text-color6);
+	top: 0px;
+    transition: background-color 0.5s ease-in-out;
+}
+
+.timeline .odd-row.timeline-year,
+.projects .odd-row.timeline-year {
+	text-align: end;
+	& > div {
+		position: absolute;
+		top: 0;
+		transform: translate(0, -50%);
+	}
+	&::after {
+		top: -1rem;
+		content: "";
+		position: absolute;
+		right: -2px;
+		transform: translate(50%, 0);
+		width: 2rem;
+		height: 2rem;
+		border-radius: 50%;
+		background-color: var(--dev-text-color7);
+		transition: background-color 0.5s ease-in-out;
+	}
+}
+
+.timeline .even-row.timeline-year,
+.projects .even-row.timeline-year {
+	& > h1 {
+		text-align: start;
+		width: fit-content;
+	}
+	& > div {
+		position: absolute;
+		top: 0;
+		transform: translate(0, -50%);
+	}
+	&::before {
+		top: -1rem;
+		content: "";
+		position: absolute;
+		left: -2px;
+		transform: translate(-50%, 0);
+		width: 2rem;
+		height: 2rem;
+		border-radius: 50%;
+		background-color: var(--dev-text-color7);
+		transition: background-color 0.5s ease-in-out;
+	}
+}
+
+// Loop to generate color classes
+@each $color in $timeline-colors {
+	$i: index($timeline-colors, $color) - 1;
+	
+	.timeline .odd-row.timeline-year.animate.t-#{$i}::after,
+	.projects .odd-row.timeline-year.animate.t-#{$i}::after {
+		background-color: $color;
+	}
+
+	.timeline .even-row.timeline-year.animate.t-#{$i}::before,
+	.projects .even-row.timeline-year.animate.t-#{$i}::before {
+		background-color: $color;
+	}
+
+	.timeline .even-row.timeline-year.animate.t-#{$i},
+	.timeline .odd-row.timeline-detail.animate.t-#{$i},
+	.projects .even-row.timeline-year.animate.t-#{$i},
+	.projects .odd-row.timeline-detail.animate.t-#{$i} {
+		border-left: 2.5px solid rgba($color, 0.8);
+	}
+
+	.timeline .even-row.timeline-detail.animate.t-#{$i},
+	.timeline .odd-row.timeline-year.animate.t-#{$i},
+	.projects .even-row.timeline-detail.animate.t-#{$i},
+	.projects .odd-row.timeline-year.animate.t-#{$i} {
+		border-right: 2.5px solid rgba($color, 0.8);
+	}
+}
+
+.timeline .even-row.timeline-year.animate,
+.timeline .odd-row.timeline-detail.animate,
+.projects .even-row.timeline-year.animate,
+.projects .odd-row.timeline-detail.animate {
+	animation: slide-in 0.5s ease-in-out;
+	animation-fill-mode: forwards;
+}

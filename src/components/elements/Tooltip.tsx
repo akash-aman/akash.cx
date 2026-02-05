@@ -19,7 +19,7 @@ export const Tooltip = ({ children, content, area = "top" }: TooltipProps) => {
         <div className="relative group flex items-center justify-center">
             {children}
             <div className={clsx(
-                "absolute opacity-0 group-hover:opacity-100 transition-all! duration-200! ease-out! transform scale-95 group-hover:scale-100 pointer-events-none group-hover:pointer-events-auto px-2.5 py-1 bg-(--card-bg) text-(--text-main) text-xs font-medium rounded-md whitespace-nowrap z-50 shadow-lg border border-(--border-color)",
+                "absolute opacity-0 group-hover:opacity-100 transition-all! duration-200! ease-out! transform scale-95 group-hover:scale-100 pointer-events-none group-hover:pointer-events-auto px-2.5 py-1 bg-(--card-header) text-(--text-main) text-xs font-medium rounded-md whitespace-nowrap z-50 shadow-lg border border-(--border-color)",
                 positionClasses[area]
             )}>
                 {content}

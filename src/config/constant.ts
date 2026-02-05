@@ -1,17 +1,18 @@
 import Portfolio from "@/assets/images/Portfolio.png";
+import dynamixLayout from "@/assets/images/dynamix-layout.jpg";
+import ragProject from "@/assets/images/rag-project.png";
+import microservices from "@/assets/images/microservice.png";
 import Pattern from "@/assets/images/Github_Pattern.png";
-import markdownPreviewer from "@/assets/images/markdown_previewer.png";
-import cgpaCalculator from "@/assets/images/cgpa-calculator.png";
-import frontendSearch from "@/assets/images/frontend_search.png";
-import cms from "@/assets/images/cms.png";
 import {
 	Adobe,
 	CSS3,
 	DigitalOcean,
 	Docker,
+
 	Figma,
 	Gatsby,
 	GitHub,
+	GoLang,
 	GraphQL,
 	HTML5,
 	JS,
@@ -44,45 +45,48 @@ import {
 
 export const timeLine = [
 	{
-		title: "Software Engineer",
-		description: "Software Engineer 🎉 at rtCamp India 💖",
+		title: "Senior Software Engineer",
+		description: "Leading architectural excellence at rtCamp 🚀. Building high-scale web apps and mentoring the next cohort of engineers.",
 		year: "Current",
 	},
 	{
-		title: "Intern",
-		description: "Intern 👦 at rtCamp India",
+		title: "Software Engineer",
+		description: "Mastering the stack at rtCamp. Shipping enterprise features and contributing to the open-source ecosystem.",
+		year: "2024",
+	},
+	{
+		title: "The Professional Debut",
+		description: "Began as an Intern at rtCamp 👦. Turning complex logic into production-ready code used by millions.",
 		year: "2022",
 	},
 	{
-		title: "Graduate",
-		description: "B.Tech in Electronics & Communications and Engineering 👨‍🎓",
+		title: "Engineering Graduate",
+		description: "B.Tech in Electronics & Communications 🎓. The foundation of my technical problem-solving mindset.",
 		year: "2022",
 	},
 	{
-		title: "High School",
-		description: "High School 🏫 from Sacred Heart School 🚸",
+		title: "Schooling Days",
+		description: "Completed High School at Sacred Heart School 🏫. Where my curiosity for science and tech began.",
 		year: "2017",
 	},
 	{
-		title: "First Interaction with Internet",
-		description:
-			"My initial exposure to the internet 🌐 occurred when I was 8 years old, During that time, we used dial-up 📞 networking. ☎️",
+		title: "The Dial-up Era",
+		description: "First step into the digital world 🌐. Learning patience at 56kbps—the screech of the modem was my intro to tech.",
 		year: "2008",
 	},
 	{
-		title: "First Interaction with Computer Games",
-		description:
-			"At the age of 5, I had my initial experience with computer 🎮 games.",
+		title: "Pixels & Play",
+		description: "My first experience with video games 🎮. Discovering that a screen could be an interactive playground.",
 		year: "2005",
 	},
 	{
-		title: "Born",
-		description: "Born 👶 in a small town of Bihar, India",
+		title: "Hello World",
+		description: "Born 👶 in a small town in Bihar, India. The start of the journey.",
 		year: "2000",
 	},
 	{
-		title: "The Earliest Home Computer",
-		description: "The first computer 🖥️, purchased before my birth.",
+		title: "The Legacy PC",
+		description: "Our family's first computer 🖥️. It arrived before I did—waiting for me to hit the power button.",
 		year: "1997",
 	},
 ];
@@ -224,55 +228,47 @@ export const techstack = [
 
 export const projects = [
 	{
+		title: "Dynamix Layout",
+		description: "An open-source library for building complex, multi-panel user interfaces with JavaScript.",
+		year: "2025",
+		link: "https://github.com/akash-aman/dynamix-layout",
+		image: dynamixLayout, // Ensure you have this import
+		techstack: [JS, TS], // Based on your core tech interests
+	},
+
+	{
+		title: "RAG Engine",
+		description: "A Retrieval-Augmented Generation implementation designed for efficient data querying and AI context.",
+		year: "2025",
+		link: "https://github.com/akash-aman/RAG",
+		image: ragProject,
+		techstack: [Python],
+	},
+	{
+		title: "Microservices Architecture",
+		description: "A robust backend system demonstrating concurrency patterns and scalable service communication.",
+		year: "2024",
+		link: "https://github.com/akash-aman/microservice",
+		image: microservices,
+		techstack: [GoLang, Docker],
+	},
+	{
 		title: "Portfolio",
-		description: "My Portfolio built using NextJS, & TailwindCSS",
-		year: "2023",
-		link: "",
+		description: "A high-performance personal site built with NextJS and Tailwind to showcase my engineering journey.",
+		year: "2024",
+		link: "https://github.com/akash-aman/Portfolio",
 		image: Portfolio,
-		techstack: [NextJS, Tailwind, TS, SASS, Firebase],
+		techstack: [NextJS, Tailwind, TS],
 	},
 	{
 		title: "GitHub TimeLine Pattern Generator",
 		description:
 			"Build script to generate GitHub TimeLine Pattern using GitHub API & NodeJS",
 		year: "2022",
-		link: "",
+		link: "https://github.com/akash-aman?tab=overview&from=2019-12-01&to=2019-12-31",
 		image: Pattern,
 		techstack: [NodeJS, JS],
-	},
-	{
-		title: "Next JS CMS",
-		description:
-			" A CMS built using NextJS, firebase & Node JS with a dashboard to manage the content of the website",
-		year: "2022",
-		link: "",
-		image: cms,
-		techstack: [NextJS, JS, SASS, NodeJS, Firebase, GraphQL],
-	},
-	{
-		title: "Markdown Previewer",
-		description: "A simple markdown previewer built using ReactJS",
-		year: "2022",
-		link: "",
-		image: markdownPreviewer,
-		techstack: [NextJS, JS, SASS, Docker],
-	},
-	{
-		title: "Dynamic CGPA Calculator",
-		description:
-			"A dynamic CGPA calculator which calculates CGPA a/c to number of subjects and their credits & and also no of semester semesters",
-		year: "2022",
-		link: "",
-		image: cgpaCalculator,
-		techstack: [NextJS, JS, Tailwind, Redux, Docker],
-	},
-	{
-		title: "Client Docs Search",
-		description: "A reverse engineered MDN Docs Search Implementation.",
-		year: "2022",
-		link: "",
-		image: frontendSearch,
-		techstack: [NextJS, JS, Redux],
+
 	},
 ];
 

@@ -195,7 +195,7 @@ const Page = () => {
                     </li>
                 </ul>
             </section>
-            <Footer />
+            <Footer nav='home' />
         </article>
     )
 }

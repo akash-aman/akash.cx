@@ -121,6 +121,13 @@ const Chapter = async (props: Props) => {
 					<Image src={arrow} className="w-5 inline-block" alt="arrow" />
 					<Link
 						href={`/courses/${params.course}`}
+						className="tk-attribute-mono"
+					>
+						{params.course}
+					</Link>
+					<Image src={arrow} className="w-5 inline-block" alt="arrow" />
+					<Link
+						href={`/courses/${params.course}/${params.chapter}`}
 						className="tk-attribute-mono text-black! dark:text-white!"
 					>
 						{chapter?.title}

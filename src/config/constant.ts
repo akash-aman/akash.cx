@@ -315,12 +315,10 @@ export const paths = [
 ];
 
 import project from "@/assets/svgs/project.svg";
-import techstackIcon from "@/assets/svgs/fullstack.svg";
 import about from "@/assets/svgs/about.svg";
 import timelineIcon from "@/assets/svgs/timeline.svg";
 import blogIcon from "@/assets/svgs/blog.svg";
 import courseIcon from "@/assets/svgs/course.svg";
-import more from "@/assets/svgs/more.svg";
 
 export const navMenu = [
 	{

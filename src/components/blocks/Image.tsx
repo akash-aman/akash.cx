@@ -29,7 +29,7 @@ const ImageComponent = async ({
 			const Svg = await res.text();
 			return (
 				<span
-					className="w-4.5 h-4.5"
+					className="w-4.5 h-4.5 p-6"
 					dangerouslySetInnerHTML={{ __html: Svg }}
 				/>
 			);
@@ -54,7 +54,7 @@ const ImageComponent = async ({
 	}
 
 	return (
-		<span className="grid justify-center bg-slate-700 dark:bg-slate-300 dark:bg-opacity-5 bg-opacity-5 rounded-lg p-2 md:p-5">
+		<span className="grid justify-center bg-(--card-bg) dark:bg-opacity-5 bg-opacity-5 mb-6 rounded-lg p-2 md:p-5">
 			<Image
 				sizes={
 					sizes || "(min-width: 1200px) 45vw, (min-width: 900px) 60vw, 100vw"

@@ -9,8 +9,8 @@ import { Ul, Ol, Li } from "../elements/List";
 import { H1, H2, H3, H4, H5, H6 } from "../elements/Heading";
 import { Span } from "../elements/Span";
 import { U } from "../elements/Html";
-import ImageElement from "../elements/Image";
 import A from "../elements/A";
+import ImageComponent from "@/components/blocks/Image";	
 import ReactCode from "../elements/ReactCode";
 
 export const elements: { [key: string]: React.ElementType | Components } = {
@@ -27,7 +27,7 @@ export const elements: { [key: string]: React.ElementType | Components } = {
 	pre: Pre,
 	u: U,
 	span: Span,
-	img: ImageElement,
+	img: ImageComponent,
 	code: ReactCode,
 	multicode: MultiCode,
 	blockquote: Blockquote,

@@ -139,6 +139,6 @@ export const viewport: Viewport = {
     width: "device-width",
     initialScale: 1,
     userScalable: true,
-    // colorScheme: "light dark",
-    // themeColor: "#000000",
+    colorScheme: "light dark",
+    themeColor: "#000000",
 };

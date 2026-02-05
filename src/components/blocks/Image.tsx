@@ -29,7 +29,7 @@ const ImageComponent = async ({
 			const Svg = await res.text();
 			return (
 				<span
-					className="w-4.5 h-4.5 p-6"
+					className="w-4.5 h-4.5"
 					dangerouslySetInnerHTML={{ __html: Svg }}
 				/>
 			);

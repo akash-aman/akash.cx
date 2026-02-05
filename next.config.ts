@@ -27,6 +27,10 @@ const nextConfig = {
 			},
 			{
 				protocol: "http",
+				hostname: "backend.akash.cx",
+			},
+			{
+				protocol: "http",
 				hostname: "strapi",
 				port: "1337",
 			},

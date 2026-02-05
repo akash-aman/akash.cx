@@ -25,7 +25,7 @@ const NavMenu = ({ className }: { className?: string }) => {
     <header>
       <nav className={clsx("bg-(--bg-primary)", className)}>
         <ul className="hidden md:flex flex-row items-center justify-center md:flex-col md:h-full md:w-24 md:p-2 z-10">
-          <li>
+          <li className="p-5 w-18 h-18  grid justify-center content-center rounded-full">
             <Theme />
           </li>
           {
@@ -41,6 +41,9 @@ const NavMenu = ({ className }: { className?: string }) => {
           }
         </ul>
         <ul className="md:hidden flex flex-row items-center justify-center md:flex-col md:h-full md:w-24 md:p-2 z-10">
+          <li className="p-5 w-18 h-18  grid justify-center content-center rounded-full">
+            <Theme />
+          </li>
           {
             navModelMenu.map((item) => (
               <li key={item.title} className="p-5 w-18 h-18  grid justify-center content-center rounded-full">

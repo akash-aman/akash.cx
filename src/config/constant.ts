@@ -368,6 +368,13 @@ export const navModelMenu = [
 		description: "Courses",
 	},
 	{
+		icon: blogIcon,
+		link: "/blogs",
+		name: "Blogs",
+		title: "Blogs",
+		description: "Blogs",
+	},
+	{
 		icon: project,
 		link: "/projects",
 		name: "Projects",

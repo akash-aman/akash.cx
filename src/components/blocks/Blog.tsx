@@ -1,17 +1,17 @@
 import remarkGfm from "remark-gfm";
-import remarkToc from "../../plugins/remarkToc";
-import remarkTocRM from "../../plugins/remarkTocRM";
+import remarkToc from "@/plugins/remarkToc";
+import remarkTocRM from "@/plugins/remarkTocRM";
 import remarkMath from "remark-math"; //'../plugins/remarkMath'
 import rehypeRaw from "rehype-raw";
 import rehypeSlug from "rehype-slug";
 import rehypeKatex from "rehype-katex"; //'../plugins/rehypeKatex'
-import rehypeSanitize from "../../plugins/rehypeSanitize";
+import rehypeSanitize from "@/plugins/rehypeSanitize";
 import { FC } from "react";
 import ReactMarkdown from "react-markdown";
 import { elements } from "./Components";
-import rehypePrism from "rehype-prism-plus";
-import Toc from "../elements/Toc";
-import Mermaid from "./Mermaid";
+// import rehypePrism from "rehype-prism-plus";
+import Toc from "@/components/elements/Toc";
+// import Mermaid from "./Mermaid";
 
 type BlogProps = {
 	markdown?: string;

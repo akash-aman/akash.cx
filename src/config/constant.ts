@@ -361,6 +361,13 @@ export const navMenu = [
 
 export const navModelMenu = [
 	{
+		icon: about,
+		link: "/",
+		name: "Home",
+		title: "Home",
+		description: "Home",
+	},
+	{
 		icon: courseIcon,
 		link: "/courses",
 		name: "Courses",

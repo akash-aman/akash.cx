@@ -26,12 +26,12 @@ const ReactCode: React.FC<CodeProps> = ({
 	return !inline && match ? (
 		<>
 			<div
-				className="single-tab rounded-t-xl mt-8 py-1 px-4  bg-(--card-header) flex max-w-min"
+				className="single-tab rounded-t-xl mt-8 py-1 px-4   bg-(--card-header) flex max-w-min"
 				title={`${match[1]} code`}
 			>
 				{match[1]}
 			</div>
-			<div className="relative group">
+			<div className="relative group w-full overflow-auto scrollbar bg-(--card-bg) p-4">
 				<CopyButton text={String(children).replace(/\n$/, "")} />
 				<SyntaxHighlighter
 					language={match[1]}
@@ -39,7 +39,7 @@ const ReactCode: React.FC<CodeProps> = ({
 					useInlineStyles={false}
 					{...props}
 					style={{}}
-					className="rounded-b-md rounded-tr-md bg-(--card-bg) scrollbar overflow-x-auto p-4 mb-6"
+					className="rounded-b-md max-h-[70vh] rounded-tr-md p-4 mb-6"
 				>
 					{String(children).replace(/\n$/, "")}
 				</SyntaxHighlighter>

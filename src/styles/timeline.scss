@@ -1,3 +1,5 @@
+@use "sass:list";
+
 // Timeline colors
 $timeline-colors: (
 	rgba(0, 153, 255, 1),
@@ -86,7 +88,7 @@ $timeline-colors: (
 
 // Loop to generate color classes
 @each $color in $timeline-colors {
-	$i: index($timeline-colors, $color) - 1;
+	$i: list.index($timeline-colors, $color) - 1;
 	
 	.timeline .odd-row.timeline-year.animate.t-#{$i}::after,
 	.projects .odd-row.timeline-year.animate.t-#{$i}::after {

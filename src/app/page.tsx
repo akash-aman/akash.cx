@@ -133,7 +133,8 @@ const Page = async () => {
 				<div className="grid content-center justify-start md:pt-14 sm:pt-8">
 					<h1 className="heading-1 opacity-90 m-0 text-left">Hey!👋🏻, I`m Akash</h1>
 					<span>
-						<h1 className="heading-1 inline opacity-50 m-0 text-left"> Full Stack Developer</h1>
+						<h1 className="hidden heading-1 sm:inline opacity-50 m-0 text-left"> Full Stack Developer</h1>
+						<h1 className="heading-1 inline sm:hidden opacity-50 m-0 text-left"> Full Stack Dev</h1>
 						<Dev className="md:w-15 md:h-15 w-12 h-12 inline" />
 					</span>
 					<div className="flex flex-wrap items-center gap-6 mt-8 justify-start">

@@ -1,6 +1,5 @@
 import React from "react";
 import { Components } from "react-markdown";
-import RehypeCode from "../elements/RehypeCode";
 import MultiCode from "../elements/MultiCode";
 import Blockquote from "../elements/Blockquote";
 import P from "../elements/P";
@@ -10,8 +9,9 @@ import { H1, H2, H3, H4, H5, H6 } from "../elements/Heading";
 import { Span } from "../elements/Span";
 import { U } from "../elements/Html";
 import A from "../elements/A";
-import ImageComponent from "@/components/blocks/Image";	
+import ImageComponent from "@/components/blocks/Image";
 import ReactCode from "../elements/ReactCode";
+import { Table, Tbody, Td, Th, Thead, Tr } from "../elements/Table";
 
 export const elements: { [key: string]: React.ElementType | Components } = {
 	h1: H1,
@@ -32,4 +32,10 @@ export const elements: { [key: string]: React.ElementType | Components } = {
 	multicode: MultiCode,
 	blockquote: Blockquote,
 	a: A,
+	table: Table,
+	thead: Thead,
+	tbody: Tbody,
+	tr: Tr,
+	th: Th,
+	td: Td,
 };

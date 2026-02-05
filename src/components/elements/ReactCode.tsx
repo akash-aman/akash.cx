@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import React from "react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import CopyButton from "./CopyButton";
 // scss is written in main
 // import { atomDark } from 'react-syntax-highlighter/dist/cjs/styles/prism'
 interface CodeProps {
@@ -30,16 +31,19 @@ const ReactCode: React.FC<CodeProps> = ({
 			>
 				{match[1]}
 			</div>
-			<SyntaxHighlighter
-				language={match[1]}
-				key={match[1]}
-				useInlineStyles={false}
-				{...props}
-				style={{}}
-				className="rounded-b-md rounded-tr-md bg-(--card-bg) scrollbar overflow-x-auto p-4 mb-6"
-			>
-				{String(children).replace(/\n$/, "")}
-			</SyntaxHighlighter>
+			<div className="relative group">
+				<CopyButton text={String(children).replace(/\n$/, "")} />
+				<SyntaxHighlighter
+					language={match[1]}
+					key={match[1]}
+					useInlineStyles={false}
+					{...props}
+					style={{}}
+					className="rounded-b-md rounded-tr-md bg-(--card-bg) scrollbar overflow-x-auto p-4 mb-6"
+				>
+					{String(children).replace(/\n$/, "")}
+				</SyntaxHighlighter>
+			</div>
 		</>
 	) : (
 		<code

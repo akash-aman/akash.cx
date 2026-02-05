@@ -47,12 +47,12 @@ export const timeLine = [
 	{
 		title: "Senior Software Engineer",
 		description: "Leading architectural excellence at rtCamp 🚀. Building high-scale web apps and mentoring the next cohort of engineers.",
-		year: "Current",
+		year: "2024 - Current",
 	},
 	{
 		title: "Software Engineer",
 		description: "Mastering the stack at rtCamp. Shipping enterprise features and contributing to the open-source ecosystem.",
-		year: "2024",
+		year: "2023",
 	},
 	{
 		title: "The Professional Debut",

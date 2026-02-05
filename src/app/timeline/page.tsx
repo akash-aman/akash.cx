@@ -25,7 +25,7 @@ const Page = () => {
 
   return (
     <article className="max-w-4xl mx-auto">
-      <header>
+      <header className="pb-4 sm:pb-0">
         <h1 className="heading-1 py-8 border-b border-(--dark-theme-300)">Timeline</h1>
       </header>
       <section className="timeline my-12 mx-3 grid grid-cols-2 grid-flow-row-dense">

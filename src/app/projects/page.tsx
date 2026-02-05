@@ -45,7 +45,7 @@ const Page = () => {
                 }}
                 className={`${row} t-${index} relative timeline-detail`}
               >
-                <a href={link} target="_blank">  <div className="max-w-xl w-lg grid items-start">
+                <a href={link} target="_blank">  <div className="max-w-xl w-full xl:w-lg grid items-start">
                   <div className="rounded-lg p-4 lg:p-7 bg-(--card-bg) hover:shadow-lg">
                     <h2 className="opacity-90 font-thin heading-4 mb-4">
                       {title}
@@ -74,7 +74,7 @@ const Page = () => {
                     {year}
                   </h1>
                 </div>
-                <figure className="pt-10 max-w-lg w-lg">
+                <figure className="pt-10 max-w-lg w-full md:w-lg">
                   <Image
                     src={image}
                     alt={title}

@@ -24,12 +24,12 @@ const ReactCode: React.FC<CodeProps> = ({
 	return !inline && match ? (
 		<>
 			<div
-				className="single-tab rounded-t-xl mt-8 py-1 px-4 bg-(--card-header) flex max-w-min"
+				className="single-tab rounded-t-xl mt-2.5 py-1 px-4 bg-(--card-header) flex max-w-min"
 				title={`${match[1]} code`}
 			>
 				{match[1]}
 			</div>
-			<div className="relative group w-full overflow-auto scrollbar bg-(--card-bg) p-4 mb-6">
+			<div className="relative group w-full overflow-auto scrollbar bg-(--card-bg) p-4 mb-8">
 				<CopyButton text={String(children).replace(/\n$/, "")} />
 				<SyntaxHighlighter
 					language={match[1]}

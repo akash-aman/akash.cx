@@ -83,6 +83,11 @@ time {
   font-family: var(--font-sofia-pro);
 }
 
+strong {
+  color: var(--text-bold);
+  font-weight: bolder;
+}
+
 code *,
 pre *{
   font-family: var(--font-attribute-mono);

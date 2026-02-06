@@ -9,10 +9,14 @@ interface AProps {
 	level?: string;
 }
 
+import { baseURL } from "@/config/constant";
+
 const A = ({ children, className, href, level }: AProps) => {
+	const isInternal = href.startsWith("/") || href.startsWith("#") || href.startsWith(baseURL);
+
 	if (className == "leetcode") {
 		return (
-			<Link href={href}>
+			<Link href={href} target="_blank">
 				<div className="bg-neutral-100 dark:bg-neutral-800 p-6 sm:p-6 justify-between rounded-lg grid grid-flow-col  gap-5 sm:gap-5">
 					<div className="grid grid-flow-col gap-5 sm:gap-5">
 						<Leetcode className="w-8" />
@@ -27,9 +31,9 @@ const A = ({ children, className, href, level }: AProps) => {
 	}
 
 	return (
-		<a className="a" href={href}>
+		<Link className="a" href={href} target={isInternal ? undefined : "_blank"}>
 			{children}
-		</a>
+		</Link>
 	);
 };
 

@@ -1,6 +1,6 @@
 import type { BlogsPageQuery, CoursesPageQuery } from 'generated/graphql'
 import Link from 'next/link';
-import Image from 'next/image';
+import ImageComponent from '@/components/blocks/Image';
 
 const Card = ({ type, fields }: {
     type: 'blog' | 'course';
@@ -32,10 +32,11 @@ const Card = ({ type, fields }: {
             <Link href={href} className="flex flex-col h-full">
                 <div className="relative w-full aspect-video overflow-hidden">
                     {image ? (
-                        <Image
+                        <ImageComponent
                             src={image}
                             alt={title}
                             fill
+                            padding={false}
                             className="object-cover transition-transform! duration-500! group-hover:scale-105! ease-in-out!"
                             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         />
@@ -66,10 +67,10 @@ const Card = ({ type, fields }: {
                                     <div key={tag?.slug || tag?.name} className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-md bg-(--bg-secondary)/90">
                                         {tagImage && (
                                             <div className="relative w-4 h-4 shrink-0">
-                                                <Image
+                                                <ImageComponent
                                                     src={tagImage}
                                                     alt={tag?.name}
-                                                    fill
+                                                    padding={false}
                                                     className="object-contain"
                                                 />
                                             </div>

@@ -1,5 +1,5 @@
-import React from "react";
 import Image from "next/image";
+import clsx from "clsx";
 
 interface ImageComponentProps {
 	src: string;
@@ -8,6 +8,7 @@ interface ImageComponentProps {
 	height?: number | `${number}`;
 	width?: number | `${number}`;
 	card?: boolean;
+	padding?: boolean;
 	[key: string]: any;
 }
 
@@ -18,6 +19,7 @@ const ImageComponent = async ({
 	height,
 	width,
 	card = false,
+	padding = true,
 	...fields
 }: ImageComponentProps) => {
 	if (!src) return <span></span>;
@@ -29,7 +31,7 @@ const ImageComponent = async ({
 			const Svg = await res.text();
 			return (
 				<span
-					className="w-4.5 h-4.5"
+					className={clsx("w-4.5 h-4.5", padding && "p-2 md:p-5 mb-6")}
 					dangerouslySetInnerHTML={{ __html: Svg }}
 				/>
 			);
@@ -38,6 +40,9 @@ const ImageComponent = async ({
 			return null;
 		}
 	}
+
+	const imageProps = fields.fill ? { ...fields } : { width: width || "900", height: height || "700", ...fields };
+
 	if (card) {
 		return (
 			<Image
@@ -46,24 +51,20 @@ const ImageComponent = async ({
 				}
 				src={src}
 				alt={alt || "Image"}
-				width={width || "900"}
-				height={height || "700"}
-				{...fields}
+				{...imageProps}
 			/>
 		);
 	}
 
 	return (
-		<span className="grid justify-center bg-(--card-bg) dark:bg-opacity-5 bg-opacity-5 mb-6 rounded-lg p-2 md:p-5">
+		<span className={clsx("grid justify-center bg-(--card-bg) dark:bg-opacity-5 bg-opacity-5 mb-6 rounded-lg", padding && "p-2 md:p-5")}>
 			<Image
 				sizes={
 					sizes || "(min-width: 1200px) 45vw, (min-width: 900px) 60vw, 100vw"
 				}
 				src={src}
 				alt={alt || "Image"}
-				width={width || "900"}
-				height={height || "700"}
-				{...fields}
+				{...imageProps}
 			/>
 		</span>
 	);

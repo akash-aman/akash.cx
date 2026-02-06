@@ -165,6 +165,7 @@ const Blog = async (props: Props) => {
 											width={32}
 											height={32}
 											card={true}
+											padding={false}
 										/>
 										<span className="text-sm">
 											{name}

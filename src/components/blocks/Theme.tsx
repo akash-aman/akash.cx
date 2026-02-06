@@ -11,13 +11,13 @@ const Theme = () => {
 			{...theme}
 			{...animate}
 			className="
-			sm:absolute
+			md:absolute
 			justify-center
 			content-center
 			grid
-			sm:left-0
-			sm:top-4
-			sm:w-full
+			md:left-0
+			md:top-4
+			md:w-full
 			z-50
         "
 		>

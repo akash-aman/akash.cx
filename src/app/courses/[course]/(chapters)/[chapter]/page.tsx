@@ -13,7 +13,7 @@ import { notFound } from "next/navigation";
 import { Metadata, ResolvingMetadata } from "next";
 import { wretch } from "@/utils/fetchapi";
 import { generatePageMetadata } from "@/utils/metadata";
-import ChapterStyles from "./ChapterStyles";
+import ChapterStyles from "app/courses/[course]/(chapters)/[chapter]/ChapterStyles";
 import Link from "next/link";
 import Image from "next/image";
 import facebook from "@/assets/icons/facebook.svg";

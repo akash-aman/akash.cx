@@ -8,10 +8,10 @@ import rehypeKatex from "rehype-katex"; //'../plugins/rehypeKatex'
 import rehypeSanitize from "@/plugins/rehypeSanitize";
 import { FC } from "react";
 import ReactMarkdown from "react-markdown";
-import { elements } from "./Components";
-// import rehypePrism from "rehype-prism-plus";
+import { elements } from "components/blocks/Components";
 import Toc from "@/components/elements/Toc";
-// import Mermaid from "./Mermaid";
+// import rehypePrism from "rehype-prism-plus";
+// import Mermaid from "components/blocks/Mermaid";
 
 type BlogProps = {
 	markdown?: string;
@@ -21,7 +21,7 @@ type BlogProps = {
 const MDBlog: FC<BlogProps> = ({ markdown, ...attributes }: BlogProps) => {
 
 	const isExist = markdown?.includes("## Table of Contents") as boolean;
-	const isMermaid = markdown?.includes("mermaid") as boolean;
+	//const isMermaid = markdown?.includes("mermaid") as boolean;
 
 	return (
 		<>

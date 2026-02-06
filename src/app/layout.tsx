@@ -8,7 +8,7 @@ import "styles/prism.scss";
 
 import ApplyTheme from "hooks/theme";
 import Navigation from "components/blocks/NavMenu";
-import { RegisterPWA } from "./register-pwa";
+import { RegisterPWA } from "app/register-pwa";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { metadata, viewport } from "config/site";
 export { metadata, viewport };

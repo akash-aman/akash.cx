@@ -1,5 +1,5 @@
 
-import Sidebar from "./Sidebar";
+import Sidebar from "app/courses/[course]/(chapters)/Sidebar";
 import {
 	CourseSidebarQuery,
 	CourseSidebarDocument,

@@ -27,7 +27,6 @@ import {
 	SASS,
 	Tailwind,
 	TS,
-	Firebase,
 } from "@/assets/icons/icon";
 
 import {
@@ -36,11 +35,6 @@ import {
 	Youtube,
 	LinkedIn,
 	Gmail,
-	NextJS as NextJSIcon,
-	Sass,
-	Tailwind as TailwindIcon,
-	MDX,
-	Dev,
 } from "@/assets/icons/social";
 
 export const timeLine = [

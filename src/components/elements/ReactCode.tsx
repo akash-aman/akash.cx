@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import React from "react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import CopyButton from "./CopyButton";
+import CopyButton from "components/elements/CopyButton";
 // scss is written in main
 // import { atomDark } from 'react-syntax-highlighter/dist/cjs/styles/prism'
 interface CodeProps {
@@ -13,10 +13,8 @@ interface CodeProps {
 }
 
 const ReactCode: React.FC<CodeProps> = ({
-	node,
 	inline,
 	className,
-	code,
 	children,
 	...props
 }) => {

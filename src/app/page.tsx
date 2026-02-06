@@ -1,14 +1,5 @@
-import { baseURL, gqlAPI } from "@/config/constant";
-import { wretch } from "@/utils/fetchapi";
+import { baseURL } from "@/config/constant";
 import profilePicture from "assets/images/AI1.jpg";
-import {
-	HomePageQuery,
-	HomePageQueryVariables,
-	HomePageDocument,
-	CoursesPageQuery,
-	CoursesPageQueryVariables,
-	CoursesPageDocument,
-} from "generated/graphql";
 import Image from "next/image";
 import Link from "next/link";
 import { Metadata } from "next";

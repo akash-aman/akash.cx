@@ -1,5 +1,5 @@
 import React from "react";
-import BQ from "../../assets/icons/bq";
+import BQ from "assets/icons/bq";
 import { Think, Note, Warning, Thought } from "assets/icons/icon";
 
 interface BlockquoteProps {

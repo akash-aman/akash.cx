@@ -13,5 +13,5 @@ export const Ol = (props: ListProps) => {
 };
 
 export const Li = (props: ListProps) => {
-	return <li className="li list-outside ml-6 pl-3 pb-1 para-lg">{props.children}</li>;
+	return <li className="li list-outside ml-6 pl-3 pb-2 para-lg">{props.children}</li>;
 };

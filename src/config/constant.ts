@@ -1,4 +1,4 @@
-import Portfolio from "@/assets/images/Portfolio.png";
+import Portfolio from "@/assets/images/akash.cx.png";
 import dynamixLayout from "@/assets/images/dynamix-layout.jpg";
 import ragProject from "@/assets/images/rag-project.png";
 import microservices from "@/assets/images/microservice.png";
@@ -229,7 +229,6 @@ export const projects = [
 		image: dynamixLayout, // Ensure you have this import
 		techstack: [JS, TS], // Based on your core tech interests
 	},
-
 	{
 		title: "RAG Engine",
 		description: "A Retrieval-Augmented Generation implementation designed for efficient data querying and AI context.",
@@ -249,7 +248,7 @@ export const projects = [
 	{
 		title: "Portfolio",
 		description: "A high-performance personal site built with NextJS and Tailwind to showcase my engineering journey.",
-		year: "2024",
+		year: "2024, 2026",
 		link: "https://github.com/akash-aman/akash.cx",
 		image: Portfolio,
 		techstack: [NextJS, Tailwind, TS],

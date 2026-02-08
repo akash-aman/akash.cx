@@ -250,7 +250,7 @@ export const projects = [
 		title: "Portfolio",
 		description: "A high-performance personal site built with NextJS and Tailwind to showcase my engineering journey.",
 		year: "2024",
-		link: "https://github.com/akash-aman/Portfolio",
+		link: "https://github.com/akash-aman/akash.cx",
 		image: Portfolio,
 		techstack: [NextJS, Tailwind, TS],
 	},

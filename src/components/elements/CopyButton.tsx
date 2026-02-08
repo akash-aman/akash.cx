@@ -23,7 +23,7 @@ const CopyButton: FC<CopyButtonProps> = ({ text }) => {
         <button
             title="Copy to clipboard"
             onClick={copyToClipboard}
-            className="p-2 m-4 group-hover:block hidden rounded-lg ctc absolute right-0 top-0 bg-[white] dark:bg-(--code-bg-dark-base)"
+            className="p-2 m-4 group-hover:block block md:hidden rounded-lg ctc absolute right-0 top-0 bg-[white] dark:bg-(--code-bg-dark-base)"
         >
             {copied ? <Tick className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
         </button>

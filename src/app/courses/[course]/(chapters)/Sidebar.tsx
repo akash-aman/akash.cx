@@ -66,7 +66,7 @@ const Sidebar = ({ children, course, params }: SidebarProps): React.JSX.Element 
 				<button {...props} />
 				<section
 					className={clsx(
-						"py-5 bg-opacity-90 sticky top-20 scrollbar overflow-x-hidden overflow-y-auto pr-4",
+						"py-5 bg-opacity-90 sticky h-[85vh] top-20 scrollbar overflow-x-hidden overflow-y-auto pr-4",
 						{ "xl:pr-6": show },
 					)}
 				>

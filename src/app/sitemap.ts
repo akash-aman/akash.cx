@@ -10,68 +10,74 @@ import {
 } from "@/generated/graphql";
 import { wretch } from "@/utils/fetchapi";
 
+const formatDate = (date: string | null | undefined): string | undefined => {
+    if (!date) return undefined;
+    const d = new Date(date);
+    return isNaN(d.getTime()) ? undefined : d.toISOString();
+};
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const defaultPaths = paths.map((path) => ({
-        url: baseURL + path.path,
+        url: `${baseURL}${path.path}`,
         lastModified: new Date().toISOString(),
+        changeFrequency: 'weekly' as const,
+        priority: path.path === '/' ? 1.0 : 0.8,
     }));
 
     const { routes } = await wretch<BlogRoutesQuery, BlogRoutesQueryVariables>(
         gqlAPI,
         BlogRoutesDocument,
-        { first: 100 },
+        { first: 100 }
     );
 
-    const blogs = routes?.nodes.map(({ slug, modified }) => {
-        return {
-            url: baseURL + "/blogs/" + slug,
-            lastModified: modified || undefined,
-        };
-    }) ?? [];
+    const blogs = routes?.nodes.map(({ slug, modified }) => ({
+        url: `${baseURL}/blogs/${slug}`,
+        lastModified: formatDate(modified),
+        changeFrequency: 'weekly' as const,
+        priority: 0.7,
+    })) ?? [];
 
-    const { courses } = await wretch<
-        CourseRoutesQuery,
-        CourseRoutesQueryVariables
-    >(gqlAPI, CourseRoutesDocument, { first: 1000 }, { tags: ["course-routes"] });
+    const { courses } = await wretch<CourseRoutesQuery, CourseRoutesQueryVariables>(
+        gqlAPI,
+        CourseRoutesDocument,
+        { first: 1000 },
+        { tags: ["course-routes"] }
+    );
 
-    if (!(!courses?.nodes || !Array.isArray(courses.nodes))) {
-
-        const coursesChaptersRoutes = courses.nodes.reduce<MetadataRoute.Sitemap>((acc, course) => {
-            if (
-                !course?.chapters?.chapters ||
-                !Array.isArray(course.chapters.chapters)
-            ) {
-                return acc;
-            }
-
-            const chapterParams = course.chapters.chapters
-                .filter((chapter): chapter is NonNullable<typeof chapter> => !!chapter?.slug)
-                .map(({ slug, modified }) => (
-                    {
-                        url: baseURL + "/courses/" + course.slug + "/" + slug!,
-                        lastModified: modified || undefined,
-                    }));
-
-            return [...acc, ...chapterParams];
-        }, []);
-
-
-        const coursesRoutes = courses.nodes.reduce<MetadataRoute.Sitemap>((acc, course) => {
-            if (
-                !course?.chapters?.chapters ||
-                !Array.isArray(course.chapters.chapters)
-            ) {
-                return acc;
-            }
-
-            return [...acc, {
-                url: baseURL + "/courses/" + course.slug,
-                lastModified: course.modified || undefined,
-            }];
-        }, []);
-
-        return [...defaultPaths, ...blogs, ...coursesRoutes, ...coursesChaptersRoutes];
+    if (!courses?.nodes || !Array.isArray(courses.nodes)) {
+        return [...defaultPaths, ...blogs];
     }
 
-    return [...defaultPaths, ...blogs];
+    const coursesRoutes = courses.nodes
+        .filter((course) => course?.slug)
+        .map((course) => ({
+            url: `${baseURL}/courses/${course.slug}`,
+            lastModified: formatDate(course.modified),
+            changeFrequency: 'weekly' as const,
+            priority: 0.9,
+        }));
+
+    const coursesChaptersRoutes = courses.nodes.reduce<MetadataRoute.Sitemap>(
+        (acc, course) => {
+            const chapters = course?.chapters?.chapters;
+            
+            if (!chapters || !Array.isArray(chapters)) {
+                return acc;
+            }
+
+            const chapterUrls = chapters
+                .filter((chapter) => chapter?.slug)
+                .map((chapter) => ({
+                    url: `${baseURL}/courses/${course.slug}/${chapter?.slug}`,
+                    lastModified: formatDate(chapter?.modified),
+                    changeFrequency: 'weekly' as const,
+                    priority: 0.8,
+                }));
+
+            return [...acc, ...chapterUrls];
+        },
+        []
+    );
+
+    return [...defaultPaths, ...blogs, ...coursesRoutes, ...coursesChaptersRoutes];
 }

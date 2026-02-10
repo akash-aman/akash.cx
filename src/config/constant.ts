@@ -298,13 +298,12 @@ export const gqlAPI = serverURL + "/graphql";
 export const baseURL = "https://www.akash.cx";
 
 export const paths = [
+	{ path: "/" },
+	{ path: "/about" },
 	{ path: "/projects" },
 	{ path: "/blogs" },
 	{ path: "/courses" },
-	{ path: "/privacy" },
-	{ path: "/terms" },
-	{ path: "/timeline" },
-	{ path: "/techstack" },
+	{ path: "/timeline" }
 ];
 
 import project from "@/assets/svgs/project.svg";

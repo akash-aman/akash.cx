@@ -772,6 +772,11 @@ export const PROXY_STACKS: ProxyStack[] = [
         label: "Blackbox",
         hosts: [{ domain: "blackbox.xcode.cx" }],
     },
+    {
+        stack: "layout",
+        label: "Dynamix Layout",
+        hosts: [{ domain: "layout.xcode.cx" }],
+    },
 ];
 
 /* ─────────────────────────────────────────────────────────

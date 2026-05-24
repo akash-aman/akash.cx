@@ -2,7 +2,7 @@ import { ArchView } from "@/components/infra/ArchView";
 import { SectionHeader } from "@/components/infra/SectionHeader";
 import { DOCKER_STACKS } from "@/config/infrastructure";
 
-const NON_VPS = new Set(["cloudflare", "layout"]);
+const NON_VPS = new Set(["cloudflare"]);
 
 export default function ArchitecturePage() {
     const vpsStacks = DOCKER_STACKS.filter((s) => !NON_VPS.has(s.id));

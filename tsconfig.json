@@ -1,7 +1,11 @@
 {
   "compilerOptions": {
     "target": "ES2017",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -19,20 +23,48 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/*"],
-      "app/*": ["./src/app/*"],
-      "components/*": ["./src/components/*"],
-      "context/*": ["./src/context/*"],
-      "contexts/*": ["./src/contexts/*"],
-      "generated/*": ["./src/generated/*"],
-      "graphql/*": ["./src/graphql/*"],
-      "hooks/*": ["./src/hooks/*"],
-      "rehype/*": ["./src/rehype/*"],
-      "remark/*": ["./src/remark/*"],
-      "styles/*": ["./src/styles/*"],
-      "utils/*": ["./src/utils/*"],
-      "assets/*": ["./src/assets/*"],
-      "config/*": ["./src/config/*"]
+      "@/*": [
+        "./src/*"
+      ],
+      "app/*": [
+        "./src/app/*"
+      ],
+      "components/*": [
+        "./src/components/*"
+      ],
+      "context/*": [
+        "./src/context/*"
+      ],
+      "contexts/*": [
+        "./src/contexts/*"
+      ],
+      "generated/*": [
+        "./src/generated/*"
+      ],
+      "graphql/*": [
+        "./src/graphql/*"
+      ],
+      "hooks/*": [
+        "./src/hooks/*"
+      ],
+      "rehype/*": [
+        "./src/rehype/*"
+      ],
+      "remark/*": [
+        "./src/remark/*"
+      ],
+      "styles/*": [
+        "./src/styles/*"
+      ],
+      "utils/*": [
+        "./src/utils/*"
+      ],
+      "assets/*": [
+        "./src/assets/*"
+      ],
+      "config/*": [
+        "./src/config/*"
+      ]
     }
   },
   "include": [
@@ -43,5 +75,8 @@
     ".next/dev/types/**/*.ts",
     "**/*.mts"
   ],
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules",
+    "projects"
+  ]
 }

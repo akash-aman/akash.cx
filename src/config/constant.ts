@@ -301,6 +301,10 @@ export const paths = [
 	{ path: "/" },
 	{ path: "/about" },
 	{ path: "/projects" },
+	{ path: "/infrastructure" },
+	{ path: "/infrastructure/architecture" },
+	{ path: "/infrastructure/services" },
+	{ path: "/infrastructure/pipelines" },
 	{ path: "/blogs" },
 	{ path: "/courses" },
 	{ path: "/timeline" }
@@ -311,6 +315,7 @@ import about from "@/assets/svgs/about.svg";
 import timelineIcon from "@/assets/svgs/timeline.svg";
 import blogIcon from "@/assets/svgs/blog.svg";
 import courseIcon from "@/assets/svgs/course.svg";
+import infraIcon from "@/assets/svgs/infra.svg";
 
 export const navMenu = [
 	{
@@ -332,6 +337,11 @@ export const navMenu = [
 		icon: project,
 		link: "/projects",
 		title: "Projects",
+	},
+	{
+		icon: infraIcon,
+		link: "/infrastructure",
+		title: "Infrastructure",
 	},
 	{
 		icon: timelineIcon,

@@ -1,0 +1,275 @@
+/* ============================================================
+   /infrastructure — scoped tokens, animations, primitives
+   Site bg + body font are NEVER changed; this layer only
+   activates when an ancestor has [data-section="infra"].
+   Inspired by the wpx-design system.
+   ============================================================ */
+
+[data-section="infra"] {
+	/* ── Accent (terminal green) ───────────────────────── */
+	--infra-accent: #22c55e;
+	--infra-accent-dim: rgba(34, 197, 94, 0.12);
+	--infra-accent-soft: rgba(34, 197, 94, 0.22);
+	--infra-accent-glow: 0 0 18px rgba(34, 197, 94, 0.45);
+	--infra-accent-ring: 0 0 0 3px rgba(34, 197, 94, 0.18);
+
+	/* ── Status palette ────────────────────────────────── */
+	--infra-green: #22c55e;
+	--infra-amber: #fbbf24;
+	--infra-red: #f87171;
+	--infra-blue: #60a5fa;
+	--infra-purple: #a78bfa;
+	--infra-magenta: #f472b6;
+
+	--infra-green-dim: rgba(34, 197, 94, 0.14);
+	--infra-amber-dim: rgba(251, 191, 36, 0.14);
+	--infra-red-dim: rgba(248, 113, 113, 0.14);
+	--infra-blue-dim: rgba(96, 165, 250, 0.14);
+	--infra-purple-dim: rgba(167, 139, 250, 0.14);
+	--infra-magenta-dim: rgba(244, 114, 182, 0.14);
+
+	/* ── Surfaces (tuned to current site palette) ──────── */
+	--infra-panel-bg: var(--card-bg);
+	--infra-panel-bg-hover: var(--bg-overlay-dark-hover);
+	--infra-border: var(--border-color);
+	--infra-border-strong: var(--dark-theme-300);
+	--infra-grid-line: rgba(34, 197, 94, 0.06);
+
+	--infra-fg: var(--text-main);
+	--infra-fg-muted: var(--text-muted);
+	--infra-fg-faint: rgba(180, 180, 180, 0.45);
+
+	--infra-mono: var(--font-attribute-mono, ui-monospace, "JetBrains Mono", Menlo, monospace);
+	--infra-display: var(--font-greycliff-cf, "Space Grotesk", sans-serif);
+
+	/* ── Motion ────────────────────────────────────────── */
+	--infra-ease: cubic-bezier(0.16, 1, 0.3, 1);
+
+	color: var(--infra-fg);
+	font-feature-settings: "tnum", "cv02";
+
+	/* Lift base font-size and override Tailwind's text-* utilities scoped
+	   to this section. Site root is 13–16px which is too dense for an
+	   ops dashboard; we want a more breathable, readable scale here. */
+	font-size: 1rem;
+	line-height: 1.55;
+
+
+	/* ── Typography helpers ────────────────────────────── */
+	.mono {
+		font-family: var(--infra-mono);
+		font-variant-numeric: tabular-nums;
+		letter-spacing: -0.01em;
+	}
+
+	.eyebrow {
+		font-family: var(--infra-mono);
+		text-transform: uppercase;
+		letter-spacing: 0.14em;
+		font-size: 0.85rem;
+		color: var(--infra-fg-muted);
+	}
+
+	/* ── Dot-grid hero background ──────────────────────── */
+	.infra-dotgrid {
+		background-image: radial-gradient(circle at 1px 1px, var(--infra-grid-line) 1px, transparent 0);
+		background-size: 22px 22px;
+		background-position: 0 0;
+		mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, #000 30%, transparent 100%);
+	}
+
+	/* ── Panels ────────────────────────────────────────── */
+	.infra-panel {
+		background: var(--infra-panel-bg);
+		border: 1px solid var(--infra-border);
+		border-radius: 0.6rem;
+		transition: border-color 200ms var(--infra-ease), background 200ms var(--infra-ease);
+	}
+
+	.infra-panel:hover {
+		border-color: var(--infra-border-strong);
+	}
+
+	.infra-panel--accent {
+		border-color: var(--infra-accent-soft);
+		box-shadow: var(--infra-accent-ring);
+	}
+
+	.infra-stack-sidebar {
+		@media (min-width: 768px) {
+			height: min(720px, 70vh);
+			min-width: 200px;
+			width: auto;
+		}
+	}
+
+	/* ── Status dots ───────────────────────────────────── */
+	.infra-dot {
+		display: inline-block;
+		width: 0.5rem;
+		height: 0.5rem;
+		border-radius: 9999px;
+		flex-shrink: 0;
+		position: relative;
+	}
+
+	.infra-dot--green { background: var(--infra-green); box-shadow: 0 0 8px var(--infra-green-dim); }
+	.infra-dot--amber { background: var(--infra-amber); box-shadow: 0 0 8px var(--infra-amber-dim); }
+	.infra-dot--red   { background: var(--infra-red);   box-shadow: 0 0 8px var(--infra-red-dim); }
+	.infra-dot--blue  { background: var(--infra-blue);  box-shadow: 0 0 8px var(--infra-blue-dim); }
+	.infra-dot--purple{ background: var(--infra-purple);box-shadow: 0 0 8px var(--infra-purple-dim); }
+	.infra-dot--gray  { background: var(--infra-fg-faint); }
+
+	.infra-dot--pulse::after {
+		content: "";
+		position: absolute;
+		inset: -3px;
+		border-radius: 9999px;
+		border: 2px solid currentColor;
+		opacity: 0.6;
+		animation: infra-pulse 1.6s var(--infra-ease) infinite;
+	}
+
+	.infra-dot--green.infra-dot--pulse::after { color: var(--infra-green); }
+	.infra-dot--amber.infra-dot--pulse::after { color: var(--infra-amber); }
+	.infra-dot--red.infra-dot--pulse::after   { color: var(--infra-red); }
+
+	/* ── Pills ─────────────────────────────────────────── */
+	.infra-pill {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.35rem;
+		padding: 0.22rem 0.6rem;
+		border-radius: 9999px;
+		border: 1px solid var(--infra-border);
+		font-family: var(--infra-mono);
+		font-size: 0.78rem;
+		line-height: 1;
+		color: var(--infra-fg-muted);
+		background: var(--bg-overlay-dark);
+	}
+	.infra-pill--green  { color: var(--infra-green);  background: var(--infra-green-dim);  border-color: transparent; }
+	.infra-pill--amber  { color: var(--infra-amber);  background: var(--infra-amber-dim);  border-color: transparent; }
+	.infra-pill--red    { color: var(--infra-red);    background: var(--infra-red-dim);    border-color: transparent; }
+	.infra-pill--blue   { color: var(--infra-blue);   background: var(--infra-blue-dim);   border-color: transparent; }
+	.infra-pill--purple { color: var(--infra-purple); background: var(--infra-purple-dim); border-color: transparent; }
+	.infra-pill--magenta{ color: var(--infra-magenta);background: var(--infra-magenta-dim);border-color: transparent; }
+
+	/* ── Section header (## name ─────) ───────────────── */
+	.infra-section-rule {
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+	}
+	.infra-section-rule::after {
+		content: "";
+		flex: 1;
+		height: 1px;
+		background: linear-gradient(to right, var(--infra-border) 0%, transparent 100%);
+	}
+
+	/* ── Sparkline / metric bar ───────────────────────── */
+	.infra-spark {
+		display: block;
+		width: 100%;
+		height: 28px;
+	}
+	.infra-bar-track {
+		height: 5px;
+		border-radius: 9999px;
+		background: var(--bg-overlay-dark);
+		overflow: hidden;
+	}
+	.infra-bar-fill {
+		height: 100%;
+		border-radius: 9999px;
+		background: linear-gradient(to right, var(--infra-accent), var(--infra-blue));
+		transition: width 600ms var(--infra-ease);
+	}
+	.infra-bar-fill--amber { background: linear-gradient(to right, var(--infra-amber), var(--infra-red)); }
+	.infra-bar-fill--red   { background: linear-gradient(to right, var(--infra-red), #ef4444); }
+
+	/* ── Tabs ─────────────────────────────────────────── */
+	.infra-tab {
+		position: relative;
+		padding: 0.7rem 0.1rem;
+		font-family: var(--infra-mono);
+		font-size: 0.88rem;
+		text-transform: lowercase;
+		letter-spacing: 0.04em;
+		color: var(--infra-fg-muted);
+		transition: color 150ms var(--infra-ease);
+	}
+	.infra-tab:hover { color: var(--infra-fg); }
+	.infra-tab--active {
+		color: var(--infra-fg);
+	}
+	.infra-tab--active::after {
+		content: "";
+		position: absolute;
+		left: 0; right: 0; bottom: -1px;
+		height: 1px;
+		background: var(--infra-accent);
+		box-shadow: var(--infra-accent-glow);
+	}
+
+	/* ── Animated edges (architecture canvas) ─────────── */
+	.infra-edge-flow {
+		stroke: var(--infra-accent);
+		stroke-width: 1.25;
+		stroke-dasharray: 4 6;
+		fill: none;
+		animation: infra-dash 1.4s linear infinite;
+		opacity: 0.7;
+	}
+
+	/* ── Cert heatmap cells ───────────────────────────── */
+	.infra-heat-cell {
+		width: 100%;
+		aspect-ratio: 1;
+		border-radius: 2px;
+		background: var(--bg-overlay-dark);
+		transition: transform 120ms var(--infra-ease);
+	}
+	.infra-heat-cell:hover { transform: scale(1.4); }
+	.infra-heat-cell--l1 { background: rgba(34, 197, 94, 0.20); }
+	.infra-heat-cell--l2 { background: rgba(34, 197, 94, 0.45); }
+	.infra-heat-cell--l3 { background: rgba(251, 191, 36, 0.55); }
+	.infra-heat-cell--l4 { background: rgba(248, 113, 113, 0.70); }
+
+	/* ── Log line ─────────────────────────────────────── */
+	.infra-log-line {
+		font-family: var(--infra-mono);
+		font-size: 0.72rem;
+		line-height: 1.6;
+		color: var(--infra-fg-muted);
+		white-space: pre;
+		padding: 0 0.75rem;
+	}
+	.infra-log-line--info  { color: var(--infra-fg-muted); }
+	.infra-log-line--warn  { color: var(--infra-amber); }
+	.infra-log-line--error { color: var(--infra-red); }
+	.infra-log-line--debug { color: var(--infra-fg-faint); }
+}
+
+/* ── Keyframes (global so they work inside scoped block) ── */
+@keyframes infra-pulse {
+	0%   { transform: scale(0.8); opacity: 0.7; }
+	100% { transform: scale(2.2); opacity: 0; }
+}
+
+@keyframes infra-dash {
+	to { stroke-dashoffset: -20; }
+}
+
+@keyframes infra-tape {
+	0%, 100% { opacity: 0.4; }
+	50% { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+	[data-section="infra"] .infra-dot--pulse::after,
+	[data-section="infra"] .infra-edge-flow {
+		animation: none !important;
+	}
+}

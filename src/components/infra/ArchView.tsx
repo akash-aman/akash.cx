@@ -21,7 +21,7 @@ const TAGS = TAG_ORDER.filter((t) =>
     DOCKER_STACKS.some((s) => s.tags?.includes(t))
 );
 
-export function ArchView({ statusByDomain = {} }: { statusByDomain?: Record<string, string> }) {
+export function ArchView({ statusByDomain = {} }: { statusByDomain?: Record<string, import("@/config/infrastructure").ServiceStatus> }) {
     const [activeTag, setActiveTag] = useState<string | null>(null);
 
     const toggle = (tag: string) =>

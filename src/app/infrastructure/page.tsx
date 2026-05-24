@@ -2,7 +2,7 @@ import { KpiCard } from "@/components/infra/KpiCard";
 import { ProxyBadges } from "@/components/infra/ProxyBadges";
 import { SectionHeader } from "@/components/infra/SectionHeader";
 import { resolveServices } from "@/utils/infra/services";
-import { PROXY_STACKS, DOCKER_STACKS } from "@/config/infrastructure";
+import { PROXY_STACKS, DOCKER_STACKS, type ServiceStatus } from "@/config/infrastructure";
 
 export const revalidate = 60;
 
@@ -17,7 +17,7 @@ export default async function OverviewPage() {
     }, 0);
 
     // Serializable Record (Map isn't passable to client components)
-    const statusByDomain: Record<string, string> = Object.fromEntries(
+    const statusByDomain: Record<string, ServiceStatus> = Object.fromEntries(
         items
             .filter((s) => s.publicDomain)
             .map((s) => [s.publicDomain!.replace(/^\*\./, ""), s.status])

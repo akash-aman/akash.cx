@@ -20,18 +20,10 @@ const DOT_CLASS: Record<Tone, string> = {
     gray: "infra-dot--gray",
 };
 
-async function pingDomain(domain: string): Promise<ServiceStatus> {
-    try {
-        await fetch(`https://${domain}`, {
-            method: "GET",
-            mode: "no-cors",
-            cache: "no-store",
-            signal: AbortSignal.timeout(5000),
-        });
-        return "healthy";
-    } catch {
-        return "down";
-    }
+async function pingDomains(domains: string[]): Promise<Record<string, ServiceStatus>> {
+    if (domains.length === 0) return {};
+    const res = await fetch(`/api/infra/ping?domains=${domains.join(",")}`);
+    return res.json();
 }
 
 export function StackSidebar({
@@ -55,8 +47,7 @@ export function StackSidebar({
 
         if (uncovered.length === 0) return;
 
-        Promise.all(uncovered.map(async (d) => [d, await pingDomain(d)] as const))
-            .then((entries) => setClientMap(Object.fromEntries(entries)));
+        pingDomains(uncovered).then((map) => setClientMap(map));
     }, [activeTag]);
 
     const merged: Record<string, string> = { ...clientMap, ...statusByDomain };

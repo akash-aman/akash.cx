@@ -8,28 +8,18 @@ const PRIMARY_HOSTS = PROXY_STACKS
     .map((s) => s.hosts[0]?.domain)
     .filter((d): d is string => Boolean(d));
 
-async function ping(domain: string): Promise<boolean> {
-    try {
-        await fetch(`https://${domain}`, {
-            method: "GET",
-            mode: "no-cors",
-            cache: "no-store",
-            signal: AbortSignal.timeout(5000),
-        });
-        return true;
-    } catch {
-        return false;
-    }
-}
-
 export function HealthKpi() {
     const [healthy, setHealthy] = useState<number | null>(null);
     const total = PRIMARY_HOSTS.length;
 
     useEffect(() => {
-        Promise.all(PRIMARY_HOSTS.map(ping)).then((results) =>
-            setHealthy(results.filter(Boolean).length)
-        );
+        fetch(`/api/infra/ping?domains=${PRIMARY_HOSTS.join(",")}`)
+            .then((r) => r.json())
+            .then((map: Record<string, string>) => {
+                const count = PRIMARY_HOSTS.filter((d) => map[d] === "healthy").length;
+                setHealthy(count);
+            })
+            .catch(() => setHealthy(0));
     }, []);
 
     const pct = healthy !== null ? Math.round((healthy / total) * 100) : null;

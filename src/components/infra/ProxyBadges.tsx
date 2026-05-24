@@ -8,18 +8,10 @@ import { Mono } from "./Mono";
 
 type StatusMap = Record<string, ServiceStatus>;
 
-async function pingDomain(domain: string): Promise<ServiceStatus> {
-    try {
-        await fetch(`https://${domain}`, {
-            method: "HEAD",
-            mode: "no-cors",
-            cache: "no-store",
-            signal: AbortSignal.timeout(5000),
-        });
-        return "healthy";
-    } catch {
-        return "down";
-    }
+async function pingDomains(domains: string[]): Promise<StatusMap> {
+    if (domains.length === 0) return {};
+    const res = await fetch(`/api/infra/ping?domains=${domains.join(",")}`);
+    return res.json();
 }
 
 function stackDot(stack: ProxyStack, statusMap: StatusMap) {
@@ -45,8 +37,7 @@ export function ProxyBadges({ stacks, statusByDomain = {} }: ProxyBadgesProps) {
 
         if (uncovered.length === 0) return;
 
-        Promise.all(uncovered.map(async (domain) => [domain, await pingDomain(domain)] as const))
-            .then((entries) => setClientMap(Object.fromEntries(entries)));
+        pingDomains(uncovered).then((map) => setClientMap(map));
     }, []);
 
     const merged: StatusMap = { ...statusByDomain, ...clientMap };

@@ -21,7 +21,7 @@ const TAGS = TAG_ORDER.filter((t) =>
     DOCKER_STACKS.some((s) => s.tags?.includes(t))
 );
 
-export function ArchView({ statusByDomain = {} }: { statusByDomain?: Record<string, import("@/config/infrastructure").ServiceStatus> }) {
+export function ArchView() {
     const [activeTag, setActiveTag] = useState<string | null>(null);
 
     const toggle = (tag: string) =>
@@ -66,7 +66,7 @@ export function ArchView({ statusByDomain = {} }: { statusByDomain?: Record<stri
                 <div className="hidden md:block md:flex-1 md:min-w-0">
                     <ArchCanvas activeTag={activeTag} />
                 </div>
-                <StackSidebar activeTag={activeTag} statusByDomain={statusByDomain} />
+                <StackSidebar activeTag={activeTag} />
             </div>
         </div>
     );

@@ -1,15 +1,4 @@
-import { Metadata } from "next";
 import React from "react";
-
-/**
- * This is the metadata for the page.
- */
-export const metadata: Metadata = {
-	title: {
-		template: "%s | Courses",
-		default: "Courses",
-	},
-};
 
 /**
  * This is the layout for the page.

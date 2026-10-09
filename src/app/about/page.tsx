@@ -30,6 +30,15 @@ import azure from "@/assets/svgs/azure.svg";
 import Image from "next/image";
 import { Tooltip } from "@/components/elements/Tooltip";
 import Footer from '@/components/blocks/Footer';
+import { Metadata } from "next";
+import { generatePageMetadata } from "@/utils/metadata";
+
+export const metadata: Metadata = generatePageMetadata({
+    title: "About",
+    description:
+        "About Akash Aman — Senior Software Engineer at rtCamp, open-source contributor and teacher. The story, interests and tech stack behind the work.",
+    path: "/about",
+});
 
 
 

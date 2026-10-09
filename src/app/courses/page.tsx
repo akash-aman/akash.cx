@@ -5,68 +5,17 @@ import {
 } from "generated/graphql";
 import { gqlAPI } from "@/config/constant";
 import { Metadata } from "next";
+import { generatePageMetadata } from "@/utils/metadata";
 import { wretch } from "@/utils/fetchapi";
 import Card from "@/components/blocks/Card";
 import Footer from "@/components/blocks/Footer";
 
-/**
- * This is the metadata for the page.
- */
-export const metadata: Metadata = {
-	title: {
-		absolute: "Courses",
-	},
+export const metadata: Metadata = generatePageMetadata({
+	title: "Courses",
 	description:
-		"Explore insightful and informative courses in various topics. akash.cx offers a collection of educational & insightful articles that cover diverse topics related to software & technology. Visit the Courses  page to access valuable resources.",
-	keywords: [
-		"Courses",
-		"SDE",
-		"Full Stack Developer",
-		"Responsive design",
-		"portfolio",
-		"projects",
-		"coding",
-		"Web development",
-		"Web design",
-		"User Experience",
-		"Html",
-		"Css",
-		"Javascript",
-	],
-	openGraph: {
-		title: "Courses",
-		description:
-			"Explore insightful and informative courses in various topics. akash.cx offers a collection of educational & insightful articles that cover diverse topics related to software & technology. Visit the Courses  page to access valuable resources.",
-		url: "https://akash.cx",
-		images: [
-			{
-				url: "/portfolio.png",
-				width: 1920,
-				height: 952,
-				alt: "Courses",
-			},
-		],
-		type: "website",
-		siteName: "Courses",
-		countryName: "India",
-	},
-	twitter: {
-		creatorId: "@sirakashaman",
-		creator: "Akash Aman",
-		site: "https://akash.cx",
-		images: [
-			{
-				url: "/portfolio.png",
-				width: 1920,
-				height: 952,
-				alt: "Courses",
-			},
-		],
-		title: "Courses",
-		description:
-			"Explore insightful and informative courses in various topics. Akash.cx offers a collection of educational & insightful articles that cover diverse topics related to software & technology. Visit the Courses page to access valuable resources.",
-	},
-};
+		"Free, hands-on programming courses by Akash Aman: Mastering Go, data structures & algorithms, design patterns and microservices — explained with runnable examples.",
+	path: "/courses",
+});
 
 /**
  * This function generates the page.

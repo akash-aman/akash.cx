@@ -1,36 +1,5 @@
 import { Metadata, Viewport } from "next";
-import { Poppins } from "next/font/google";
 import { baseURL } from "config/constant";
-
-// Note: Fonts are defined here but were not being utilized in the layout previously.
-// Keeping them here for future use if needed, preserving the original intent.
-export const webFont = Poppins({
-    subsets: ["latin"],
-    weight: "400",
-    variable: "--font-content",
-    preload: true,
-});
-
-export const headFont = Poppins({
-    subsets: ["latin"],
-    weight: "900",
-    variable: "--font-heading",
-    preload: true,
-});
-
-export const svgFont = Poppins({
-    subsets: ["latin"],
-    weight: "400",
-    variable: "--font-svg",
-    preload: false,
-});
-
-export const codeFont = Poppins({
-    subsets: ["latin"],
-    weight: "400",
-    variable: "--font-code",
-    preload: false,
-});
 
 /**
  * This is the metadata for the page.
@@ -42,7 +11,7 @@ export const metadata: Metadata = {
     },
     metadataBase: new URL(baseURL),
     description:
-        "Welcome to the captivating realm of Akash Aman. Witness the fusion of art and technology in this Full Stack Developer's portfolio. Immerse yourself in a symphony of elegant full stack sorcery, and transformative web experiences.",
+        "Akash Aman is a Senior Software Engineer at rtCamp building fast, scalable web apps with React, Next.js, Go and WordPress. Projects, blogs and free courses.",
     keywords: [
         "Akash Aman",
         "SDE",
@@ -75,7 +44,7 @@ export const metadata: Metadata = {
     openGraph: {
         title: "Akash Aman | Full Stack Dev",
         description:
-            "Welcome to the captivating realm of Akash Aman. Witness the fusion of art and technology through full stack dev & transformative web experiences.",
+            "Akash Aman is a Senior Software Engineer at rtCamp building fast, scalable web apps with React, Next.js, Go and WordPress. Projects, blogs and free courses.",
         url: baseURL,
         images: [
             {
@@ -86,17 +55,16 @@ export const metadata: Metadata = {
             },
         ],
         type: "website",
-        siteName: "Akash Aman | Full Stack Dev",
+        siteName: "Akash Aman",
+        locale: "en_US",
         countryName: "India",
     },
     robots: {
         index: true,
         follow: true,
-        nocache: true,
         googleBot: {
             index: true,
             follow: true,
-            noimageindex: true,
             "max-video-preview": -1,
             "max-image-preview": "large",
             "max-snippet": -1,
@@ -104,9 +72,9 @@ export const metadata: Metadata = {
     },
 
     twitter: {
-        creatorId: "@sirakashaman",
-        creator: "Akash Aman",
-        site: baseURL,
+        card: "summary_large_image",
+        creator: "@sirakashaman",
+        site: "@sirakashaman",
         images: [
             {
                 url: "/portfolio.png",
@@ -117,7 +85,7 @@ export const metadata: Metadata = {
         ],
         title: "Akash Aman | Full Stack Dev",
         description:
-            "Welcome to the captivating realm of Akash Aman. Witness the fusion of art and technology through full stack dev & transformative web experiences.",
+            "Akash Aman is a Senior Software Engineer at rtCamp building fast, scalable web apps with React, Next.js, Go and WordPress. Projects, blogs and free courses.",
     },
     manifest: "/manifest.json",
     category: "technology",

@@ -8,7 +8,8 @@ import { gqlAPI } from "@/config/constant";
 import { notFound } from "next/navigation";
 import { Metadata, ResolvingMetadata } from "next";
 import { wretch } from "@/utils/fetchapi";
-import { generatePageMetadata } from "@/utils/metadata";
+import { generatePageMetadata, contentJsonLd } from "@/utils/metadata";
+import JsonLd from "@/components/elements/JsonLd";
 import Link from "next/link";
 import Image from "next/image";
 import facebook from "@/assets/icons/facebook.svg";
@@ -42,14 +43,13 @@ export async function generateMetadata(
 	return generatePageMetadata({
 		title: course?.title,
 		description: course?.excerpt,
-		slug: course?.slug,
+		path: `/courses/${params.course}`,
 		image: {
 			url: course?.featuredImage?.node?.mediaItemUrl,
 			width: course?.featuredImage?.node?.mediaDetails?.width,
 			height: course?.featuredImage?.node?.mediaDetails?.height,
 			alt: course?.featuredImage?.node?.caption,
 		},
-		pathPrefix: "/courses",
 	});
 }
 
@@ -82,6 +82,15 @@ const Course = async (props: Props) => {
 
 	return (
 		<article className="max-w-6xl mx-auto ">
+			<JsonLd
+				data={contentJsonLd({
+					type: "Course",
+					title: course.title,
+					description: course.excerpt,
+					path: `/courses/${params.course}`,
+					image: course.featuredImage?.node?.mediaItemUrl,
+				})}
+			/>
 			<div className="sm:grid-cols-[1fr_3rem] grid-cols-1 grid gap-8">
 				<div className="col-start-2 row-span-2 hidden sm:block">
 					<aside aria-label="Social Share" className="w-10 grid gap-8 sticky top-1/3">

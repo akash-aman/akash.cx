@@ -14,6 +14,8 @@ import { GoogleAnalytics } from "@next/third-parties/google";
 import { metadata, viewport } from "config/site";
 export { metadata, viewport };
 
+const TYPEKIT_CSS = "https://use.typekit.net/kja6uqf.css";
+
 /**
  * This is the Root layout for the every page.
  *
@@ -28,7 +30,19 @@ export default function RootLayout({
     return (
         <html lang="en" className="dark" suppressHydrationWarning>
             <head>
-                <link rel="stylesheet" href="https://use.typekit.net/kja6uqf.css"></link>
+                {/* Typekit CSS @imports p.typekit.net, a ~1.5s render-blocking chain on mobile.
+                    Load it asynchronously instead; the fonts swap in when ready. */}
+                <link rel="preconnect" href="https://use.typekit.net" crossOrigin="anonymous" />
+                <link rel="preconnect" href="https://p.typekit.net" />
+                <link rel="preload" href={TYPEKIT_CSS} as="style" />
+                <script
+                    dangerouslySetInnerHTML={{
+                        __html: `(function(){var l=document.createElement("link");l.rel="stylesheet";l.href="${TYPEKIT_CSS}";document.head.appendChild(l)})()`,
+                    }}
+                />
+                <noscript>
+                    <link rel="stylesheet" href={TYPEKIT_CSS} />
+                </noscript>
             </head>
             <body className="scrollbar bg-(--bg-secondary) h-svh">
                 <ApplyTheme />

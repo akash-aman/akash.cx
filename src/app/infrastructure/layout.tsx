@@ -1,3 +1,4 @@
+import "styles/infra.scss";
 import { Metadata } from "next";
 import { generatePageMetadata } from "@/utils/metadata";
 import { HostStrip } from "@/components/infra/HostStrip";

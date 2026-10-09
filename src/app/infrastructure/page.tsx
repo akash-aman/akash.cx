@@ -13,6 +13,7 @@ export default function OverviewPage() {
 
     return (
         <div className="grid gap-8">
+            <h1 className="sr-only">Self-hosted infrastructure overview</h1>
             {/* KPI row */}
             <section className="grid grid-cols-2 lg:grid-cols-4 gap-3">
                 <KpiCard label="services" value={SERVICES.length} suffix="surfaces" />

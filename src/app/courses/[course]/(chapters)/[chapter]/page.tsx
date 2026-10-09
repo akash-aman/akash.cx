@@ -6,13 +6,17 @@ import {
 	ChapterPageQuery,
 	ChapterPageDocument,
 	ChapterPageQueryVariables,
+	CoursePageQuery,
+	CoursePageDocument,
+	CoursePageQueryVariables,
 } from "generated/graphql";
 
 import { gqlAPI } from "@/config/constant";
 import { notFound } from "next/navigation";
 import { Metadata, ResolvingMetadata } from "next";
 import { wretch } from "@/utils/fetchapi";
-import { generatePageMetadata } from "@/utils/metadata";
+import { generatePageMetadata, contentJsonLd } from "@/utils/metadata";
+import JsonLd from "@/components/elements/JsonLd";
 import ChapterStyles from "app/courses/[course]/(chapters)/[chapter]/ChapterStyles";
 import Link from "next/link";
 import Image from "next/image";
@@ -52,17 +56,30 @@ export async function generateMetadata(
 		{ tags: [params.chapter, params.course, "chapters"] },
 	);
 
+	// Chapter titles are short ("Map", "Build"), so include the course name
+	// and fall back to the course cover when the chapter has no image.
+	const { course } = await wretch<CoursePageQuery, CoursePageQueryVariables>(
+		gqlAPI,
+		CoursePageDocument,
+		{ slug: params.course },
+		{ tags: [params.course, "courses"] },
+	);
+	const image = chapter?.featuredImage?.node ?? course?.featuredImage?.node;
+	const courseTitle = course?.title?.replace(/\p{Extended_Pictographic}/gu, "").trim();
+
 	return generatePageMetadata({
-		title: chapter?.title,
+		title: courseTitle ? `${chapter?.title} – ${courseTitle}` : chapter?.title,
 		description: chapter?.excerpt,
-		slug: chapter?.slug,
+		path: `/courses/${params.course}/${params.chapter}`,
 		image: {
-			url: chapter?.featuredImage?.node?.mediaItemUrl,
-			width: chapter?.featuredImage?.node?.mediaDetails?.width,
-			height: chapter?.featuredImage?.node?.mediaDetails?.height,
-			alt: chapter?.featuredImage?.node?.caption,
+			url: image?.mediaItemUrl,
+			width: image?.mediaDetails?.width,
+			height: image?.mediaDetails?.height,
+			alt: image?.caption,
 		},
-		pathPrefix: `/courses/${params.course}`,
+		type: "article",
+		publishedTime: chapter?.date,
+		modifiedTime: chapter?.modified,
 	});
 }
 
@@ -108,6 +125,17 @@ const Chapter = async (props: Props) => {
 	return (
 
 		<>
+			<JsonLd
+				data={contentJsonLd({
+					type: "TechArticle",
+					title: chapter.title,
+					description: chapter.excerpt,
+					path: `/courses/${params.course}/${params.chapter}`,
+					image: chapter.featuredImage?.node?.mediaItemUrl,
+					datePublished: chapter.date,
+					dateModified: chapter.modified,
+				})}
+			/>
 			<ChapterStyles params={params} />
 			<header className="w-full mb-10 sm:animate-page-enter h-full">
 				<nav aria-label="Breadcrumb" className="grid grid-flow-col gap-2 justify-start items-center text-sm tk-attribute-mono mb-8">

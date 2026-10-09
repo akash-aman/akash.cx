@@ -1,35 +1,15 @@
 import { Metadata } from "next";
+import { generatePageMetadata } from "@/utils/metadata";
 import { HostStrip } from "@/components/infra/HostStrip";
 import { TabBar } from "@/components/infra/TabBar";
 import { HOST } from "@/config/infrastructure";
 
-export const metadata: Metadata = {
-    title: "Infrastructure | Akash Aman",
+export const metadata: Metadata = generatePageMetadata({
+    title: "Infrastructure",
     description:
-        "Live ops console for everything Akash self-hosts on a single Hostinger VPS — NPM-managed reverse proxy, observability stack, MCP servers, and CI/CD pipelines. Real status, real architecture.",
-    keywords: [
-        "DevOps",
-        "Infrastructure",
-        "Self-hosted",
-        "Nginx Proxy Manager",
-        "Docker",
-        "Observability",
-        "Prometheus",
-        "Grafana",
-        "MCP",
-        "Kubernetes",
-        "CI/CD",
-    ],
-    openGraph: {
-        title: "Infrastructure | Akash Aman",
-        description:
-            "A live, end-to-end view of a single VPS running 18+ containerized services with NPM, Prometheus, Grafana, Jaeger, and a custom MCP fleet.",
-        url: "https://akash.cx/infrastructure",
-        images: [{ url: "/portfolio.png", width: 1920, height: 952, alt: "Infrastructure | Akash Aman" }],
-        type: "website",
-        siteName: "Akash Aman | Full Stack Dev",
-    },
-};
+        "Live ops console for everything Akash self-hosts on a single VPS — reverse proxy, observability stack, MCP servers and CI/CD pipelines, with real status.",
+    path: "/infrastructure",
+});
 
 export const revalidate = 30;
 

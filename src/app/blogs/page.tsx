@@ -4,69 +4,18 @@ import {
 	BlogsPageDocument,
 } from "generated/graphql";
 import { Metadata } from "next";
+import { generatePageMetadata } from "@/utils/metadata";
 import { gqlAPI } from "@/config/constant";
 import { wretch } from "@/utils/fetchapi";
 import Footer from "@/components/blocks/Footer";
 import Card from "@/components/blocks/Card";
 
-/**
- * This is the metadata for the page.
- */
-export const metadata: Metadata = {
-	title: {
-		absolute: "Blogs",
-	},
+export const metadata: Metadata = generatePageMetadata({
+	title: "Blogs",
 	description:
-		"Explore insightful and informative blogs in various topics. akash.cx offers a collection of educational & insightful articles that cover diverse topics related to software & technology. Visit the Blogs  page to access valuable resources.",
-	keywords: [
-		"Blogs",
-		"SDE",
-		"Full Stack Developer",
-		"Responsive design",
-		"portfolio",
-		"projects",
-		"coding",
-		"Web development",
-		"Web design",
-		"User Experience",
-		"Html",
-		"Css",
-		"Javascript",
-	],
-	openGraph: {
-		title: "Blogs",
-		description:
-			"Explore insightful and informative blogs in various topics. akash.cx offers a collection of educational & insightful articles that cover diverse topics related to software & technology. Visit the Blogs  page to access valuable resources.",
-		url: "https://akash.cx",
-		images: [
-			{
-				url: "/portfolio.png",
-				width: 1920,
-				height: 952,
-				alt: "Blogs",
-			},
-		],
-		type: "website",
-		siteName: "Blogs",
-		countryName: "India",
-	},
-	twitter: {
-		creatorId: "@sirakashaman",
-		creator: "Akash Aman",
-		site: "https://akash.cx",
-		images: [
-			{
-				url: "/portfolio.png",
-				width: 1920,
-				height: 952,
-				alt: "Blogs",
-			},
-		],
-		title: "Blogs",
-		description:
-			"Explore insightful and informative blogs in various topics. Akash.cx offers a collection of educational & insightful articles that cover diverse topics related to software & technology. Visit the Blogs page to access valuable resources.",
-	},
-};
+		"Engineering write-ups by Akash Aman on web performance, React, WordPress, Go and system design — real problems, real benchmarks, and the code behind them.",
+	path: "/blogs",
+});
 
 /**
  * This function generates the page.

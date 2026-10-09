@@ -1,61 +1,13 @@
 import { Metadata } from "next";
+import { generatePageMetadata } from "@/utils/metadata";
 import React from "react";
 
-/**
- * This is the metadata for the page.
- */
-export const metadata: Metadata = {
+export const metadata: Metadata = generatePageMetadata({
 	title: "Timeline",
 	description:
-		"Explore the journey and milestones of Akash Aman. Timeline showcases the progression of their career, highlighting significant achievements and experiences. Visit the Timeline page to gain insights into Akash's growth, expertise in software development.",
-	keywords: [
-		"Techstack",
-		"Full Stack Developer",
-		"Responsive design",
-		"portfolio",
-		"projects",
-		"coding",
-		"Web development",
-		"Web design",
-		"User Experience",
-		"Html",
-		"Css",
-		"Javascript",
-	],
-	openGraph: {
-		title: "Projects | Akash | Full Stack Dev",
-		description:
-			"Explore the journey and milestones of Akash Aman. Timeline showcases the progression of their career, highlighting significant achievements and experiences. Visit the Timeline page to gain insights into Akash's growth, expertise in software development.",
-		url: "https://akash.cx",
-		images: [
-			{
-				url: "/portfolio.png",
-				width: 1920,
-				height: 952,
-				alt: "Akash Aman | Full Stack Dev",
-			},
-		],
-		type: "website",
-		siteName: "Akash Aman | Full Stack Dev",
-		countryName: "India",
-	},
-	twitter: {
-		creatorId: "@sirakashaman",
-		creator: "Akash Aman",
-		site: "https://akash.cx",
-		images: [
-			{
-				url: "/portfolio.png",
-				width: 1920,
-				height: 952,
-				alt: "Akash Aman | Full Stack Dev",
-			},
-		],
-		title: "Projects | Akash | Full Stack Dev",
-		description:
-			"Explore the journey and milestones of Akash Aman. Timeline showcases the progression of their career, highlighting significant achievements and experiences. Visit the Timeline page to gain insights into Akash's growth, expertise in software development.",
-	},
-};
+		"The career timeline of Akash Aman — from first dial-up connection to Senior Software Engineer at rtCamp, with the milestones in between.",
+	path: "/timeline",
+});
 
 /**
  * This is the layout for the page.

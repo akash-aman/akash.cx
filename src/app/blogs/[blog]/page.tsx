@@ -10,7 +10,8 @@ import { Metadata, ResolvingMetadata } from "next";
 import { notFound } from "next/navigation";
 import { wretch } from "@/utils/fetchapi";
 import { gqlAPI } from "@/config/constant";
-import { generatePageMetadata } from "@/utils/metadata";
+import { generatePageMetadata, contentJsonLd } from "@/utils/metadata";
+import JsonLd from "@/components/elements/JsonLd";
 import facebook from "@/assets/icons/facebook.svg";
 import twitter from "@/assets/icons/twitter.svg";
 import reddit from "@/assets/icons/redit.svg";
@@ -44,14 +45,16 @@ export async function generateMetadata(
 	return generatePageMetadata({
 		title: blog?.title,
 		description: blog?.excerpt,
-		slug: blog?.slug,
+		path: `/blogs/${params.blog}`,
 		image: {
 			url: blog?.featuredImage?.node?.mediaItemUrl,
 			width: blog?.featuredImage?.node?.mediaDetails?.width,
 			height: blog?.featuredImage?.node?.mediaDetails?.height,
 			alt: blog?.featuredImage?.node?.caption,
 		},
-		pathPrefix: "/blogs",
+		type: "article",
+		publishedTime: blog?.date,
+		modifiedTime: blog?.modified,
 	});
 }
 
@@ -83,6 +86,17 @@ const Blog = async (props: Props) => {
 
 	return (
 		<article className="max-w-(--container-45xl) mx-auto ">
+			<JsonLd
+				data={contentJsonLd({
+					type: "BlogPosting",
+					title: blog.title,
+					description: blog.excerpt,
+					path: `/blogs/${params.blog}`,
+					image: blog.featuredImage?.node?.mediaItemUrl,
+					datePublished: blog.date,
+					dateModified: blog.modified,
+				})}
+			/>
 			<div className="sm:grid-cols-[1fr_3rem] grid-cols-1 grid gap-8">
 				<div className="col-start-2 row-span-2 hidden sm:block">
 					<aside aria-label="Social Share" className="w-10 grid gap-8 sticky top-1/3">

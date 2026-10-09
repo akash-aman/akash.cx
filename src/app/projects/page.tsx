@@ -70,9 +70,9 @@ const Page = () => {
                 className={`${row} t-${index} relative timeline-year`}
               >
                 <div className="">
-                  <h1 className="opacity-50 m-0 heading-2">
+                  <p className="greycliff-cf text-(--text-main) opacity-50 m-0 heading-2">
                     {year}
-                  </h1>
+                  </p>
                 </div>
                 <figure className="pt-10 max-w-lg w-full md:w-lg">
                   <Image

@@ -1,7 +1,16 @@
+import { Metadata } from "next";
+import { generatePageMetadata } from "@/utils/metadata";
 import { ServiceGrid } from "@/components/infra/ServiceGrid";
 import { CertHeatmap } from "@/components/infra/CertHeatmap";
 import { SectionHeader } from "@/components/infra/SectionHeader";
 import { resolveServices } from "@/utils/infra/services";
+
+export const metadata: Metadata = generatePageMetadata({
+    absoluteTitle: "Services · Infrastructure | Akash Aman",
+    description:
+        "Live status, uptime and TLS certificate expiry for every service Akash Aman self-hosts, refreshed every minute.",
+    path: "/infrastructure/services",
+});
 
 export const revalidate = 60;
 
@@ -21,6 +30,7 @@ export default async function ServicesPage() {
         <div className="grid gap-8">
             <SectionHeader
                 title="services"
+                as="h1"
                 mono={`${items.length} surfaces · ${source}`}
             />
             <ServiceGrid services={items} />

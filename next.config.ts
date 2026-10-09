@@ -6,6 +6,10 @@ const isDev = process.env.NODE_ENV !== "production";
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+	experimental: {
+		// Inline the global CSS into the HTML: removes a render-blocking request (~0.7s on slow 4G).
+		inlineCss: true,
+	},
 	images: {
 		formats: ["image/avif", "image/webp"],
 		remotePatterns: [

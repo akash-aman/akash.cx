@@ -15,14 +15,21 @@ export function ServiceCard({ svc, dense }: ServiceCardProps) {
         ? `https://${svc.publicDomain.replace(/^\*\./, "")}`
         : undefined;
 
-    const CardBody = domainHref ? "a" : "div";
-
     return (
         <div className="infra-panel overflow-hidden group transition-all">
-            <CardBody
-                {...(domainHref ? { href: domainHref, target: "_blank", rel: "noopener noreferrer" } : {})}
-                className={clsx("block px-3 py-2.5 grid gap-1.5", domainHref && "hover:-translate-y-px transition-transform cursor-pointer")}
+            <div
+                className={clsx("relative px-3 py-2.5 grid gap-1.5", domainHref && "hover:-translate-y-px transition-transform cursor-pointer")}
             >
+                {/* Stretched link: covers the card without wrapping the distributedAs link (nested <a> breaks hydration). */}
+                {domainHref && (
+                    <a
+                        href={domainHref}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={svc.alias}
+                        className="absolute inset-0"
+                    />
+                )}
                 <div className="flex items-center gap-2 min-w-0">
                     <StatusDot tone={tone} pulse={svc.status === "down" || svc.status === "degraded"} />
                     <span className="text-sm font-medium truncate">{svc.alias}</span>
@@ -32,9 +39,8 @@ export function ServiceCard({ svc, dense }: ServiceCardProps) {
                                 href={svc.distributedAs.url}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                onClick={(e) => e.stopPropagation()}
                                 className={clsx(
-                                    "infra-pill text-[0.6rem]",
+                                    "relative z-1 infra-pill text-[0.6rem]",
                                     svc.distributedAs.kind === "npm" && "infra-pill--red",
                                     svc.distributedAs.kind === "vscode" && "infra-pill--blue",
                                     svc.distributedAs.kind === "docker" && "infra-pill--blue",
@@ -79,7 +85,7 @@ export function ServiceCard({ svc, dense }: ServiceCardProps) {
                         )}
                     </>
                 )}
-            </CardBody>
+            </div>
             {svc.repo && !dense && (
                 <a
                     href={`https://github.com/${svc.repo}`}

@@ -15,7 +15,7 @@ export function TabBar() {
         <nav
             aria-label="Infrastructure sections"
         >
-            <ul className="max-w-350 mx-auto flex gap-6 px-4 sm:px-6 lg:px-8">
+            <ul className="max-w-350 mx-auto flex gap-6 px-4 sm:px-6 lg:px-8 overflow-x-auto whitespace-nowrap">
                 {TABS.map((t) => {
                     const active = t.href === "/infrastructure"
                         ? path === "/infrastructure"

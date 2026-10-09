@@ -1,10 +1,10 @@
-"use client";
-import React, { useRef, useEffect } from "react";
+import React from "react";
 import Image from "next/image";
 import { projects } from "@/config/constant";
 
 import "@/styles/timeline.scss";
 import Footer from "@/components/blocks/Footer";
+import RevealOnScroll from "@/components/elements/RevealOnScroll";
 
 /**
  * This function generates the page.
@@ -12,23 +12,6 @@ import Footer from "@/components/blocks/Footer";
  * @returns
  */
 const Page = () => {
-  const projectRef = useRef<(HTMLDivElement | null)[]>([]);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          const { isIntersecting } = entry;
-          entry.target.classList.toggle("animate", isIntersecting);
-        });
-      },
-      { threshold: 0.1, rootMargin: "40% 0px -45% 0px" },
-    );
-    projectRef.current.forEach((el) => {
-      if (el) observer.observe(el);
-    });
-  }, []);
-
   return (
     <article className="max-w-6xl mx-auto">
       <header>
@@ -40,9 +23,6 @@ const Page = () => {
           return (
             <React.Fragment key={index}>
               <div
-                ref={(el) => {
-                  projectRef.current[2 * index] = el;
-                }}
                 className={`${row} t-${index} relative timeline-detail`}
               >
                 <a href={link} target="_blank">  <div className="max-w-xl w-full xl:w-lg grid items-start">
@@ -64,9 +44,6 @@ const Page = () => {
                 </div></a>
               </div>
               <div
-                ref={(el) => {
-                  projectRef.current[2 * index + 1] = el;
-                }}
                 className={`${row} t-${index} relative timeline-year`}
               >
                 <div className="">
@@ -88,6 +65,7 @@ const Page = () => {
           );
         })}
       </div>
+      <RevealOnScroll selector=".timeline-detail, .timeline-year" />
       <Footer />
     </article>
   );

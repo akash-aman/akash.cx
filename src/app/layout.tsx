@@ -10,11 +10,12 @@ import "styles/infra.scss";
 import ApplyTheme from "hooks/theme";
 import Navigation from "components/blocks/NavMenu";
 import { RegisterPWA } from "app/register-pwa";
-import { GoogleAnalytics } from "@next/third-parties/google";
+import Script from "next/script";
 import { metadata, viewport } from "config/site";
 export { metadata, viewport };
 
 const TYPEKIT_CSS = "https://use.typekit.net/kja6uqf.css";
+const GA_ID = "G-K5LQXQ8CTG";
 
 /**
  * This is the Root layout for the every page.
@@ -47,9 +48,13 @@ export default function RootLayout({
             <body className="scrollbar bg-(--bg-secondary) h-svh">
                 <ApplyTheme />
                 <Navigation className="fixed z-10 w-full bottom-0 md:w-24 md:h-full md:left-0" />
-                <div className="md:ml-24 md:shadow-(--content-area-fade) grid min-h-full px-6 py-12 sm:px-12 sm:py-14 md:px-12 lg:px-16 md:py-20">{children}</div>
+                <div className="md:ml-24 md:shadow-(--content-area-fade) grid grid-cols-1 min-h-full px-6 py-12 sm:px-12 sm:py-14 md:px-12 lg:px-16 md:py-20">{children}</div>
                 <RegisterPWA />
-                <GoogleAnalytics gaId="G-K5LQXQ8CTG" />
+                {/* gtag.js (~70KB) loads when the browser is idle after page load; calls made before then queue in dataLayer. */}
+                <Script id="ga-init" strategy="afterInteractive">
+                    {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','${GA_ID}');`}
+                </Script>
+                <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} strategy="lazyOnload" />
             </body>
         </html>
     );

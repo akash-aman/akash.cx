@@ -1,10 +1,9 @@
-"use client";
-
+// Server component: a plain <style> keeps styled-jsx (~8KB) out of the client bundle.
 const ChapterStyles = ({ params }: { params: { chapter: string } }) => {
 	return (
-
-		<style jsx global>
-			{`
+		<style
+			dangerouslySetInnerHTML={{
+				__html: `
 				.dark .${params.chapter} {
 					color: #fff;
 				}
@@ -17,8 +16,9 @@ const ChapterStyles = ({ params }: { params: { chapter: string } }) => {
 				.div-${params.chapter} > span {
 					display: flex;
 				}
-			`}
-		</style>
+			`,
+			}}
+		/>
 	);
 };
 

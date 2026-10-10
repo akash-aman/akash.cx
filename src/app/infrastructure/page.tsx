@@ -3,6 +3,8 @@ import { HealthKpi } from "@/components/infra/HealthKpi";
 import { ProxyBadges } from "@/components/infra/ProxyBadges";
 import { SectionHeader } from "@/components/infra/SectionHeader";
 import { PROXY_STACKS, DOCKER_STACKS, SERVICES } from "@/config/infrastructure";
+import JsonLd from "@/components/elements/JsonLd";
+import { graph, pageLd, breadcrumbLd } from "@/utils/metadata";
 
 export default function OverviewPage() {
     const totalComponents = PROXY_STACKS.reduce((s, stack) => {
@@ -13,6 +15,17 @@ export default function OverviewPage() {
 
     return (
         <div className="grid gap-8">
+            <JsonLd
+                data={graph(
+                    pageLd({
+                        name: "Self-hosted infrastructure of Akash Aman",
+                        description:
+                            "Live overview of the services Akash Aman self-hosts on a single VPS: reverse proxy, observability stack, MCP servers and CI/CD pipelines.",
+                        path: "/infrastructure",
+                    }),
+                    breadcrumbLd([{ name: "Infrastructure", path: "/infrastructure" }]),
+                )}
+            />
             <h1 className="sr-only">Self-hosted infrastructure overview</h1>
             {/* KPI row */}
             <section className="grid grid-cols-2 lg:grid-cols-4 gap-3">

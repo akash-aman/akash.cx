@@ -1,9 +1,8 @@
-import { baseURL } from "@/config/constant";
 import profilePicture from "assets/images/AI1.jpg";
 import Image from "next/image";
 import Link from "next/link";
 import { Metadata } from "next";
-import { generatePageMetadata } from "@/utils/metadata";
+import { generatePageMetadata, graph, pageLd, personId, personLd, websiteLd } from "@/utils/metadata";
 import JsonLd from "@/components/elements/JsonLd";
 import { Dev, Gmail, GitHub, LinkedIn, Twitter, Youtube, BuyMeCoffee } from "@/assets/icons/social";
 export const metadata: Metadata = generatePageMetadata({
@@ -13,33 +12,17 @@ export const metadata: Metadata = generatePageMetadata({
 	path: "/",
 });
 
-const jsonLd = {
-	"@context": "https://schema.org",
-	"@graph": [
-		{
-			"@type": "Person",
-			"@id": `${baseURL}/#person`,
-			name: "Akash Aman",
-			url: baseURL,
-			image: `${baseURL}/portfolio.png`,
-			jobTitle: "Senior Software Engineer",
-			worksFor: { "@type": "Organization", name: "rtCamp", url: "https://rtcamp.com" },
-			sameAs: [
-				"https://github.com/akash-aman",
-				"https://www.linkedin.com/in/aman-akash/",
-				"https://twitter.com/sirakashaman",
-				"https://www.youtube.com/@xcode-io",
-			],
-		},
-		{
-			"@type": "WebSite",
-			"@id": `${baseURL}/#website`,
-			name: "Akash Aman",
-			url: baseURL,
-			publisher: { "@id": `${baseURL}/#person` },
-		},
-	],
-};
+const jsonLd = graph(
+	personLd,
+	websiteLd,
+	pageLd({
+		type: "ProfilePage",
+		name: "Akash Aman | Full Stack Dev",
+		description: personLd.description,
+		path: "",
+		mainEntity: { "@id": personId },
+	}),
+);
 
 /**
  * This function generates the page.

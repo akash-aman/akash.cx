@@ -96,6 +96,7 @@ export function generatePageMetadata({
         keywords,
         alternates: {
             canonical: path,
+            types: { "application/rss+xml": [{ url: "/feed.xml", title: `${siteName} — Blog` }] },
         },
         openGraph: {
             title: socialTitle,
@@ -125,6 +126,120 @@ export function generatePageMetadata({
 }
 
 
+export const personId = `${baseURL}/#person`;
+export const websiteId = `${baseURL}/#website`;
+
+/** Short reference to the site owner; resolves to the full Person node on the home and about pages. */
+export const personRef = { "@type": "Person", "@id": personId, name: siteName, url: baseURL };
+
+/**
+ * The full Person entity. Search and answer engines use it to tie every page,
+ * article and course on the site to one identity (and to the sameAs profiles).
+ */
+export const personLd = {
+    "@type": "Person",
+    "@id": personId,
+    name: siteName,
+    url: baseURL,
+    image: `${baseURL}/portfolio.png`,
+    description:
+        "Akash Aman is a Senior Software Engineer at rtCamp who builds fast, scalable web apps with React, Next.js, Go and WordPress, contributes to open source and teaches programming through free courses.",
+    jobTitle: "Senior Software Engineer",
+    worksFor: { "@type": "Organization", name: "rtCamp", url: "https://rtcamp.com" },
+    knowsAbout: [
+        "Web performance",
+        "React",
+        "Next.js",
+        "Go",
+        "TypeScript",
+        "JavaScript",
+        "WordPress",
+        "GraphQL",
+        "Node.js",
+        "Docker",
+        "Kubernetes",
+        "System design",
+    ],
+    sameAs: [
+        "https://github.com/akash-aman",
+        "https://www.linkedin.com/in/aman-akash/",
+        "https://twitter.com/sirakashaman",
+        "https://www.youtube.com/@xcode-io",
+    ],
+};
+
+export const websiteLd = {
+    "@type": "WebSite",
+    "@id": websiteId,
+    name: siteName,
+    url: baseURL,
+    description: "Portfolio, engineering blog and free programming courses by Akash Aman.",
+    inLanguage: "en",
+    publisher: { "@id": personId },
+};
+
+/** Wraps nodes in a single schema.org graph. */
+export const graph = (...nodes: (object | null | undefined | false)[]) => ({
+    "@context": "https://schema.org",
+    "@graph": nodes.filter(Boolean),
+});
+
+/**
+ * BreadcrumbList for a page. Pass the trail after "Home", e.g.
+ * [{ name: "Blogs", path: "/blogs" }, { name: post.title, path: `/blogs/${slug}` }].
+ */
+export function breadcrumbLd(trail: { name?: string | null; path: string }[]) {
+    return {
+        "@type": "BreadcrumbList",
+        itemListElement: [{ name: "Home", path: "/" }, ...trail].map((item, index) => ({
+            "@type": "ListItem",
+            position: index + 1,
+            name: item.name || siteName,
+            item: `${baseURL}${item.path === "/" ? "" : item.path}`,
+        })),
+    };
+}
+
+/** WebPage-style node (WebPage, CollectionPage, ProfilePage, AboutPage) tied to the site and its owner. */
+export function pageLd({
+    type = "WebPage",
+    name,
+    description,
+    path,
+    ...rest
+}: {
+    type?: "WebPage" | "CollectionPage" | "ProfilePage";
+    name: string;
+    description?: string;
+    path: string;
+    [key: string]: unknown;
+}) {
+    return {
+        "@type": type,
+        "@id": `${baseURL}${path}#webpage`,
+        name,
+        description,
+        url: `${baseURL}${path}`,
+        inLanguage: "en",
+        isPartOf: { "@id": websiteId },
+        about: { "@id": personId },
+        ...rest,
+    };
+}
+
+/** ItemList of linked entries, in the order given. */
+export function itemListLd(items: object[]) {
+    return {
+        "@type": "ItemList",
+        numberOfItems: items.length,
+        itemListElement: items.map((item, index) => ({
+            "@type": "ListItem",
+            position: index + 1,
+            item,
+        })),
+    };
+}
+
 interface JsonLdParams {
     type: "BlogPosting" | "TechArticle" | "Course";
     title?: string | null;
@@ -133,10 +248,18 @@ interface JsonLdParams {
     image?: string | null;
     datePublished?: string | null;
     dateModified?: string | null;
+    /** Topic tags, emitted as keywords. */
+    keywords?: (string | null | undefined)[];
+    /** Markdown/HTML body, used only to compute wordCount. */
+    content?: string | null;
+    /** The course a chapter belongs to. */
+    partOf?: { name?: string | null; path: string };
+    /** A course's chapters, in order. */
+    parts?: { name?: string | null; path: string }[];
 }
 
 /**
- * Builds schema.org structured data for blog posts, course chapters and courses.
+ * Builds the schema.org node for a blog post, course chapter or course.
  */
 export function contentJsonLd({
     type,
@@ -146,28 +269,47 @@ export function contentJsonLd({
     image,
     datePublished,
     dateModified,
+    keywords,
+    content,
+    partOf,
+    parts,
 }: JsonLdParams) {
     description = cleanExcerpt(description);
     const url = `${baseURL}${path}`;
-    const author = { "@type": "Person", name: siteName, url: baseURL };
+    const tags = keywords?.filter(Boolean) as string[] | undefined;
 
     if (type === "Course") {
         return {
-            "@context": "https://schema.org",
             "@type": "Course",
+            "@id": `${url}#course`,
             name: title,
             description,
             url,
             image: image || undefined,
-            provider: author,
+            provider: personRef,
+            author: personRef,
             isAccessibleForFree: true,
+            offers: { "@type": "Offer", price: 0, priceCurrency: "USD", category: "Free" },
             inLanguage: "en",
+            keywords: tags?.length ? tags.join(", ") : undefined,
+            dateModified: dateModified || undefined,
+            hasPart: parts?.length
+                ? parts.map((part) => ({
+                    "@type": "LearningResource",
+                    name: part.name,
+                    url: `${baseURL}${part.path}`,
+                }))
+                : undefined,
         };
     }
 
+    const wordCount = content
+        ? content.replace(/<[^>]*>/g, " ").split(/\s+/).filter(Boolean).length
+        : undefined;
+
     return {
-        "@context": "https://schema.org",
         "@type": type,
+        "@id": `${url}#article`,
         headline: title,
         description,
         url,
@@ -175,8 +317,14 @@ export function contentJsonLd({
         image: image || `${baseURL}${defaultImage.url}`,
         datePublished: datePublished || undefined,
         dateModified: dateModified || datePublished || undefined,
-        author,
-        publisher: author,
+        author: personRef,
+        publisher: personRef,
         inLanguage: "en",
+        keywords: tags?.length ? tags.join(", ") : undefined,
+        wordCount: wordCount || undefined,
+        isAccessibleForFree: true,
+        isPartOf: partOf
+            ? { "@type": "Course", name: partOf.name, url: `${baseURL}${partOf.path}` }
+            : { "@id": websiteId },
     };
 }

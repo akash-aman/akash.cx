@@ -10,7 +10,7 @@ import { Metadata, ResolvingMetadata } from "next";
 import { notFound } from "next/navigation";
 import { wretch } from "@/utils/fetchapi";
 import { gqlAPI } from "@/config/constant";
-import { generatePageMetadata, contentJsonLd } from "@/utils/metadata";
+import { generatePageMetadata, contentJsonLd, graph, breadcrumbLd } from "@/utils/metadata";
 import JsonLd from "@/components/elements/JsonLd";
 import facebook from "@/assets/icons/facebook.svg";
 import twitter from "@/assets/icons/twitter.svg";
@@ -87,15 +87,23 @@ const Blog = async (props: Props) => {
 	return (
 		<article className="max-w-(--container-45xl) mx-auto ">
 			<JsonLd
-				data={contentJsonLd({
-					type: "BlogPosting",
-					title: blog.title,
-					description: blog.excerpt,
-					path: `/blogs/${params.blog}`,
-					image: blog.featuredImage?.node?.mediaItemUrl,
-					datePublished: blog.date,
-					dateModified: blog.modified,
-				})}
+				data={graph(
+					contentJsonLd({
+						type: "BlogPosting",
+						title: blog.title,
+						description: blog.excerpt,
+						path: `/blogs/${params.blog}`,
+						image: blog.featuredImage?.node?.mediaItemUrl,
+						datePublished: blog.date,
+						dateModified: blog.modified,
+						keywords: blog.tags?.nodes?.map((tag) => tag?.name),
+						content: blog.contentFiltered,
+					}),
+					breadcrumbLd([
+						{ name: "Blogs", path: "/blogs" },
+						{ name: blog.title, path: `/blogs/${params.blog}` },
+					]),
+				)}
 			/>
 			<div className="sm:grid-cols-[1fr_3rem] grid-cols-1 grid gap-8">
 				<div className="col-start-2 row-span-2 hidden sm:block">

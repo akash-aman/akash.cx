@@ -31,7 +31,8 @@ import Image from "next/image";
 import { Tooltip } from "@/components/elements/Tooltip";
 import Footer from '@/components/blocks/Footer';
 import { Metadata } from "next";
-import { generatePageMetadata } from "@/utils/metadata";
+import { generatePageMetadata, graph, pageLd, breadcrumbLd, personId, personLd } from "@/utils/metadata";
+import JsonLd from "@/components/elements/JsonLd";
 
 export const metadata: Metadata = generatePageMetadata({
     title: "About",
@@ -45,6 +46,19 @@ export const metadata: Metadata = generatePageMetadata({
 const Page = () => {
     return (
         <article className='max-w-4xl mx-auto'>
+            <JsonLd
+                data={graph(
+                    personLd,
+                    pageLd({
+                        type: "ProfilePage",
+                        name: "About Akash Aman",
+                        description: personLd.description,
+                        path: "/about",
+                        mainEntity: { "@id": personId },
+                    }),
+                    breadcrumbLd([{ name: "About", path: "/about" }]),
+                )}
+            />
             <header>
                 <h1 className="heading-1 py-8 border-b border-(--dark-theme-300)">About </h1>
             </header>

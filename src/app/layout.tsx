@@ -13,7 +13,7 @@ import Script from "next/script";
 import { metadata, viewport } from "config/site";
 export { metadata, viewport };
 
-const TYPEKIT_CSS = "https://use.typekit.net/kja6uqf.css";
+const TYPEKIT_CSS = "https://use.typekit.net/pzo7ekb.css";
 const GA_ID = "G-K5LQXQ8CTG";
 
 /**

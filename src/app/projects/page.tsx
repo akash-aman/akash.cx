@@ -5,6 +5,8 @@ import { projects } from "@/config/constant";
 import "@/styles/timeline.scss";
 import Footer from "@/components/blocks/Footer";
 import RevealOnScroll from "@/components/elements/RevealOnScroll";
+import JsonLd from "@/components/elements/JsonLd";
+import { graph, pageLd, breadcrumbLd, itemListLd, personRef } from "@/utils/metadata";
 
 /**
  * This function generates the page.
@@ -14,6 +16,27 @@ import RevealOnScroll from "@/components/elements/RevealOnScroll";
 const Page = () => {
   return (
     <article className="max-w-6xl mx-auto">
+      <JsonLd
+        data={graph(
+          pageLd({
+            type: "CollectionPage",
+            name: "Projects by Akash Aman",
+            description: "Open-source projects built by Akash Aman.",
+            path: "/projects",
+            mainEntity: itemListLd(
+              projects.map(({ title, description, link }) => ({
+                "@type": "SoftwareSourceCode",
+                name: title,
+                description,
+                url: link,
+                codeRepository: link,
+                author: personRef,
+              })),
+            ),
+          }),
+          breadcrumbLd([{ name: "Projects", path: "/projects" }]),
+        )}
+      />
       <header>
         <h1 className="heading-1 py-8 border-b border-(--dark-theme-300)">Projects</h1>
       </header>

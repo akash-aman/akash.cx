@@ -5,7 +5,8 @@ import {
 } from "generated/graphql";
 import { gqlAPI } from "@/config/constant";
 import { Metadata } from "next";
-import { generatePageMetadata } from "@/utils/metadata";
+import { generatePageMetadata, graph, pageLd, breadcrumbLd, itemListLd, contentJsonLd } from "@/utils/metadata";
+import JsonLd from "@/components/elements/JsonLd";
 import { wretch } from "@/utils/fetchapi";
 import Card from "@/components/blocks/Card";
 import Footer from "@/components/blocks/Footer";
@@ -32,6 +33,31 @@ const Page = async () => {
 
 	return (
 		<article className='max-w-5xl mx-auto'>
+			<JsonLd
+				data={graph(
+					pageLd({
+						type: "CollectionPage",
+						name: "Free programming courses by Akash Aman",
+						description:
+							"Free, hands-on programming courses: Go, data structures and algorithms, design patterns and more.",
+						path: "/courses",
+						mainEntity: itemListLd(
+							(courses?.nodes ?? []).map((course) =>
+								contentJsonLd({
+									type: "Course",
+									title: course?.title,
+									description: course?.excerpt,
+									path: `/courses/${course?.slug}`,
+									image: course?.featuredImage?.node?.mediaItemUrl,
+									dateModified: course?.modified,
+									keywords: course?.tags?.nodes?.map((tag) => tag?.name),
+								}),
+							),
+						),
+					}),
+					breadcrumbLd([{ name: "Courses", path: "/courses" }]),
+				)}
+			/>
 			<header>
 				<h1 className="heading-1 py-8 border-b border-(--dark-theme-300)">Courses </h1>
 			</header>

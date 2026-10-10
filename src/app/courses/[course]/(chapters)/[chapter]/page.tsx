@@ -15,7 +15,7 @@ import { gqlAPI } from "@/config/constant";
 import { notFound } from "next/navigation";
 import { Metadata, ResolvingMetadata } from "next";
 import { wretch } from "@/utils/fetchapi";
-import { generatePageMetadata, contentJsonLd } from "@/utils/metadata";
+import { generatePageMetadata, contentJsonLd, graph, breadcrumbLd } from "@/utils/metadata";
 import JsonLd from "@/components/elements/JsonLd";
 import ChapterStyles from "app/courses/[course]/(chapters)/[chapter]/ChapterStyles";
 import Link from "next/link";
@@ -111,7 +111,13 @@ const Chapter = async (props: Props) => {
 		notFound();
 	}
 
-
+	// Same request as generateMetadata (deduped); the course name feeds the structured data.
+	const { course } = await wretch<CoursePageQuery, CoursePageQueryVariables>(
+		gqlAPI,
+		CoursePageDocument,
+		{ slug: params.course },
+		{ tags: [params.course, "courses"] },
+	);
 
 	const formattedDate = chapter?.date
 		? new Date(chapter.date).toLocaleDateString(undefined, {
@@ -126,15 +132,25 @@ const Chapter = async (props: Props) => {
 
 		<>
 			<JsonLd
-				data={contentJsonLd({
-					type: "TechArticle",
-					title: chapter.title,
-					description: chapter.excerpt,
-					path: `/courses/${params.course}/${params.chapter}`,
-					image: chapter.featuredImage?.node?.mediaItemUrl,
-					datePublished: chapter.date,
-					dateModified: chapter.modified,
-				})}
+				data={graph(
+					contentJsonLd({
+						type: "TechArticle",
+						title: chapter.title,
+						description: chapter.excerpt,
+						path: `/courses/${params.course}/${params.chapter}`,
+						image: chapter.featuredImage?.node?.mediaItemUrl,
+						datePublished: chapter.date,
+						dateModified: chapter.modified,
+						keywords: chapter.tags?.nodes?.map((tag) => tag?.name),
+						content: chapter.contentFiltered,
+						partOf: { name: course?.title, path: `/courses/${params.course}` },
+					}),
+					breadcrumbLd([
+						{ name: "Courses", path: "/courses" },
+						{ name: course?.title, path: `/courses/${params.course}` },
+						{ name: chapter.title, path: `/courses/${params.course}/${params.chapter}` },
+					]),
+				)}
 			/>
 			<ChapterStyles params={params} />
 			<header className="w-full mb-10 sm:animate-page-enter h-full">

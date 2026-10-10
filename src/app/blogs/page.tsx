@@ -4,7 +4,8 @@ import {
 	BlogsPageDocument,
 } from "generated/graphql";
 import { Metadata } from "next";
-import { generatePageMetadata } from "@/utils/metadata";
+import { generatePageMetadata, graph, pageLd, breadcrumbLd, itemListLd, contentJsonLd } from "@/utils/metadata";
+import JsonLd from "@/components/elements/JsonLd";
 import { gqlAPI } from "@/config/constant";
 import { wretch } from "@/utils/fetchapi";
 import Footer from "@/components/blocks/Footer";
@@ -32,6 +33,31 @@ const Page = async () => {
 
 	return (
 		<article className='max-w-5xl mx-auto'>
+			<JsonLd
+				data={graph(
+					pageLd({
+						type: "CollectionPage",
+						name: "Blogs by Akash Aman",
+						description:
+							"Engineering write-ups on web performance, React, WordPress, Go and system design.",
+						path: "/blogs",
+						mainEntity: itemListLd(
+							(blogs?.nodes ?? []).map((blog) =>
+								contentJsonLd({
+									type: "BlogPosting",
+									title: blog?.title,
+									description: blog?.excerpt,
+									path: `/blogs/${blog?.slug}`,
+									image: blog?.featuredImage?.node?.mediaItemUrl,
+									dateModified: blog?.modified,
+									keywords: blog?.tags?.nodes?.map((tag) => tag?.name),
+								}),
+							),
+						),
+					}),
+					breadcrumbLd([{ name: "Blogs", path: "/blogs" }]),
+				)}
+			/>
 			<header>
 				<h1 className="heading-1 py-8 border-b border-(--dark-theme-300)">Blogs </h1>
 			</header>

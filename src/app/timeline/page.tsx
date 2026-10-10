@@ -3,10 +3,22 @@ import "@/styles/timeline.scss";
 import Footer from "@/components/blocks/Footer";
 import RevealOnScroll from "@/components/elements/RevealOnScroll";
 import React from "react";
+import JsonLd from "@/components/elements/JsonLd";
+import { graph, pageLd, breadcrumbLd } from "@/utils/metadata";
 
 const Page = () => {
   return (
     <article className="max-w-4xl mx-auto">
+      <JsonLd
+        data={graph(
+          pageLd({
+            name: "Career timeline of Akash Aman",
+            description: "The career timeline of Akash Aman, up to Senior Software Engineer at rtCamp.",
+            path: "/timeline",
+          }),
+          breadcrumbLd([{ name: "Timeline", path: "/timeline" }]),
+        )}
+      />
       <header className="pb-4 sm:pb-0">
         <h1 className="heading-1 py-8 border-b border-(--dark-theme-300)">Timeline</h1>
       </header>

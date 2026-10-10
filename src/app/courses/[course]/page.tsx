@@ -4,11 +4,11 @@ import {
 	CoursePageDocument,
 	CoursePageQueryVariables,
 } from "generated/graphql";
-import { gqlAPI } from "@/config/constant";
+import { gqlAPI, baseURL } from "@/config/constant";
 import { notFound } from "next/navigation";
 import { Metadata, ResolvingMetadata } from "next";
 import { wretch } from "@/utils/fetchapi";
-import { generatePageMetadata, contentJsonLd } from "@/utils/metadata";
+import { generatePageMetadata, contentJsonLd, graph, breadcrumbLd } from "@/utils/metadata";
 import JsonLd from "@/components/elements/JsonLd";
 import Link from "next/link";
 import Image from "next/image";
@@ -83,19 +83,32 @@ const Course = async (props: Props) => {
 	return (
 		<article className="max-w-6xl mx-auto ">
 			<JsonLd
-				data={contentJsonLd({
-					type: "Course",
-					title: course.title,
-					description: course.excerpt,
-					path: `/courses/${params.course}`,
-					image: course.featuredImage?.node?.mediaItemUrl,
-				})}
+				data={graph(
+					contentJsonLd({
+						type: "Course",
+						title: course.title,
+						description: course.excerpt,
+						path: `/courses/${params.course}`,
+						image: course.featuredImage?.node?.mediaItemUrl,
+						dateModified: course.modified,
+						keywords: course.tags?.nodes?.map((tag) => tag?.name),
+						parts: (course.chapters?.chapters ?? []).flatMap((chapter) =>
+							chapter?.slug
+								? [{ name: chapter.title, path: `/courses/${params.course}/${chapter.slug}` }]
+								: [],
+						),
+					}),
+					breadcrumbLd([
+						{ name: "Courses", path: "/courses" },
+						{ name: course.title, path: `/courses/${params.course}` },
+					]),
+				)}
 			/>
 			<div className="sm:grid-cols-[1fr_3rem] grid-cols-1 grid gap-8">
 				<div className="col-start-2 row-span-2 hidden sm:block">
 					<aside aria-label="Social Share" className="w-10 grid gap-8 sticky top-1/3">
 						<a
-							href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(`https://akash.cx/blogs/${params.course}`)}&text=${encodeURIComponent(course?.title ?? "")}`}
+							href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(`${baseURL}/courses/${params.course}`)}&text=${encodeURIComponent(course?.title ?? "")}`}
 							target="_blank"
 							rel="noopener noreferrer"
 							title="Share on Twitter"
@@ -104,7 +117,7 @@ const Course = async (props: Props) => {
 							<Image src={twitter} alt="Twitter" />
 						</a>
 						<a
-							href={`https://www.reddit.com/submit?url=${encodeURIComponent(`https://akash.cx/blogs/${params.course}`)}&title=${encodeURIComponent(course?.title ?? "")}`}
+							href={`https://www.reddit.com/submit?url=${encodeURIComponent(`${baseURL}/courses/${params.course}`)}&title=${encodeURIComponent(course?.title ?? "")}`}
 							target="_blank"
 							rel="noopener noreferrer"
 							title="Share on Reddit"
@@ -113,7 +126,7 @@ const Course = async (props: Props) => {
 							<Image src={reddit} alt="Reddit" />
 						</a>
 						<a
-							href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(`https://akash.cx/blogs/${params.course}`)}`}
+							href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(`${baseURL}/courses/${params.course}`)}`}
 							target="_blank"
 							rel="noopener noreferrer"
 							title="Share on Facebook"
@@ -122,7 +135,7 @@ const Course = async (props: Props) => {
 							<Image src={facebook} alt="Facebook" />
 						</a>
 						<a
-							href={`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(`https://akash.cx/blogs/${params.course}`)}&title=${encodeURIComponent(course?.title ?? "")}`}
+							href={`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(`${baseURL}/courses/${params.course}`)}&title=${encodeURIComponent(course?.title ?? "")}`}
 							target="_blank"
 							rel="noopener noreferrer"
 							title="Share on LinkedIn"
@@ -131,7 +144,7 @@ const Course = async (props: Props) => {
 							<Image src={linkedin} alt="LinkedIn" />
 						</a>
 						<a
-							href={`mailto:?subject=${encodeURIComponent(course?.title ?? "")}&body=${encodeURIComponent(`https://akash.cx/blogs/${params.course}`)}`}
+							href={`mailto:?subject=${encodeURIComponent(course?.title ?? "")}&body=${encodeURIComponent(`${baseURL}/courses/${params.course}`)}`}
 							target="_blank"
 							title="Share by Email"
 							rel="noopener noreferrer"
@@ -233,7 +246,7 @@ const Course = async (props: Props) => {
 						)}
 						<div aria-label="Social Share" className="sm:hidden grid grid-flow-col align-middle justify-center my-10 gap-4">
 							<a
-								href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(`https://akash.cx/blogs/${params.course}`)}&text=${encodeURIComponent(course?.title ?? "")}`}
+								href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(`${baseURL}/courses/${params.course}`)}&text=${encodeURIComponent(course?.title ?? "")}`}
 								target="_blank"
 								rel="noopener noreferrer"
 								title="Share on Twitter"
@@ -242,7 +255,7 @@ const Course = async (props: Props) => {
 								<Image className="w-8" src={twitter} alt="Twitter" />
 							</a>
 							<a
-								href={`https://www.reddit.com/submit?url=${encodeURIComponent(`https://akash.cx/blogs/${params.course}`)}&title=${encodeURIComponent(course?.title ?? "")}`}
+								href={`https://www.reddit.com/submit?url=${encodeURIComponent(`${baseURL}/courses/${params.course}`)}&title=${encodeURIComponent(course?.title ?? "")}`}
 								target="_blank"
 								rel="noopener noreferrer"
 								title="Share on Reddit"
@@ -251,7 +264,7 @@ const Course = async (props: Props) => {
 								<Image className="w-8" src={reddit} alt="Reddit" />
 							</a>
 							<a
-								href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(`https://akash.cx/blogs/${params.course}`)}`}
+								href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(`${baseURL}/courses/${params.course}`)}`}
 								target="_blank"
 								rel="noopener noreferrer"
 								title="Share on Facebook"
@@ -260,7 +273,7 @@ const Course = async (props: Props) => {
 								<Image className="w-8" src={facebook} alt="Facebook" />
 							</a>
 							<a
-								href={`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(`https://akash.cx/blogs/${params.course}`)}&title=${encodeURIComponent(course?.title ?? "")}`}
+								href={`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(`${baseURL}/courses/${params.course}`)}&title=${encodeURIComponent(course?.title ?? "")}`}
 								target="_blank"
 								rel="noopener noreferrer"
 								title="Share on LinkedIn"
@@ -269,7 +282,7 @@ const Course = async (props: Props) => {
 								<Image className="w-8" src={linkedin} alt="LinkedIn" />
 							</a>
 							<a
-								href={`mailto:?subject=${encodeURIComponent(course?.title ?? "")}&body=${encodeURIComponent(`https://akash.cx/blogs/${params.course}`)}`}
+								href={`mailto:?subject=${encodeURIComponent(course?.title ?? "")}&body=${encodeURIComponent(`${baseURL}/courses/${params.course}`)}`}
 								target="_blank"
 								title="Share by Email"
 								rel="noopener noreferrer"

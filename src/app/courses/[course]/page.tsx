@@ -22,6 +22,7 @@ import Home from "@/assets/icons/home2.svg";
 import ImageComponent from "@/components/blocks/Image";
 import Footer from "@/components/blocks/Footer";
 import MDBlog from "@/components/blocks/Blog";
+import { chapterNodes } from "@/utils/chapters";
 
 type MetaProps = {
 	params: Promise<{ course: string }>;
@@ -92,7 +93,7 @@ const Course = async (props: Props) => {
 						image: course.featuredImage?.node?.mediaItemUrl,
 						dateModified: course.modified,
 						keywords: course.tags?.nodes?.map((tag) => tag?.name),
-						parts: (course.chapters?.chapters ?? []).flatMap((chapter) =>
+						parts: chapterNodes(course.chapters?.chapters?.nodes).flatMap((chapter) =>
 							chapter?.slug
 								? [{ name: chapter.title, path: `/courses/${params.course}/${chapter.slug}` }]
 								: [],
@@ -180,9 +181,9 @@ const Course = async (props: Props) => {
 									<i className="leading-tight grid items-center bg-(--card-bg) grid-flow-col gap-1 rounded-md not-italic m-1 py-0.5 px-1">
 										<ImageComponent
 											className="w-full object-cover"
-											src={featuredImage?.featuredImage?.mediaItemUrl ?? ""}
-											alt={featuredImage?.featuredImage?.caption ?? ""}
-											sizes={featuredImage?.featuredImage?.sizes ?? undefined}
+											src={featuredImage?.featuredImage?.node?.mediaItemUrl ?? ""}
+											alt={featuredImage?.featuredImage?.node?.caption ?? ""}
+											sizes={featuredImage?.featuredImage?.node?.sizes ?? undefined}
 											width={32}
 											height={32}
 											card={true}
@@ -195,20 +196,20 @@ const Course = async (props: Props) => {
 								</li>
 							))}
 						</ul>
-						{course?.author?.node?.user?.profilePic?.mediaItemUrl && (
+						{course?.author?.node?.userFields?.profilePic?.node?.mediaItemUrl && (
 							<div className="flex justify-around my-10">
 								<div aria-label="Author" className="flex gap-2">
 									<span>
 										<ImageComponent
 											className="w-9 object-cover rounded-full"
-											src={course?.author?.node?.user?.profilePic?.mediaItemUrl ?? ""}
+											src={course?.author?.node?.userFields?.profilePic?.node?.mediaItemUrl ?? ""}
 											alt={
 												"Profile Pic of " +
 												course?.author?.node?.firstName +
 												" " +
 												course?.author?.node?.lastName
 											}
-											sizes={course?.author?.node?.user?.profilePic?.sizes ?? undefined}
+											sizes={course?.author?.node?.userFields?.profilePic?.node?.sizes ?? undefined}
 											width={1920}
 											height={952}
 											card={true}
@@ -295,7 +296,7 @@ const Course = async (props: Props) => {
 					</header>
 					<MDBlog markdown={course?.contentFiltered ?? undefined} />
 					<ul className="col-start-1 grid w-full gap-4 mt-8" aria-label="Course Chapters">
-						{course?.chapters?.chapters?.map(
+						{chapterNodes(course?.chapters?.chapters?.nodes).map(
 							(chapter) =>
 								chapter &&
 								chapter.slug && (

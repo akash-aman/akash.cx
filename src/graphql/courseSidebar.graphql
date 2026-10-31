@@ -6,16 +6,19 @@ query courseSidebar($slug: ID!) {
 			emogi
 		}
 		chapters {
-			chapters {
-				... on Chapter {
-					title
-					slug
-					readTime
-					section {
-						section
-					}
-					emogi {
-						emogi
+			chapters(first: 100) {
+				nodes {
+					__typename
+					... on Chapter {
+						title
+						slug
+						readTime
+						section {
+							section
+						}
+						emogi {
+							emogi
+						}
 					}
 				}
 			}

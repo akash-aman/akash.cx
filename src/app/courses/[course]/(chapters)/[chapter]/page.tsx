@@ -30,6 +30,7 @@ import Home from "@/assets/icons/home2.svg";
 import ImageComponent from "@/components/blocks/Image";
 import Footer from "@/components/blocks/Footer";
 import MDBlog from "@/components/blocks/Blog";
+import { chapterNodes } from "@/utils/chapters";
 
 type MetaProps = {
 	params: Promise<{ chapter: string; course: string }>;
@@ -185,9 +186,9 @@ const Chapter = async (props: Props) => {
 							<i className="leading-tight grid items-center bg-(--card-bg) grid-flow-col gap-1 rounded-md not-italic m-1 py-0.5 px-1">
 								<ImageComponent
 									className="w-full object-cover"
-									src={featuredImage?.featuredImage?.mediaItemUrl ?? ""}
-									alt={featuredImage?.featuredImage?.caption ?? ""}
-									sizes={featuredImage?.featuredImage?.sizes ?? undefined}
+									src={featuredImage?.featuredImage?.node?.mediaItemUrl ?? ""}
+									alt={featuredImage?.featuredImage?.node?.caption ?? ""}
+									sizes={featuredImage?.featuredImage?.node?.sizes ?? undefined}
 									width={32}
 									height={32}
 									card={true}
@@ -200,20 +201,20 @@ const Chapter = async (props: Props) => {
 						</li>
 					))}
 				</ul>
-				{chapter?.author?.node?.user?.profilePic?.mediaItemUrl && (
+				{chapter?.author?.node?.userFields?.profilePic?.node?.mediaItemUrl && (
 					<div className="flex justify-around my-10">
 						<div aria-label="Author" className="flex gap-2">
 							<span>
 								<ImageComponent
 									className="w-9 object-cover rounded-full"
-									src={chapter?.author?.node?.user?.profilePic?.mediaItemUrl ?? ""}
+									src={chapter?.author?.node?.userFields?.profilePic?.node?.mediaItemUrl ?? ""}
 									alt={
 										"Profile Pic of " +
 										chapter?.author?.node?.firstName +
 										" " +
 										chapter?.author?.node?.lastName
 									}
-									sizes={chapter?.author?.node?.user?.profilePic?.sizes ?? undefined}
+									sizes={chapter?.author?.node?.userFields?.profilePic?.node?.sizes ?? undefined}
 									width={1920}
 									height={952}
 									card={true}
@@ -377,15 +378,11 @@ export async function generateStaticParams() {
 
 	return courses.nodes.reduce<{ course: string; chapter: string }[]>(
 		(acc, course) => {
-			if (
-				!course?.slug ||
-				!course?.chapters?.chapters ||
-				!Array.isArray(course.chapters.chapters)
-			) {
+			if (!course?.slug) {
 				return acc;
 			}
 
-			const chapterParams = course.chapters.chapters
+			const chapterParams = chapterNodes(course.chapters?.chapters?.nodes)
 				.filter((chapter) => chapter?.slug)
 				.map((chapter) => ({
 					course: course.slug!,

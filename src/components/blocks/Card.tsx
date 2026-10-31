@@ -62,7 +62,7 @@ const Card = ({ type, fields }: {
                     <footer className="flex flex-wrap gap-2 pt-2 mt-auto">
                         {tags.length > 0 ? (
                             tags.map((tag: any) => {
-                                const tagImage = tag?.featuredImage?.featuredImage?.mediaItemUrl;
+                                const tagImage = tag?.featuredImage?.featuredImage?.node?.mediaItemUrl;
                                 return (
                                     <div key={tag?.slug || tag?.name} className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-md bg-(--bg-secondary)/90">
                                         {tagImage && (

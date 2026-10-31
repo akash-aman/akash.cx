@@ -12,12 +12,14 @@ query blogPage($slug: ID!) {
 				slug
 				featuredImage {
 					featuredImage {
-						mediaItemUrl
-						sizes
-						caption
-						mediaDetails {
-							height
-							width
+						node {
+							mediaItemUrl
+							sizes
+							caption
+							mediaDetails {
+								height
+								width
+							}
 						}
 					}
 				}
@@ -38,13 +40,15 @@ query blogPage($slug: ID!) {
 			node {
 				firstName
 				lastName
-				user {
+				userFields {
 					profilePic {
-						mediaItemUrl
-						sizes
-						mediaDetails {
-							height
-							width
+						node {
+							mediaItemUrl
+							sizes
+							mediaDetails {
+								height
+								width
+							}
 						}
 					}
 				}

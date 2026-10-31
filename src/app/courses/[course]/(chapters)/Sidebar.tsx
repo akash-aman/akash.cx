@@ -5,6 +5,7 @@ import useKeyboard from "hooks/useKeyboard";
 import { CourseSidebarQuery } from "@/generated/graphql";
 import { notFound } from "next/navigation";
 import React from "react";
+import { chapterNodes } from "@/utils/chapters";
 type SidebarProps = {
 	children: React.ReactNode;
 	course: CourseSidebarQuery;
@@ -70,7 +71,7 @@ const Sidebar = ({ children, course, params }: SidebarProps): React.JSX.Element 
 						{ "xl:pr-6": show },
 					)}
 				>
-					{course.course?.chapters?.chapters?.map((chapter, index) => {
+					{chapterNodes(course.course?.chapters?.chapters?.nodes).map((chapter, index) => {
 						const { title, slug, readTime, section, emogi } = chapter || {};
 
 						return (

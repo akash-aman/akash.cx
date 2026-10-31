@@ -15,6 +15,7 @@ import {
 } from "@/generated/graphql";
 import { wretch } from "@/utils/fetchapi";
 import { cleanExcerpt } from "@/utils/metadata";
+import { chapterNodes } from "@/utils/chapters";
 
 const byNewest = (a: { date?: string | null }, b: { date?: string | null }) =>
     new Date(b.date ?? 0).getTime() - new Date(a.date ?? 0).getTime();
@@ -80,7 +81,7 @@ export async function getAllCourses() {
                 slug,
                 title: course.title ?? slug,
                 description: cleanExcerpt(course.excerpt),
-                chapters: (course.chapters?.chapters ?? []).flatMap((chapter) =>
+                chapters: chapterNodes(course.chapters?.chapters?.nodes).flatMap((chapter) =>
                     chapter?.slug
                         ? [{
                             slug: chapter.slug,

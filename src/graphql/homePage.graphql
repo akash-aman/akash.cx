@@ -1,6 +1,6 @@
 query HomePage($first: Int!, $after: String) {
 	blogs: posts(
-		where: { orderby: { field: MODIFIED, order: DESC } }
+		where: {orderby: {field: MODIFIED, order: DESC}}
 		first: $first
 		after: $after
 	) {
@@ -16,9 +16,11 @@ query HomePage($first: Int!, $after: String) {
 					slug
 					featuredImage {
 						featuredImage {
-							mediaItemUrl
-							sizes
-							caption
+							node {
+								mediaItemUrl
+								sizes
+								caption
+							}
 						}
 					}
 				}

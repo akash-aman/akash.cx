@@ -181,9 +181,9 @@ const Blog = async (props: Props) => {
 									<i className="leading-tight grid items-center bg-(--card-bg) grid-flow-col gap-1 rounded-md not-italic m-1 py-0.5 px-1">
 										<ImageComponent
 											className="w-full object-cover"
-											src={featuredImage?.featuredImage?.mediaItemUrl ?? ""}
-											alt={featuredImage?.featuredImage?.caption ?? ""}
-											sizes={featuredImage?.featuredImage?.sizes ?? undefined}
+											src={featuredImage?.featuredImage?.node?.mediaItemUrl ?? ""}
+											alt={featuredImage?.featuredImage?.node?.caption ?? ""}
+											sizes={featuredImage?.featuredImage?.node?.sizes ?? undefined}
 											width={32}
 											height={32}
 											card={true}
@@ -196,20 +196,20 @@ const Blog = async (props: Props) => {
 								</li>
 							))}
 						</ul>
-						{blog?.author?.node?.user?.profilePic?.mediaItemUrl && (
+						{blog?.author?.node?.userFields?.profilePic?.node?.mediaItemUrl && (
 							<div className="flex justify-around my-10">
 								<div aria-label="Author" className="flex gap-2">
 									<span>
 										<ImageComponent
 											className="w-9 object-cover rounded-full"
-											src={blog?.author?.node?.user?.profilePic?.mediaItemUrl ?? ""}
+											src={blog?.author?.node?.userFields?.profilePic?.node?.mediaItemUrl ?? ""}
 											alt={
 												"Profile Pic of " +
 												blog?.author?.node?.firstName +
 												" " +
 												blog?.author?.node?.lastName
 											}
-											sizes={blog?.author?.node?.user?.profilePic?.sizes ?? undefined}
+											sizes={blog?.author?.node?.userFields?.profilePic?.node?.sizes ?? undefined}
 											width={1920}
 											height={952}
 											card={true}

@@ -12,12 +12,14 @@ query coursePage($slug: ID!) {
 				slug
 				featuredImage {
 					featuredImage {
-						mediaItemUrl
-						sizes
-						caption
-						mediaDetails {
-							height
-							width
+						node {
+							mediaItemUrl
+							sizes
+							caption
+							mediaDetails {
+								height
+								width
+							}
 						}
 					}
 				}
@@ -36,13 +38,15 @@ query coursePage($slug: ID!) {
 		}
 		author {
 			node {
-				user {
+				userFields {
 					profilePic {
-						mediaItemUrl
-						sizes
-						mediaDetails {
-							height
-							width
+						node {
+							mediaItemUrl
+							sizes
+							mediaDetails {
+								height
+								width
+							}
 						}
 					}
 				}
@@ -51,50 +55,54 @@ query coursePage($slug: ID!) {
 			}
 		}
 		chapters {
-			chapters {
-				... on Chapter {
-					title
-					slug
-					modified
-					excerpt
-					contentFiltered
-					tags {
-						nodes {
-							name
-							slug
-							featuredImage {
+			chapters(first: 100) {
+				nodes {
+					__typename
+					... on Chapter {
+						title
+						slug
+						modified
+						excerpt
+						contentFiltered
+						tags {
+							nodes {
+								name
+								slug
 								featuredImage {
-									mediaItemUrl
-									sizes
-									caption
-									mediaDetails {
-										height
-										width
+									featuredImage {
+										node {
+											mediaItemUrl
+											sizes
+											caption
+											mediaDetails {
+												height
+												width
+											}
+										}
 									}
 								}
 							}
 						}
-					}
-					featuredImage {
-						node {
-							caption
-							mediaItemUrl
-							mediaDetails {
-								height
-								width
+						featuredImage {
+							node {
+								caption
+								mediaItemUrl
+								mediaDetails {
+									height
+									width
+								}
 							}
 						}
-					}
-					author {
-						node {
-							firstName
-							lastName
+						author {
+							node {
+								firstName
+								lastName
+							}
 						}
 					}
 				}
 			}
 		}
-
 		author {
 			node {
 				firstName

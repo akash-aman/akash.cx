@@ -9,6 +9,7 @@ import {
     CourseRoutesQueryVariables,
 } from "@/generated/graphql";
 import { wretch } from "@/utils/fetchapi";
+import { chapterNodes } from "@/utils/chapters";
 
 const formatDate = (date: string | null | undefined): string | undefined => {
     if (!date) return undefined;
@@ -59,7 +60,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
     const coursesChaptersRoutes = courses.nodes.reduce<MetadataRoute.Sitemap>(
         (acc, course) => {
-            const chapters = course?.chapters?.chapters;
+            const chapters = chapterNodes(course?.chapters?.chapters?.nodes);
             
             if (!chapters || !Array.isArray(chapters)) {
                 return acc;

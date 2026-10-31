@@ -12,12 +12,14 @@ query chapterPage($slug: ID!) {
 				slug
 				featuredImage {
 					featuredImage {
-						mediaItemUrl
-						sizes
-						caption
-						mediaDetails {
-							height
-							width
+						node {
+							mediaItemUrl
+							sizes
+							caption
+							mediaDetails {
+								height
+								width
+							}
 						}
 					}
 				}
@@ -36,13 +38,15 @@ query chapterPage($slug: ID!) {
 		}
 		author {
 			node {
-				user {
+				userFields {
 					profilePic {
-						mediaItemUrl
-						sizes
-						mediaDetails {
-							height
-							width
+						node {
+							mediaItemUrl
+							sizes
+							mediaDetails {
+								height
+								width
+							}
 						}
 					}
 				}

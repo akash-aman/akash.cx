@@ -1,6 +1,6 @@
 query coursesPage($first: Int!, $after: String) {
 	courses: courses(
-		where: { orderby: { field: MODIFIED, order: DESC } }
+		where: {orderby: {field: MODIFIED, order: DESC}}
 		first: $first
 		after: $after
 	) {
@@ -17,12 +17,14 @@ query coursesPage($first: Int!, $after: String) {
 					slug
 					featuredImage {
 						featuredImage {
-							mediaItemUrl
-							sizes
-							caption
-							mediaDetails {
-								height
-								width
+							node {
+								mediaItemUrl
+								sizes
+								caption
+								mediaDetails {
+									height
+									width
+								}
 							}
 						}
 					}
